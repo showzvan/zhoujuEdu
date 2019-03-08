@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>已删除报名信息</title>
+    <link rel="stylesheet" href="{% static 'user/css/user_list.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/add_user.css' %}">
+</head>
+<body>
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-fm fa fa-home home-icon"></i>
+            <a href="#">首页</a>
+        </li>
+        <li>报名信息管理</li>
+        <li class="active">已删除报名信息</li>
+    </ul><!-- .breadcrumb -->
+
+</div>
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            已删除报名信息
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="search-box-zhouju">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <select name="keyword-name" class="form-control">
+                                    <option value="username" {% ifequal keyword_name 'username' %}selected{% endifequal %}>用户名</option>
+                                    <option value="realname" {% ifequal keyword_name 'realname' %}selected{% endifequal %}>姓名</option>
+                                    <option value="phone" {% ifequal keyword_name 'phone' %}selected{% endifequal %}>手机号</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="keyword" placeholder="关键字" value="{{ keyword }}">
+                            </div>
+                            &nbsp;
+                            <div class="form-group">
+                                <button class="btn btn-info form-control" onclick="get_search()">搜索</button>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" style="padding-top:10px;padding-bottom:10px">
+                    <p class="list-result pull-left">
+                        共
+                        <span class="text-success">{{ orders.count }}</span>
+                        条结果
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        {% if orders.exists is False %}
+                            <p class="center">暂无信息</p>
+                        {% else %}
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr class="info">
+                                    <th>姓名</th>
+                                    <th>用户名</th>
+                                    <th>手机号</th>
+                                    <th>所报专业</th>
+                                    <th>所属院校</th>
+                                    <th>订单状态</th>
+                                    <th>
+                                        <i class="icon-cog bigger-110"></i>
+                                        操作
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for ord in order %}
+
+                                    <tr>
+                                        <td>
+                                            <a href="#">{{ ord.real_name|default:"暂无" }}</a>
+                                        </td>
+                                        <td>{{ ord.user_id.nickname|default:"暂无" }}</td>
+                                        <td>{{ ord.phone|default:"暂无" }}</td>
+                                        <td>{{ ord.majar_id.major_name|default:"暂无" }}</td>
+                                        <td>{{ ord.school_id.name|default:"暂无" }}</td>
+                                        <td>{{ ord.get_status_display|default:"未知" }}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-xs btn-success" data-toggle="modal"
+                                                        data-target="#editModal" href="#" data-id="{{ ord.id }}"
+                                                        onclick="recover_order(this)">
+                                                    <i class="icon-link bigger-120"></i>
+                                                    恢复
+                                                </button>
+
+                                                <button class="btn btn-xs btn-danger" data-id="{{ ord.id }}"
+                                                        onclick="del_las_order(this)">
+                                                    <i class="icon-trash bigger-120"></i>
+                                                    删除
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                    </div><!-- /.table-responsive -->
+                </div><!-- /span -->
+            </div><!-- /row -->
+
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li onclick="get_page(this)" data-id="1">
+                                <a href="#">
+                                    <span>首页</span>
+                                </a>
+                            </li>
+                            {% if order.has_previous %}
+                                <li onclick="get_page(this)" data-id="{{ order.previous_page_number }}">
+                                    <a href="#">
+                                        <span>上一页</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="previous disabled"><a href="#">上一页</a></li>
+                            {% endif %}
+
+                            {% for num in page_range %}
+                                {% if num == currentPage %}
+                                    <li id="page" class="item active" onclick="get_page(this)" data-id="{{ num }}"><a
+                                            href="#">{{ num }}</a></li>
+                                {% else %}
+                                    {% if num == '...' %}
+                                        <li class="item"><a>{{ num }}</a></li>
+                                    {% else %}
+                                        <li class="item" onclick="get_page(this)" data-id="{{ num }}"><a
+                                                href="#">{{ num }}</a></li>
+                                    {% endif %}
+
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if order.has_next %}
+                                <li class="next" onclick="get_page(this)" data-id="{{ order.next_page_number }}"><a
+                                        href="#">下一页</a></li>
+                            {% endif %}
+
+                            <li onclick="get_page(this)" data-id="{{ paginator.num_pages }}">
+                                <a href="#">
+                                    <span>最后一页</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="pagination">
+                            <li>
+                                <a>共{{ order.paginator.num_pages }}页</a>
+                            </li>
+                            <li id="page_goto">
+                                <span>
+                                    <a>
+                                        <input id="input-page" type="text" value="4">
+                                    </a>
+                                </span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="page_jump()">Go</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="message" class="message">
+    <span>x</span>
+    <div id="top_text">提示：</div>
+    <h4>删除后将无法恢复,是否删除？</h4>
+    <div class="no_delete add">否</div>
+    <div class="delete list">是</div>
+</div>
+</body>
+<script>
+    function get_search() {
+        // 获取关键字类型
+        let keyword_name = $("[name='keyword-name'] option:selected").val();
+        // 获取关键字
+        let keyword = $("input[name='keyword']").val();
+        $.ajax({
+            url:'{% url 'order:order_list' %}',
+            type: 'get',
+            data: {
+                'keyword_name': keyword_name,
+                'keyword': keyword
+            },
+            success: (data) => {
+                $(".main-content").html(data);
+            }
+        })
+    }
+
+    // 删除订单
+    function del_las_order(temp) {
+
+        var this_op = temp;
+        var order_id = $(this_op).data('id');
+        var page = $('#page').data('id');
+        $('#message').css('display', 'block');
+        $(".delete").click(() => {
+            $.ajax({
+                url: '/order/las_del_order/',
+                type: 'get',
+                data: {
+                    'order_id': order_id,
+                },
+
+                success: (data) => {
+                    $.ajax({
+                        url: '/order/get_del_order/',
+                        type: 'get',
+                        data: {
+                            'page': page,
+                            'keyword_name': '{{ keyword_name }}',
+                            'keyword': '{{ keyword }}'
+                        },
+                        success: (data) => {
+                            $(".main-content").html(data)
+                        }
+                    });
+                }
+            })
+        });
+        $('.no_delete,.message span').click(() => {
+            $.ajax({
+                url: '/order/get_del_order/',
+                type: 'get',
+                data: {
+                    'page': page,
+                    'keyword_name': '{{ keyword_name }}',
+                    'keyword': '{{ keyword }}'
+                },
+                success: (data) => {
+                    $(".main-content").html(data)
+                }
+            });
+        })
+
+    }
+
+    //恢复
+    function recover_order(temp) {
+        var this_op = temp;
+        var order_id = $(this_op).data('id');
+        var page = $('#page').data('id');
+        $.ajax({
+            url: '/order/recover_order/',
+            type: 'get',
+            data: {
+                'order_id': order_id
+            },
+            success: (data) => {
+                alert('恢复成功');
+                $.ajax({
+                    url: '/order/get_del_order/',
+                    type: 'get',
+                    data: {
+                        'page': page,
+                        'keyword_name': '{{ keyword_name }}',
+                        'keyword': '{{ keyword }}'
+                    },
+                    success: (data) => {
+                        $(".main-content").html(data)
+                    }
+                });
+            }
+        })
+    }
+
+    function get_page(temp) {
+        this_op = temp;
+        page = $(this_op).data('id');
+        $.ajax({
+            url: '/order/get_del_order/',
+            type: 'get',
+            data: {
+                'page': page,
+                'keyword_name': '{{ keyword_name }}',
+                'keyword': '{{ keyword }}'
+            },
+            success: (data) => {
+                $('.main-content').html(data)
+            }
+        })
+
+    }
+
+    function page_jump() {
+        var page = $('#input-page').val();
+        $.ajax({
+            url: '/order/get_del_order/',
+            type: 'get',
+            data: {
+                'page': page,
+                'keyword_name': '{{ keyword_name }}',
+                'keyword': '{{ keyword }}'
+            },
+            success: (data) => {
+                $('.main-content').html(data);
+                $('#input-page').val(Number(page) + 2);
+            }
+        })
+    }
+
+</script>
+</html>
+

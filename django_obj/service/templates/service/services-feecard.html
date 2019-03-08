@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>报名凭证查询舟炬教育</title>
+    <meta name="keywords" content="报名凭证查询">
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/registCertificateQuery-27d77633eb.css' %}">
+{% endblock %}
+
+{% block nav_active %}
+    <ul class="search-snav-list">
+        <li>
+            <a title="首页" href="{% url 'home' %}">首页</a>
+        </li>
+        <li class="search-main-menu search-menu-item">
+            <a title="选专业" href="{% url 'choose_major:choose_major' %}">选专业</a>
+        </li>
+        <li>
+            <a title="选院校" href="{% url 'choose_school:school' %}"> 选院校 </a>
+        </li>
+        <li>
+            <a title="学员风采" href="{% url 'news:news' %}"> 学员风采 </a>
+        </li>
+        <li>
+            <a title="服务大厅" href="{% url 'service:service' %}" class="a_active"> 服务大厅 </a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="navbar-common">
+        <div class="aside clear">
+            <p class="flt">
+                <a href="http://www.zhoujuedu.com/">首页</a>
+                <span>
+                    <i>&gt;</i>
+                    <a href="http://www.zhoujuedu.com/service/index.html">服务大厅</a>
+                    <i>&gt;</i>
+                    <a href="http://www.zhoujuedu.com/service/feecard.html">报名凭证查询</a>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div style="padding-top: 11px;">
+        <div class="college-accredit-box study-center-box clear">
+            <!--左边的菜单-->
+            <div class="service-left-nav">
+                <dl>
+                    <dt>
+                        <span class="icon iconfont icon-catalogue"></span> 学历业务服务流程
+                    </dt>
+                    <dd>
+                        <p>
+                            <a href="{% url 'service:sign' %}" data-type="108" class="108"> 网络报名招生 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:new_exam' %}" data-type="109" class="109"> 新生入学 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:help' %}" data-type="110" class="110"> 学习平台使用帮助 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:exam' %}" data-type="111" class="111"> 专业考试 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:graduation' %}" data-type="104" class="104"> 毕业问答 </a>
+                        </p>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="icon iconfont icon-search"></span> 权威查询
+                    </dt>
+                    <dd>
+                        <p>
+                            <a href="{% url 'service:feecard' %}" data-type="feecard" class="feecard active">
+                                报名凭证查询 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:center' %}"> 学习中心查询 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:collegeautho' %}"> 高校授权查询 </a>
+                        </p>
+                        <p>
+                            <a href="https://my.chsi.com.cn/archive/index-8a6ada30fc.jsp" target="_blank"> 学信网学籍查询 </a>
+                        </p>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="icon iconfont icon-downLoad"></span> 常见下载
+                    </dt>
+                    <dd>
+                        <p>
+                            <a href="{% url 'service:examdownload' %}" data-type="examdownload" class="examdownload">
+                                模拟题下载 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:courseware' %}" data-type="105" class="105"> 课件播放器下载 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:sch_form' %}" data-type="106" class="106"> 高校常见表格下载 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:application' %}" data-type="4" class="4"> 常见申请表格下载 </a>
+                        </p>
+                    </dd>
+                </dl>
+            </div>
+            <!--左边的菜单结束了-->
+
+            <div class="center-content">
+                <div class="common-tap-header">
+                    <p class="tap clear">
+                        <a class="type" href="http://www.zhoujuedu.com/service/feecard.html"> 报名凭证查询 </a>
+                        <em class="reQuery" style="display: none;">
+                            <a href="http://www.zhoujuedu.com/service/feecard.html">重新查询</a>
+                            <span class="icon iconfont icon-arrow-rit"></span>
+                        </em>
+                    </p>
+                </div>
+                <form id="form" action="{% url 'service:feecard' %}" method="post"
+                      enctype="multipart/form-data">
+                    <div class="lists-box">
+                        <ul>
+                            <li class="clear">
+                                <label for="name"> 学员姓名： </label>
+                                <input id="name" type="text" name="name" value="请输入报名时的学员姓名" class="input_content">
+                                <i id="nn">
+                                </i>
+                            </li>
+                            <li class="clear">
+                                <label for="phone"> 手机号码： </label>
+                                <input id="phone" type="text" name="phone" value="请输入报名时的手机号" class="input_content">
+                                <i id="pp">
+                                </i>
+                            </li>
+                            <li class="clear idCard">
+                                <label for="card"> 身份证号： </label>
+                                <input id="card" type="text" name="card" value="请输入报名时的身份证号码" class="input_content">
+                                <i id="cc">
+                                </i>
+                            </li>
+                            <li class="opt">
+                                <button id="submit">立即查询</button>
+                            </li>
+                            <li class="tip">
+                                <p class="warm"> 温馨提示： </p>
+                                <p class="cont"> 本功能仅限查询学员网络报名学历业务的报名凭证，学习中心或其他渠道报名信息暂不支持查询。 </p>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+
+        var cityId = 110100;
+        var is_first_index = 0;
+        var LogChannelID = "test"; //LogChannelID是频道ID，
+
+    </script>
+
+    <script type="text/javascript" src="{% static 'home/js/vendor.js' %}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var service_url = window.location.href;
+            //var type_url = $(this).attr('data-type');
+            $('.service-left-nav a').each(function () {
+                var type_url = $(this).attr('data-type');
+                var service_arr = service_url.split('/');
+                var service_function = service_arr[4].split('.');
+                if (type_url == service_function[0]) {
+                    $('.service-left-nav a').removeClass('active');
+                    $('.' + type_url).addClass('active');
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript" src="{% static 'home/js/checkIdCard-1dc550b187.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.input_content').bind({
+                focus: function () {
+                    if (this.value == this.defaultValue) {
+                        this.value = "";
+                    }
+                },
+                blur: function () {
+                    if (this.value == "") {
+                        this.value = this.defaultValue;
+                    }
+                }
+            });
+        });
+
+        var form = document.getElementById('form');
+        var submit = document.getElementById('submit');
+        submit.onclick = function () {
+            var name = form.name.value;
+            var phone = form.phone.value;
+            var card = form.card.value;
+
+            //判断姓名
+            var regEn = /[`~!@#$%^&*()_+<>?:"{},.\/;'[\]]/im,
+                regCn = /[！#￥（——）：；“”‘、，|《。》？、【】[\]]/im;
+            //alert(/^[\u4e00-\u9fa5]{2,10}·?[\u4e00-\u9fa5]+$/g.test('双双'));
+            if (name == '请输入报名时的学员姓名') {
+                $('#nn').html('<span class="icon iconfont icon-close-1">&#xe672;</span><em>请输入学员姓名，此项为必填项</em>');
+                return false;
+            } else if (!/^[\u4e00-\u9fa5]{1,8}·?[\u4e00-\u9fa5]{1,8}$/g.test(name) || regEn.test(name) || regCn.test(name)) {
+                $('#nn').html('<span class="icon iconfont icon-close-1">&#xe672;</span><em>姓名格式错误</em>');
+                return false;
+            } else {
+                $('#nn').html('');
+            }
+            //判断手机号是否正确
+            if (phone == '请输入报名时的手机号') {
+                $('#pp').html('<span class="icon iconfont icon-close-1">&#xe672;</span><em>请输入手机号码，此项为必填项</em>');
+                return false;
+            } else if (!(/^1(3|4|5|6|7|8)\d{9}$/.test(phone))) {
+                $('#pp').html('<span class="icon iconfont icon-close-1">&#xe672;</span><em>手机号码格式错误</em>');
+                return false;
+            } else {
+                $('#pp').html('');
+            }
+            //判断身份证
+            {#var isCard = IdentityCodeValid(card);#}
+            var reg = /\d{6}[1-2]\d{3}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])\d{3}(\d|x)$/;
+            if (card == '请输入报名时的身份证号码') {
+                $('#cc').html('<span class="icon iconfont icon-close-1">&#xe672;</span><em>请输入身份证号码，此项为必填项</em>');
+                return false;
+            } else if (reg.test(card) === false) {
+                $('#cc').html('<span class="icon iconfont icon-close-1">&#xe672;</span><em>身份证号码格式错误</em>');
+                return false;
+            } else {
+                $('#cc').html('');
+            }
+
+            form.submit();
+        }
+    </script>
+
+{% endblock %}

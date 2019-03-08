@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
+</head>
+<body>
+
+<h3>详细信息</h3>
+<p>Name:{{ user.nickname }}</p>
+<p>Email:{{ user.email }}</p>
+<p>Phone:{{ user.phone }}</p>
+<p>Is_student:{{ user.is_student }}</p>
+<p>Education:{{ user.education }}</p>
+<p>Dgree:{{ user.dgree }}</p>
+<p>Province:{{ user.province }}</p>
+<p>City:{{ user.city }}</p>
+<p>Country:{{ user.country }}</p>
+<p>Major:{{ user.major }}</p>
+<p>School:{{ user.school }}</p>
+<p>Is_status:{{ user.is_status }}</p>
+<button id="close">关闭</button>
+
+</body>
+</html>
+<script>
+    $('#close').click(function () {
+        $('.detail').css("display", "none")
+    });
+</script>

@@ -1,0 +1,65 @@
+div.info {
+    font-size: 14px;
+}
+
+input {
+    outline: none;
+}
+.clear {
+    clear: both;
+}
+div.message {
+    width: 400px;
+    height: 200px;
+    background-color: #EAF2D3;
+    border: 2px solid #EAF2D3;
+    position: fixed;
+    top: 284px;
+    left: 708px;
+    display: none;
+}
+
+div.message span {
+    position: absolute;
+    top: -2px;
+    left: 382px;
+    cursor: pointer;
+    font-size: 24px;
+
+}
+
+div.message h4 {
+    position: absolute;
+    top: 10px;
+    left: 102px;
+    font-size: 32px;
+}
+
+div.message .add {
+    width: 104px;
+    height: 38px;
+    border: 1px solid #98bf21;
+    background-color: #98bf21;
+    cursor: pointer;
+    position: absolute;
+    top: 140px;
+    left: 40px;
+    border-radius: 7px;
+    text-align: center;
+    line-height: 38px;
+}
+
+div.message .list {
+    width: 104px;
+    height: 38px;
+    border: 1px solid #98bf21;
+    background-color: #98bf21;
+    cursor: pointer;
+    position: absolute;
+    top: 140px;
+    left: 252px;
+    border-radius: 7px;
+    text-align: center;
+    line-height: 38px;
+
+}

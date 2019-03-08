@@ -1,0 +1,72 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="close1"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">专业详情</h4>
+      </div>
+      <div class="modal-body">
+    		<table class="table table-bordered table-hover table-striped table-responsive">
+    			<tbody>
+    				<tr>
+    					<td width="25%">专业名称</td>
+    					<td width="75%">{{ major.major_name|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>专业简述</td>
+    					<td>{{ major.major_desciption|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>所属院校</td>
+    					<td>{{ major.school.name|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>学制</td>
+    					<td>
+    						{{ major.times|default:"暂无"}}
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>报读人数</td>
+    					<td>
+    						{{ major.count|default:"0" }}
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>所属分类</td>
+    					<td>{{ major.major_category.catename|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>层次</td>
+    					<td>{{ major.get_level_display|default:"0" }}</td>
+    				</tr>
+    				<tr>
+    					<td>是否推荐</td>
+    					<td>{% if ma.is_recommend %}是{% else %}否{% endif %}</td>
+    				</tr>
+    				<tr>
+    					<td>是录取快</td>
+    					<td>{% if ma.is_fast %}是{% else %}否{% endif %}</td>
+    				</tr>
+    				<tr>
+    					<td>是否特色专业</td>
+    					<td>
+                            {% if ma.is_special %}是{% else %}否{% endif %}
+                        </td>
+    				</tr>
+    				<tr>
+    					<td>专业介绍</td>
+    					<td>
+                            {{ major.detail|default:"暂无" }}
+                        </td>
+    				</tr>
+    
+    			</tbody>
+    		</table>
+      </div>
+</div>
+</div>
+<script>
+    $('#close1').click(function () {
+        $('.detail').css("display", "none")
+    });
+</script>

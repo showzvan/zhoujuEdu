@@ -1,0 +1,100 @@
+.order,.order .my_table {
+	font-size: 12px;
+	width: 388px;
+	margin: 20px auto;
+	color: #6f6f6f;
+	border: 1px solid #f8f8f6
+}
+
+.order .my_table tr.odd {
+	background-color: #f8f8f6
+}
+
+.order p {
+	font-size: 12px;
+    color: #8f8f8f;
+	text-align: center;
+	height: 35px;
+	background: #f8f8f6 url(../images/tbord.png) no-repeat 3px 10px
+}
+
+.order .my_table td {
+	height: 20px;
+	text-align: center;
+	font-size: 14px;
+	color: #6f6f6f;
+	font-size: 12px
+}
+
+.order .my_table td.btn-box a.pay-btn {
+	color: #f04f00;
+	border: solid 1px #f04f00;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding: 3px 19px;
+	margin-bottom: 3px;
+	display: inline-block;
+	line-height: normal
+}
+
+.order .my_table td.none {
+	height: 90px;
+	font-size: 16px;
+	color: #777;
+	padding: 20px 0
+}
+
+.order .my_table td.timer {
+	line-height: 160%
+}
+
+.order .my_table i.none {
+	margin-right: 20px;
+	font-size: 50px;
+	vertical-align: middle
+}
+
+.order .my_table span.none {
+	vertical-align: middle
+}
+
+.order .my_table .first {
+	text-align: left;
+	padding-left: 27px;
+	width: 230px
+}
+
+.order .my_table .first img {
+	vertical-align: middle;
+	margin-right: 18px
+}
+
+.order .my_table .fx {
+	color: #313131
+}
+
+.order .my_table .org {
+	color: #fe9b00
+}
+
+.order .my_table .red a {
+	color: #f04f00
+}
+
+.order .my_table .gray {
+	background: #f8f8f6
+}
+
+.order .my_table .coform {
+	color: #f04f00;
+	margin-bottom: 5px;
+	border: 1px solid #f04f00;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	display: inline-block;
+	width: 86px;
+	height: 21px;
+	line-height: 21px
+}

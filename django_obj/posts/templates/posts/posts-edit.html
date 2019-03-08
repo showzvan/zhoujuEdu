@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>编辑文章</title>
+    <link rel="stylesheet" href="{% static 'user/css/user_list.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/add_user.css' %}">
+    <script src="{% static 'posts/ckeditor/ckeditor.js' %}"></script>
+</head>
+<body>
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-fm fa fa-home home-icon"></i>
+            <a href="#">首页</a>
+        </li>
+        <li>学员风采</li>
+        <li class="active">编辑文章</li>
+    </ul><!-- .breadcrumb -->
+
+</div>
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            编辑文章
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="inputArticleTitle">文章标题</label>
+                    <input type="text" class="form-control" id="inputArticleTitle" value="{{ post.post_title }}">
+                    <div class="title alt"></div>
+                </div>
+                <div class="form-group">
+                    <label for="editor1">正文</label>
+                    <textarea name="editor" id="editor1" cols="30"
+                              rows="10">{{ post.post_content|default:'' }}</textarea>
+                </div>
+                <div class="form-group">
+                    {#                    <button class="btn btn-primary" onclick="GetContents()" data-toggle="modal" data-target="#tags">确定</button>#}
+                    <button class="btn btn-primary" onclick="GetContents()">确定</button>
+                    <button class="btn btn-link">返回</button>
+                </div>
+
+
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">来源设置</div>
+                    <div class="panel-body">
+                        <div class="from-group">
+                            <label for="sourceTitle">来源名称</label>
+                            <input type="text" id="sourceTitle" class="form-control" value="{{ post.source }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="sourceUrl">来源地址</label>
+                            <input type="text" id="sourceUrl" class="form-control" value="{{ post.source_link }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">封面图设置</div>
+                    <div class="panel-body">
+                        {% if post.post_image %}
+                            <img src="/media/{{ post.post_image }}" alt=""
+                                 style="width: 208px;height: 117px;margin-bottom: 5px;display: block" id="avatar-img">
+                        {% else %}
+                            <img src="" alt=""
+                                 style="width: 208px;height: 117px;margin-bottom: 5px;" id="avatar-img">
+                        {% endif %}
+                        <label class="btn btn-default" for="avatar-thumbnail">上传
+                            <input type="file" class="file-panel hidden" id="avatar-thumbnail">
+                        </label>
+                        <p></p>
+                        <p>请上传jpg, gif, png格式的图片</p>
+                        <p>建议图片尺寸为 754×424px。</p>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">更多设置</div>
+                    <div class="panel-body">
+                        <div class="form-gorup">
+                            {#                            <input type="datetime-local" class="form-control">#}
+                            <p>选择标签</p>
+                            <select class="form-control" id="choose_tag">
+                                {% for ta in tag %}
+                                    {% if ta == post.tags %}
+                                        <option value="{{ ta.id }}" selected>{{ ta.name }}</option>
+                                    {% else %}
+                                        <option value="{{ ta.id }}">{{ ta.name }}</option>
+                                    {% endif %}
+
+                                {% endfor %}
+                            </select>
+                            <p>选择学校</p>
+                            <select class="form-control" id="choose_school">
+                                <option value=''>无</option>
+                                {% for sch in school %}
+                                    {% if sch == post.school %}
+                                        <option value="{{ sch.id }}" selected>{{ sch.name }}</option>
+                                    {% else %}
+                                        <option value="{{ sch.id }}">{{ sch.name }}</option>
+                                    {% endif %}
+
+                                {% endfor %}
+                            </select>
+                            <div class="form-group">
+                                <label for="readerCount">阅读人数</label>
+                                <input type="text" id="readerCount" class="form-control"
+                                       value="{{ post.views|default:0 }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div><!-- /.page-content -->
+<div class="clear"></div>
+<div class="modal fade" tabindex="-1" role="dialog" id="tags">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">发布文章</h4>
+            </div>
+            <div class="modal-body">
+                {#        <p>选择标签</p>#}
+                {#        <select class="form-control" id="choose_tag">#}
+                {#            {% for ta in tag %}#}
+                {#                <option value="{{ ta.id }}">{{ ta.name }}</option>#}
+                {#            {% endfor %}#}
+                {#        </select>#}
+                {#        <p>选择学校</p>#}
+                {#        <select class="form-control" id="choose_school">#}
+                {#            <option value=None>无</option>#}
+                {#            {% for sch in school %}#}
+                {#                <option value="{{ sch.id }}">{{ sch.name }}</option>#}
+                {#            {% endfor %}#}
+                {#        </select>#}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                <button type="button" class="btn btn-primary">发布</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<input type="hidden" id="postId" value="{{ post.id }}">
+<div id="message" class="message">
+    <span>x</span>
+    <div id="top_text">提示：</div>
+    <h5>信息修改成功,点击确定返回文章列表</h5>
+    <div id="sure" class="back list">确定</div>
+</div>
+</body>
+<script>
+    CKEDITOR.on('instanceReady', function (ev) {
+        // 这个函数里面放的是富文本编辑器就绪之后执行的操作
+        console.log("富文本编辑器初始化成功");
+    });
+
+    // 初始化操作
+    var editor = CKEDITOR.replace('editor', {
+        height: 500
+    });
+
+    function GetContents() {
+        var editor = CKEDITOR.instances.editor1;
+        var content = editor.getData();  // 正文内容
+        console.log(editor.getData());
+        var post_id = $('#postId').val();  // 文章id
+        var title = $('#inputArticleTitle').val();  // 文章标题
+        var sourceTitle = $('#sourceTitle').val();  // 来源名称
+        var sourceUrl = $('#sourceUrl').val();  // 来源地址
+        var tags = $('#choose_tag option:selected').val(); // 文章标签
+        var school = $('#choose_school option:selected').val(); // 学校
+        var count = $('#readerCount').val();  // 阅读人数
+
+        formdata = new FormData();
+        formdata.append('avatar', $('#avatar-thumbnail')[0].files[0]);
+        formdata.append('post_id', post_id);
+        formdata.append('content', content);
+        formdata.append('title', title);
+        formdata.append('sourceTitle', sourceTitle);
+        formdata.append('sourceUrl', sourceUrl);
+        formdata.append('tags', tags);
+        formdata.append('school', school);
+        formdata.append('count', count);
+        console.log(formdata);
+        $.ajax({
+            processData: false,
+            contentType: false,
+            url: '/posts/edit_post/',
+            type: 'post',
+            data: formdata,
+            success: (data) => {
+                if (data.status === 'fail') {
+                    $('.' + data.tagid).html(data.message).css('color', 'red')
+                } else {
+                    $('.message').css('display', 'block');
+                }
+
+            }
+
+        })
+
+
+    }
+
+
+    $('.btn-link,.close,.message span,.back').click(() => {
+        $.ajax({
+            url: '/posts/get_posts/',
+            type: 'get',
+            success: (data) => {
+                $('.modal-dialog').css('display', 'none');
+                $('.main-content').html(data)
+            }
+        })
+    });
+
+    //上传封面图片预览图
+    $('#avatar-thumbnail').on('change', () => {
+        var choose_file = $('#avatar-thumbnail')[0].files[0];
+        console.log(choose_file);
+        var reader = new FileReader();
+        reader.readAsDataURL(choose_file);
+        reader.onload = function () {
+            $('#avatar-img').attr('src', reader.result).css('display', 'block')
+        }
+    })
+</script>
+</html>
+

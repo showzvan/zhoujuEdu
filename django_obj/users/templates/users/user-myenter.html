@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode2.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/myRegistration-cbdc6b26c7.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="body-box">
+        <div class="user-agreement-box clearfix">
+            <!--左边菜单-->
+            <div class="myenlist-left-nav">
+                <div class="tou">
+                    <img src="{% static 'home/images/header.png' %}" alt="">
+                    欢迎您,<br>
+                    <span class="pho">{{ user_phone|slice:'0:3' }}****{{ user_phone|slice:'7:12' }}</span>
+                    <br>
+                    <button id="goPage"> 跟踪报名流程 <span class="number">1</span></button>
+                </div>
+
+                <ul>
+                    <li class="active"><a href="{% url 'users:userEnter' %}">我的报名</a></li>
+                    <li><a href="http://learn.zhoujuedu.com">OES学习平台</a></li>
+                    <li><a id="protocol" href="{% url 'users:agreement' %}">用户协议</a></li>
+                    <li class="quite"><a class="quit-login" href="javascript:;">退出登录</a></li>
+                </ul>
+            </div>
+            <!--左边菜单结束-->
+
+            <div class="agreement-container">
+                <ul id="tab">
+                    <li class="{% if order_type == 'all' %}current{% elif order_type == '' %}current{% endif %}" onclick="all_pay(this)">全部</li>
+                    <li class="{% if order_type == 'wfk' %}current{% endif %}" onclick="wfk(this)" >未交报名费</li>
+                    <li class="{% if order_type == 'yfk' %}current{% endif %}" onclick="yfk(this)">已报名</li>
+                    <li class="{% if order_type == 'ylq' %}current{% endif %}" onclick="ylq(this)">已录取</li>
+                    <li class="{% if order_type == 'ysx' %}current{% endif %}" onclick="ysx(this)">已失效</li>
+                </ul>
+
+                <div id="content">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="my_table">
+                        <thead>
+                        <tr>
+                            <th style=" background: #f8f8f6;width: 257px;"><span>专业</span></th>
+                            <th style="width: 203px;">院校</th>
+                            <th style="width: 80px;">层次</th>
+                            <th style="width: 87px;">金额</th>
+                            <th style="width: 102px;">状态</th>
+                            <th style="width: 110px;">报名时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-box">
+                        {% for order in orders %}
+                            <tr>
+                            <td>{{ order.majar_id.major_name }}</td>
+                            <td>{{ order.school_id.name }}</td>
+                            <td>{{ order.majar_id.get_level_display }}</td>
+                            <td>&yen;200</td>
+                            <td>{{ order.get_status_display }}</td>
+                            <td>{{ order.create_time }}</td>
+                            <td>
+                                <a href="#">取消报名</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+
+{#                        <tr>#}
+{#                            <td>计算机科学与技术</td>#}
+{#                            <td>中国人民大学</td>#}
+{#                            <td>专升本</td>#}
+{#                            <td>&yen;200</td>#}
+{#                            <td>已报名</td>#}
+{#                            <td>2018-12-12 10:23:23</td>#}
+{#                            <td>#}
+{#                                <a href="#">取消报名</a>#}
+{#                            </td>#}
+{#                        </tr>#}
+                        <tr>
+                            <td class="none" colspan="6">
+                                <i class="iconfont none"></i>
+                                <span class="none">无相关内容</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="page-opt clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block foot %}
+
+{% endblock %}
+{% block javascript %}
+    <script>
+        function wfk(temp) {
+            this_op = temp;
+            $.ajax({
+                url:'{% url 'users:userEnter' %}',
+                type:'get',
+                data:{
+                    'order_type':'wfk'
+                },
+                success:(data) =>{
+                    $('html').html(data);
+                }
+            })
+        }
+
+        function yfk(temp) {
+            let this_op = temp;
+            $.ajax({
+                url:'{% url 'users:userEnter' %}',
+                type:'get',
+                data:{
+                    'order_type':'yfk'
+                },
+                success:(data) =>{
+                    $('html').html(data);
+                    {#$('#tab li').removeClass('current');#}
+                    {#$(this_op).addClass('active')#}
+                }
+            })
+        }
+
+        function ylq(temp) {
+            let this_op = temp;
+            $.ajax({
+                url:'{% url 'users:userEnter' %}',
+                type:'get',
+                data:{
+                    'order_type':'ylq'
+                },
+                success:(data) =>{
+                    $('html').html(data);
+                    {#$('#tab li').removeClass('current');#}
+                    {#$(this_op).addClass('active')#}
+                }
+            })
+        }
+
+        function ysx(temp) {
+            let this_op = temp;
+            $.ajax({
+                url:'{% url 'users:userEnter' %}',
+                type:'get',
+                data:{
+                    'order_type':'ysx'
+                },
+                success:(data) =>{
+                    $('html').html(data);
+                    {#$('#tab li').removeClass('current');#}
+                    {#$(this_op).addClass('active')#}
+                }
+            })
+        }
+        function all_pay(temp) {
+            let this_op = temp;
+            $.ajax({
+                url:'{% url 'users:userEnter' %}',
+                type:'get',
+                data:{
+                    'order_type':'all'
+                },
+                success:(data) =>{
+                    $('html').html(data);
+                    {#$('#tab li').removeClass('current');#}
+                    {#$(this_op).addClass('active')#}
+                }
+            })
+        }
+    </script>
+{% endblock %}

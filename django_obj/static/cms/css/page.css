@@ -1,0 +1,10 @@
+#page_goto span {
+    padding: 6px 4px;
+}
+
+#page_goto input {
+    border: none;
+    padding: 0;
+    width: 2em;
+    text-align: center;
+}

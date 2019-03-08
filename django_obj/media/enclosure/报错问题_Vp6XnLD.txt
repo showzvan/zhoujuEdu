@@ -1,0 +1,22 @@
+1.运行Django项目时报错
+
+	django.core.exceptions.ImproperlyConfigured: WSGI application 'image_up.wsgi.application' could not be loaded; Error importing module.
+	原因：
+	在 setting 里面
+	WSGI_APPLICATION = 'image_up.wsgi.application'  
+	image_up  不是创建的项目，而是后创的app  只要将image_up 改成你的项目名即可
+
+
+
+
+
+settings里面没有把app名字添加到  INSTALLED_APPS 里面
+
+
+
+
+2. django.template.exceptions.TemplateSyntaxError: default requires 2 arguments, 1 provided
+
+	过滤器问题
+	一般情况下是html {{ }} 参数填写错误   
+	我通过给 default：---    加上双引号解决   default: '---'

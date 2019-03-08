@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>{{ school.name }}_舟炬教育</title>
+    <meta name="keywords" content="东北师范大学网络教育学院,东北师范大学现代远程教育学院,东北师范大学继续教育学院,东北师大网络教育学院">
+    <meta name="description" content="{{ school.description }}">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/schoolnew-62241bd78d.css' %}">
+{% endblock %}
+
+
+{% block nav_active %}
+    <ul class="search-snav-list">
+        <li>
+            <a title="首页" href="{% url 'home' %}">首页</a>
+        </li>
+        <li class="search-main-menu search-menu-item">
+            <a title="选专业" href="{% url 'choose_major:choose_major' %}">选专业</a>
+        </li>
+        <li>
+            <a title="选院校" href="{% url 'choose_school:school' %}" class="a_active"> 选院校 </a>
+        </li>
+        <li>
+            <a title="学员风采" href="{% url 'news:news' %}"> 学员风采 </a>
+        </li>
+        <li>
+            <a title="服务大厅" href="{% url 'service:service' %}"> 服务大厅 </a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="top_bg"
+         style="background:url({{ school.banner }}) no-repeat center top;height:490px;overflow-y:hidden;">
+        <div class="w1200">
+            <h1>{{ school.name }}</h1>
+            <strong>开设层次：
+                高起专、高起本、专升本
+            </strong>
+            <div class="mores" style=" font-size: 0;">
+                <span>{{ school.sch_pro.province }}</span>
+                {% for type in school_type %}
+                    <span>{{ type.type_name }}</span>
+                {% endfor %}
+                {% for feature in school_feature %}
+                    <span>{{ feature.feature_name }}</span>
+                {% endfor %}
+            </div>
+            <p></p>
+            <p>{{ school.description }}</p>
+            <p></p>
+            <div class="sort">开设专业<br>
+                <span>{{ school.majors_set.count }}</span>个
+            </div>
+            <div class="sort">累计报读<br>
+                <span>{% widthratio school.count 10000 1 %}</span>万人
+            </div>
+        </div>
+    </div>
+    <div class="sub_nav">
+        <div class=" w1200">
+            <ul>
+                <li><span class="icon iconfont "></span> <a href="{% url 'choose_school:school_intro' school.pk %}" target="_blank">招生简章</a></li>
+
+                <li><span class="icon iconfont "></span> <a
+                        href="{% url 'service:collegeautho-search' %}?school_code={{ school.id }}&school_name={{ school.name }}"
+                        target="_blank">授权查询</a>
+                </li>
+
+                <li><span class="icon iconfont "></span> <a href="{% url 'service:examdownload' %}?u={{ school.id }}"
+                                                             target="_blank">模拟题下载</a>
+                </li>
+                {% if yuan_id %}
+                    <li><span class="icon iconfont  "></span> <a href="{% url 'news:news_detail' yuan_id.id %}"
+                                                              target="_blank">学期院历</a></li>
+                {% else %}
+                    <li><span class="icon iconfont  "></span> <a href="{% url 'news:news' %}" target="_blank">学期院历</a></li>
+                {% endif %}
+                <!-- <li><span class="icon iconfont ">&#xe643;</span> 学生手册</li> -->
+            </ul>
+            <div class="sub_right ">
+                <button class="signWechatBtn signWechatBtn1"><span class="icon iconfont "></span>报名咨询</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="w1165 clear">
+        <h3><span class="icon iconfont "></span>推荐专业</h3>
+        <ul class="groom">
+            {% for recommend in recommends %}
+                <li>
+                    <a href="{% url 'choose_major:major_detail' recommend.id school.id %}" target="_blank"><img
+                            src="{{ recommend.major_image }}" alt=""></a>
+                    <p>{{ recommend.major_name }}</p>
+                    <a href="enter.html" class="bm" target="_blank">立即报名</a>
+                    <a class="zx signWechatBtn signWechatBtn1">报名咨询</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div class="gray">
+        <div class="w1165 clear">
+            <!--报名须知-->
+            <div class="xuzhi">
+                {{ school.enrol_notes|safe }}
+            </div>
+            <!--开设专业-->
+            <div class="zhuanye">
+                <h3><span class="icon iconfont "></span>开设专业</h3>
+                <table width="100%" border="0">
+                    <tbody>
+                    <tr>
+                        <th>专业名称</th>
+                        <th>学制</th>
+                        <th>层次</th>
+                        <th>报名</th>
+                    </tr>
+                    {% for major in majors %}
+                        <tr>
+                            <td>{{ major.major_name }}</td>
+                            <td>{{ major.times }}年</td>
+                            <td>{{ major.get_level_display }}</td>
+                            <td>
+                                <a href="enter.html" target="_blank">立即报名</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="more_btn"><a href="{% url 'choose_major:choose_major' %}?s={{ school.pk }}" target="_blank">查看{{ school.name }}全部{{ majors_count }}个专业</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="w1165 clear">
+        <h3><span class="icon iconfont "></span>证书样本</h3>
+        <div class="zhengshu clearfix">
+            <ul>
+                <li>
+                    <div class="img-box">
+                        <img src="{{ school.diploma_images }}" alt="毕业证书样本">
+                    </div>
+                </li>
+                <li>
+                    <div class="img-box">
+                        <img src="{{ school.degree_images }}" alt="学位证书样本">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="title-box clearfix">
+            <p class="demo">毕业证书样本</p>
+            <p>学位证书样本</p>
+        </div>
+    </div>
+    <div class="gray">
+        <div class="w1165 ">
+            <h3><span class="icon iconfont "></span>相关资讯</h3>
+            <div class="about">
+                <dl>
+                    <dt>
+                        <h4>院校新闻</h4>
+                    </dt>
+                    <dd>
+                        {% if school_news.count != 0 %}
+                            {% for news in school_news %}
+                                <li>
+                                    <a href="{% url 'news:news_detail' news.pk %}"
+                                       target="_blank">{{ news.post_title }}</a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <h4>常见问题</h4>
+                    </dt>
+                    <dd>
+                        {% if question_news.count != 0 %}
+                            {% for question in question_news %}
+                                <li>
+                                    <a href="{% url 'news:news_detail' question.pk %}"
+                                       target="_blank">{{ question.post_title }}</a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="w1165 clear">
+        {% if pro_school %}
+            <h3><span class="icon iconfont "></span>{{ school.sch_pro.province }} 院校推荐</h3>
+            <!-- <div class="btndiv">
+                        <a class="abtn aleft" href="#left">左移</a>
+                        <a class="abtn aright" href="#right">右移</a>
+            </div> -->
+            <div id="flexslider1" class="shooltuijian clear">
+                <ul class="slides box">
+                    {% for pro in pro_school %}
+                        <li>
+                            <a class="img" href="{% url 'choose_school:school_detail' pro.pk %}" target="_blank"
+                               title="{{ pro.name }}" alt="{{ pro.name }}">
+                                <img src="{{ pro.emblem }}">
+                            </a>
+                            <p>{{ pro.name }}</p>
+                            <div class="more">
+                                {% if pro.is_double %}
+                                    <span>双一流</span>
+                                {% endif %}
+                                {% if pro.is_985 %}
+                                    <span>985</span>
+                                {% endif %}
+                                {% if pro.is_211 %}
+                                    <span>211</span>
+                                {% endif %}
+                            </div>
+                            <a class="active" href="/school/10183.html" target="_blank">立即报名</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if same_type.count != 0 %}
+            <h3><span class="icon iconfont ">&#xe6ba;</span>师范 类院校推荐</h3>
+            <div id="flexslider2" class="shooltuijian clear">
+                <!--  <div class="btndiv">
+                             <a class="abtn aleft" href="#left">左移</a>
+                             <a class="abtn aright" href="#right">右移</a>
+                 </div> -->
+                <!--  <div  class=""> -->
+                <ul class="slides box">
+                    {% for sames in same_type %}
+                        <li>
+                            <a class="img" href="{% url 'choose_school:school_detail' sames.pk %}" target="_blank"
+                               title="{{ sames.name }}" alt="{{ sames.name }}">
+                                <img src="{{ sames.emblem }}">
+                            </a>
+                            <p>{{ sames.name }}</p>
+                            <div class="more">
+                                {% if sames.is_double %}
+                                    <span>双一流</span>
+                                {% endif %}
+                                {% if sames.is_985 %}
+                                    <span>985</span>
+                                {% endif %}
+                                {% if sames.is_211 %}
+                                    <span>211</span>
+                                {% endif %}
+                            </div>
+                            <a class="active" href="/school/10394.html" target="_blank">
+                                立即报名
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <!--  </div> -->
+            </div>
+        {% endif %}
+    </div>
+    <script type="text/javascript">
+        var cityId = 110100;
+        var is_first_index = 0;
+        var LogChannelID = "test"; //LogChannelID是频道ID，
+
+    </script>
+    <script type="text/javascript" src="{% static 'home/js/vendor.js' %}"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            var len = $("#flexslider2 li").length;
+            var len2 = $("#flexslider1 li").length;
+            if (len2 <= 5) {
+                $('#flexslider1').flexslider({
+                    itemWidth: 195,
+                    controlNav: false,
+                    itemMargin: 0,
+                    slideshow: false,
+                    animation: "slide",
+                    animationLoop: false,
+                    directionNav: true,
+                    pauseOnAction: false,
+                    slideshowSpeed: 3000
+                });
+            } else {
+                $('#flexslider1').flexslider({
+                    itemWidth: 195,
+                    controlNav: false,
+                    itemMargin: 0,
+                    animation: "slide",
+                    animationLoop: true,
+                    directionNav: true,
+                    pauseOnAction: false,
+                    slideshowSpeed: 3000,
+                    prevText: '<span id="btnLeft">&lt;</span>',
+                    nextText: '<span id="btnRight">&gt;</span>'
+                });
+            }
+            if (len <= 5) {
+                $('#flexslider2').flexslider({
+                    itemWidth: 195,
+                    controlNav: false,
+                    itemMargin: 0,
+                    slideshow: false,
+                    animation: "slide",
+                    animationLoop: false,
+                    directionNav: true,
+                    pauseOnAction: false,
+                    slideshowSpeed: 3000
+                });
+            } else {
+                $('#flexslider2').flexslider({
+                    itemWidth: 195,
+                    controlNav: false,
+                    itemMargin: 0,
+                    animation: "slide",
+                    animationLoop: true,
+                    directionNav: true,
+                    pauseOnAction: false,
+                    slideshowSpeed: 3000,
+                    prevText: '<span id="btnLeft">&lt;</span>',
+                    nextText: '<span id="btnRight">&gt;</span>'
+                });
+            }
+        })
+    </script>
+
+{% endblock %}

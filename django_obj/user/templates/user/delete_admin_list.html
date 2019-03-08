@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>已删除管理员</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" href="{% static 'user/css/add_user.css' %}">
+</head>
+<body>
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-fm fa fa-home home-icon"></i>
+            <a href="#">首页</a>
+        </li>
+        <li>用户管理</li>
+        <li class="active">已删除管理员</li>
+    </ul><!-- .breadcrumb -->
+
+</div>
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            已删除管理员
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="search-box-zhouju">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <select name="time-name" class="form-control">
+                                    <option value="reg-time" {% if time_type == 'reg-time' %}selected{% endif %}>注册时间
+                                    </option>
+                                    <option value="login-time" {% if time_type == 'login-time' %}selected{% endif %}>
+                                        登录时间
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" class="form-control" name="start-time" placeholder="起始时间"
+                                       value="{{ start_time }}">
+                            </div>
+                            <div class="form-group">
+                                <input type="date" class="form-control" name="end-time" placeholder="结束时间"
+                                       value="{{ end_time }}">
+                            </div>
+                            &nbsp;
+                            <div class="form-group">
+                                <select name="keyword-name" class="form-control">
+                                    <option value="username">用户名</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="keyword" placeholder="关键字"
+                                       value="{{ keyword }}">
+                            </div>
+                            &nbsp;
+                            <div class="form-group">
+                                <button class="btn btn-info form-control" onclick="get_search()">搜索</button>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" style="padding-top:10px;padding-bottom:10px">
+                    <p class="list-result pull-left">
+                        共
+                        <span class="text-success">{{ ad_users.count }}</span>
+                        条结果
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        {% if ad_users.exists is False %}
+                            <p class="center">暂无信息</p>
+                        {% else %}
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+
+                                <tr class="info">
+                                    <th>用户名</th>
+                                    <th>
+                                        <i class="icon-time bigger-110"></i>
+                                        注册时间
+                                    </th>
+                                    <th>
+                                        <i class="icon-time bigger-110"></i>
+                                        最近登录
+                                    </th>
+                                    <th>
+                                        <i class="icon-cog bigger-110"></i>
+                                        操作
+                                    </th>
+                                </tr>
+                                </thead>
+
+
+                                {% for user in ad_user %}
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="#">{{ user.admin_name|default:" " }}</a>
+                                        </td>
+                                        <td>
+                                            <span class="userinfo-time">{{ user.reg_time|default:" " }}</span>
+                                            <br>
+                                            <span class="userinfo-ip">{{ user.reg_ip|default:" " }}</span>
+                                        </td>
+
+                                        <td>
+                                            <span class="userinfo-time">{{ user.last_time|default:"尚未登录" }}</span>
+                                            <br>
+                                            <span class="userinfo-ip">{{ user.last_ip|default:"未知" }}</span>
+                                        </td>
+
+                                        <td>
+                                            <div class="btn-group">
+
+                                                <button class="btn btn-xs btn-success" data-toggle="modal"
+                                                        data-target="#editModal" onclick="recover_admin(this)"
+                                                        data-id={{ user.id }}>
+                                                    <i class="icon-edit bigger-120"></i>
+                                                    恢复
+                                                </button>
+                                                <button class="btn btn-xs btn-danger" onclick="last_delete_admin(this)"
+                                                        data-id={{ user.id }}>
+                                                    <i class="icon-trash bigger-120"></i>
+                                                    删除
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                {% endfor %}
+
+                            </table>
+                        {% endif %}
+                    </div><!-- /.table-responsive -->
+                </div><!-- /span -->
+            </div><!-- /row -->
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li onclick="get_page(this)" data-id="1">
+                                <a href="#">
+                                    <span>首页</span>
+                                </a>
+                            </li>
+                            {% if ad_user.has_previous %}
+                                <li onclick="get_page(this)" data-id="{{ ad_user.previous_page_number }}">
+                                    <a href="#">
+                                        <span>上一页</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="previous disabled"><a href="#">上一页</a></li>
+                            {% endif %}
+
+                            {% for num in page_range %}
+                                {% if num == currentPage %}
+                                    <li id="page" class="item active" onclick="get_page(this)" data-id="{{ num }}"><a
+                                            href="#">{{ num }}</a></li>
+                                {% else %}
+                                    {% if num == '...' %}
+                                        <li class="item"><a>{{ num }}</a></li>
+                                    {% else %}
+                                        <li class="item" onclick="get_page(this)" data-id="{{ num }}"><a
+                                                href="#">{{ num }}</a></li>
+                                    {% endif %}
+
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if ad_user.has_next %}
+                                <li class="next" onclick="get_page(this)" data-id="{{ ad_user.next_page_number }}"><a
+                                        href="#">下一页</a></li>
+                            {% endif %}
+
+                            <li onclick="get_page(this)" data-id="{{ paginator.num_pages }}">
+                                <a href="#">
+                                    <span>最后一页</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="pagination">
+                            <li>
+                                <a>共{{ ad_user.paginator.num_pages }}页</a>
+                            </li>
+                            <li id="page_goto">
+                                <span>
+                                    <a>
+                                        <input id="input-page" type="text" value="4">
+                                    </a>
+                                </span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="page_jump()">Go</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<div id="message" class="message">
+    <span>x</span>
+    <div id="top_text">提示：</div>
+    <h4>删除后将无法恢复,是否删除？</h4>
+    <div class="no_delete add">否</div>
+    <div class="delete list">是</div>
+</div>
+</body>
+<script>
+    // 搜索
+    function get_search() {
+        // 获取时间类型
+        let time_type = $("[name='time-name'] option:selected").val();
+        // 获取开始时间
+        let start_time = $("[name='start-time']").val();
+        // 获取结束时间
+        let end_time = $("[name='end-time']").val();
+        // 获取关键字类型
+        let keyword_name = $("[name='keyword-name'] option:selected").val();
+        // 获取关键字
+        let keyword = $("input[name='keyword']").val();
+        $.ajax({
+            url: '{% url 'user:delete_admin_list' %}',
+            type: 'get',
+            data: {
+                'time_type': time_type,
+                'start_time': start_time,
+                'end_time': end_time,
+                'keyword_name': keyword_name,
+                'keyword': keyword
+            },
+            success: (data) => {
+                $(".main-content").html(data);
+            }
+        })
+    }
+
+    function recover_admin(temp) {
+        var this_op = temp;
+        var admin_id = $(this_op).data('id');
+        var page = $('#page').data('id');
+        $.ajax({
+            url: '/user/recover_admin/',
+            type: 'get',
+            data: {
+                'admin_id': admin_id,
+            },
+            success: (data) => {
+                alert('恢复成功');
+                $.ajax({
+                    url: '/user/get_delete_admin/',
+                    type: 'get',
+                    data: {
+                        'page': page,
+                        'time_type': '{{ time_type }}',
+                        'start_time': '{{ start_time }}',
+                        'end_time': '{{ end_time }}',
+                        'keyword': '{{ keyword }}'
+                    },
+                    success: (data) => {
+                        $(".main-content").html(data)
+                    }
+                });
+            }
+        })
+    }
+
+    function last_delete_admin(temp) {
+        var this_op = temp;
+        var admin_id = $(this_op).data('id');
+        var page = $('#page').data('id');
+        $('#message').css('display', 'block');
+        $(".delete").click(() => {
+            $.ajax({
+                url: '/user/last_delete_admin/',
+                type: 'get',
+                data: {
+                    admin_id: admin_id,
+                },
+
+                success: (data) => {
+                    $.ajax({
+                        url: '/user/get_delete_admin/',
+                        type: 'get',
+                        data: {
+                            'page': page,
+                            'time_type': '{{ time_type }}',
+                            'start_time': '{{ start_time }}',
+                            'end_time': '{{ end_time }}',
+                            'keyword': '{{ keyword }}'
+                        },
+                        success: (data) => {
+                            $(".main-content").html(data)
+                        }
+                    });
+                }
+            })
+        });
+        $('.no_delete,.message span').click(() => {
+            $.ajax({
+                url: '/user/get_delete_admin/',
+                type: 'get',
+                data: {
+                    'page': page,
+                    'time_type': '{{ time_type }}',
+                    'start_time': '{{ start_time }}',
+                    'end_time': '{{ end_time }}',
+                    'keyword': '{{ keyword }}'
+                },
+                success: (data) => {
+                    $(".main-content").html(data)
+                }
+            });
+        })
+
+    }
+
+    function get_page(temp) {
+        this_op = temp;
+        page = $(this_op).data('id');
+        $.ajax({
+            url: '/user/get_delete_admin/',
+            type: 'get',
+            data: {
+                'page': page,
+                'time_type': '{{ time_type }}',
+                'start_time': '{{ start_time }}',
+                'end_time': '{{ end_time }}',
+                'keyword': '{{ keyword }}'
+            },
+            success: (data) => {
+                $('.main-content').html(data)
+            }
+        })
+
+    }
+
+    function page_jump() {
+        var page = $('#input-page').val();
+        $.ajax({
+            url: '/user/get_delete_admin/',
+            type: 'get',
+            data: {
+                'page': page,
+                'time_type': '{{ time_type }}',
+                'start_time': '{{ start_time }}',
+                'end_time': '{{ end_time }}',
+                'keyword': '{{ keyword }}'
+            },
+            success: (data) => {
+                $('.main-content').html(data);
+                $('#input-page').val(Number(page) + 2);
+            }
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>编辑模拟题</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" href="{% static 'user/css/add_user.css' %}">
+</head>
+<body>
+{#class="modal-dialog"#}
+<div role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">编辑模拟题</h4>
+        </div>
+        <div class="modal-body col-sm-12">
+            <form class="form-horizontal" id="addForm">
+                <div>
+                    <div style="display: none" id="error_message">错误信息:</div>
+                    <div id="main_data"></div>
+                </div>
+                <div class="form-group">
+                    <label for="inputNameAdd" class="col-sm-3 control-label">模拟题名称</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputNameAdd" value="{{ quest.name }}">
+                        <div class="alt name"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputSchoolAdd" class="col-sm-3 control-label">选择院校</label>
+                    <div class="col-sm-6">
+                        <select name="school" id="inputSchoolAdd" class="form-control">
+                            <option value="" class="chos">请选择院校</option>
+                            {% for sch in school %}
+                                {% if sch == quest.school_id %}
+                                    <option value="{{ sch.id }}" selected>{{ sch.name }}</option>
+                                {% else %}
+                                    <option value="{{ sch.id }}">{{ sch.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <div class="alt school"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputMajorAdd" class="col-sm-3 control-label">选择专业</label>
+                    <div class="col-sm-6">
+                        <select name="school" id="inputMajorAdd" class="form-control">
+                            <option value="" class="chos">请选择专业</option>
+                            {% for cate in major_cate %}
+                                {% if cate == quest.major_cate_id %}
+                                    <option value="{{ cate.id }}" selected>{{ cate.major_name }}</option>
+                                {% else %}
+                                    <option value="{{ cate.id }}">{{ cate.major_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <div class="alt major"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLevelAdd" class="col-sm-3 control-label">所属层次</label>
+                    <div class="col-sm-6">
+                        <select name="school" id="inputLevelAdd" class="form-control">
+                            {% if quest.leval == '1' %}
+                                <option value="" class="chos">请选择层次</option>
+                                <option value="1" selected>高起专</option>
+                                <option value="2">高起本</option>
+                                <option value="3">专升本</option>
+                            {% elif quest.leval == '2' %}
+                                <option value="" class="chos">请选择层次</option>
+                                <option value="1">高起专</option>
+                                <option value="2" selected>高起本</option>
+                                <option value="3">专升本</option>
+                            {% elif quest.leval == '3' %}
+                                <option value="" class="chos">请选择层次</option>
+                                <option value="1">高起专</option>
+                                <option value="2">高起本</option>
+                                <option value="3" selected>专升本</option>
+                            {% endif %}
+                        </select>
+                        <div class="alt level"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputFileNameAdd" class="col-sm-3 control-label">文件上传</label>
+                    <div class="col-sm-6">
+                        <input type="file" class="file-panel" id="inputFileNameAdd" multiple>
+                        <div>请选择.doc,.docx,.wps后缀的文件</div>
+                        <div class="alt upload"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputIsStatusEdit" class="col-sm-3 control-label">状态</label>
+                    <div class="col-sm-6">
+                        <input type="radio" name="is_status" id="inputIsStatusEdit" value="True" checked> 可用
+                        <input type="radio" name="is_status" id="inputIsStatusEdit" value="False"> 不可用
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer col-sm-9 no-border" style="background: white">
+            <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" form="addForm" id="submit">提交</button>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<input type="hidden" id="quesId" value="{{ quest.id }}">
+<div id="message" class="message">
+    <span>x</span>
+    <div id="top_text">提示：</div>
+    <h5>信息修改成功,点击确定返回模拟题管理</h5>
+    <div id="sure" class="back list">确定</div>
+</div>
+</body>
+<script>
+    $(document).keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#submit").trigger("click");
+        }
+    });
+
+    $('.list').click(() => {
+        $.ajax({
+            url: '/server/get_file/',
+            type: 'get',
+            success: (data) => {
+                $('.main-content').html(data)
+            }
+        })
+    });
+    $('.btn-link,.close,.message span').click(() => {
+        $.ajax({
+            url: '/server/get_file/',
+            type: 'get',
+            success: (data) => {
+                $('.modal-dialog').css('display', 'none');
+                $('.main-content').html(data)
+            }
+        })
+    });
+
+
+    $('#submit').click(() => {
+        $('.alt').html('');
+        let quest_id = $('#quesId').val();
+        let name = $("#inputNameAdd").val();
+        let school = $('#inputSchoolAdd option:selected').val(); //所属院校
+        let major = $('#inputMajorAdd option:selected').val(); //所属专业
+        let level = $('#inputLevelAdd option:selected').val();// 层次
+        let is_status = $('[name="is_status"]:checked').val();
+        formdata = new FormData();
+        formdata.append('file_name',$('#inputFileNameAdd')[0].files[0]);
+        formdata.append('name',name);
+        formdata.append('quest_id',quest_id);
+        formdata.append('school',school);
+        formdata.append('major',major);
+        formdata.append('level',level);
+        formdata.append('is_status',is_status);
+            $.ajax({
+                processData: false,
+                contentType: false,
+                url: '/server/edit_quest/',
+                type: 'post',
+                data: formdata,
+                success: (data) => {
+
+                    if (data['status'] === 'success') {
+                        $('.message').css('display', 'block');
+                    } else if (data['status'] === 'fail') {
+                        var tag = data.tagid;
+                        $('.' + tag).html(data.message).css('color', 'red');
+
+                    }
+                }
+            })
+    });
+
+    $("#inputSchoolAdd").change(function () {
+        $("#inputLevelAdd").html("<option>请选择层次</option>");
+        var school_code = $('#inputSchoolAdd').val();
+        if (school_code != "") {
+            $.ajax({
+                url: "/service/getmajorlist/",
+                data: {
+                    school_code: school_code,
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    //alert(data);
+                    var major = $("#inputMajorAdd");
+                    major.empty().append('<option value=""> 请先选择专业 </option>');
+                    $.each(data.data, function (index, item) {
+                        major.append('<option value=' + item[0] + '>' + item[1] + '</option>')
+                    })
+                }
+            });
+        }
+    });
+    $("#inputMajorAdd").change(function () {
+        var major_id_oes = $('#inputMajorAdd').val();
+        if (major_id_oes != "") {
+            var school_code = $('#inputSchoolAdd').val();
+            $.ajax({
+                url: "/service/getlevellist/",
+                data: {
+                    school_code: school_code,
+                    major_id_oes: major_id_oes,
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    //alert(data);
+                    var level = $("#inputLevelAdd");
+                    level.empty().append('<option value=""> 请选择层次 </option>');
+                    $.each(data.data, function (index, item) {
+                        level.append('<option value=' + item[0] + '>' + item[1] + '</option>')
+                    })
+                }
+            });
+        }
+    })
+</script>
+</html>
+
+
+

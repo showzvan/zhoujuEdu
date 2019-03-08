@@ -1,0 +1,52 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="close1"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">报名详情</h4>
+      </div>
+      <div class="modal-body">
+    		<table class="table table-bordered table-hover table-striped table-responsive">
+    			<tbody>
+    				<tr>
+    					<td width="25%">姓名</td>
+    					<td width="75%">{{ order.real_name|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>用户名</td>
+    					<td>{{ order.user_id.nickname|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>身份证号</td>
+    					<td>{{ order.idcard|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>电话号码</td>
+    					<td>
+    						{{ order.phone|default:"暂无"}}
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>报读专业</td>
+    					<td>
+    						{{ order.majar_id.major_name|default:"0" }}
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>所属院校</td>
+    					<td>{{ order.school_id.name|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>订单状态</td>
+    					<td>{{ order.get_status_display|default:"1" }}</td>
+    				</tr>
+    
+    			</tbody>
+    		</table>
+      </div>
+</div>
+</div>
+<script>
+    $('#close1').click(function () {
+        $('.detail').css("display", "none")
+    });
+</script>

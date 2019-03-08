@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>编辑院校信息</title>
+{#    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>#}
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'user/css/add_user.css' %}">
+    <style>
+        #avatar-img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+{#class="modal-dialog"#}
+<div role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">编辑院校信息</h4>
+        </div>
+        <div class="modal-body col-sm-12">
+            <form class="form-horizontal" id="editForm">
+                <div class="form-group">
+                    <label for="inputNameEdit" class="col-sm-3 control-label">学校名字</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputNameEdit"
+                               value="{{ school.name|default:" " }}" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputBannerEdit" class="col-sm-3 control-label">院校banner图</label>
+                    <div class="col-sm-6">
+                        <label>
+                            <img id="avatar-img" src="/media/{{ school.banner|default:"media/avatar.png" }}" width="200"
+                                 height="200" alt="">
+                            <input id="inputBannerEdit" name="banner" onchange="change_img1(this)"
+                                   style="display: none"
+                                   type="file">
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputDescriptionEdit" class="col-sm-3 control-label">院校描述</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="inputDescriptionEdit" name="motto" cols="30"
+                                  rows="10">{{ school.description|default:"默认" }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputMottoEdit" class="col-sm-3 control-label">校训</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="inputMottoEdit" name="motto" cols="30"
+                                  rows="10">{{ school.motto|default:"默认" }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmblemEdit" class="col-sm-3 control-label">校徽</label>
+                    <div class="col-sm-6">
+                        <label>
+                            <img id="avatar-img inputAvatarEdit"
+                                 src="/media/{{ school.emblem|default:"media/avatar.png" }}" width="200" height="200"
+                                 alt="">
+                            <input type="file" id="inputEmblemEdit" name="emblem" style="display: none"
+                                   onchange="change_img1(this)">
+                        </label>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEnrolEdit" class="col-sm-3 control-label">报名须知</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="inputEnrolEdit" name="motto" cols="30"
+                                  rows="10">{{ school.enrol_notes|default:"默认" }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDiplomaEdit" class="col-sm-3 control-label">毕业证图片地址</label>
+                    <div class="col-sm-6">
+                        <label>
+                            <img id="avatar-img" src="/media/{{ school.diploma_images|default:"media/avatar.png" }}"
+                                 width="200" height="200" alt="">
+                            <input type="file" id="inputDiplomaEdit" name="diploma_images"
+                                   style="display: none" onchange="change_img1(this)">
+                        </label>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDegreeEdit" class="col-sm-3 control-label">学位证书图片地址</label>
+                    <div class="col-sm-6">
+                        <label>
+                            <img id="avatar-img inputAvatarEdit"
+                                 src="/media/{{ school.degree_images|default:"media/avatar.png" }}" width="200"
+                                 height="200" alt="">
+                            <input type="file" id="inputDegreeEdit" name="degree_images"
+                                   style="display: none" onchange="change_img1(this)">
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputIs_985Edit" class="col-sm-3 control-label">是否985</label>
+                    <div class="col-sm-6">
+                        {% if school.is_985 == 1 %}
+                            <input type="radio" name="is_985" id="inputIs_985Edit" value="True" checked> 是
+                            <input type="radio" name="is_985" id="inputIs_985Edit" value="False"> 否
+                        {% else %}
+                            <input type="radio" name="is_985" id="inputIs_985Edit" value="True"> 是
+                            <input type="radio" name="is_985" id="inputIs_985Edit" value="False" checked> 否
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputIs_211Edit" class="col-sm-3 control-label">是否211</label>
+                    <div class="col-sm-6">
+                        {% if school.is_211 == 1 %}
+                            <input type="radio" name="is_211" id="inputIs_211Edit" value="True" checked> 是
+                            <input type="radio" name="is_211" id="inputIs_211Edit" value="False"> 否
+                        {% else %}
+                            <input type="radio" name="is_211" id="inputIs_211Edit" value="True"> 是
+                            <input type="radio" name="is_211" id="inputIs_211Edit" value="False" checked> 否
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputIs_doubleEdit" class="col-sm-3 control-label">是否双一流</label>
+                    <div class="col-sm-6">
+                        {% if school.is_double == 1 %}
+                            <input type="radio" name="is_double" id="inputIs_doubleEdit" value="True" checked> 是
+                            <input type="radio" name="is_double" id="inputIs_doubleEdit" value="False"> 否
+                        {% else %}
+                            <input type="radio" name="is_double" id="inputIs_doubleEdit" value="True"> 是
+                            <input type="radio" name="is_double" id="inputIs_doubleEdit" value="False" checked> 否
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputBirefEdit" class="col-sm-3 control-label">招生简章</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="inputBirefEdit" name="motto" cols="30"
+                                  rows="10">{{ school.brief|default:"默认" }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputExamEdit" class="col-sm-3 control-label">考试与毕业</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="inputExamlEdit" name="motto" cols="30"
+                                  rows="10">{{ school.exam|default:"默认" }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCountEdit" class="col-sm-3 control-label">累计报读人数</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" id="inputCountEdit"
+                               value="{{ school.count|default:"0" }}">人
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputIsStatusEdit" class="col-sm-3 control-label">状态</label>
+                    <div class="col-sm-6">
+                        <input type="radio" name="is_status" id="inputIsStatusEdit" value="True" checked> 可用
+                        <input type="radio" name="is_status" id="inputIsStatusEdit" value="False"> 不可用
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">院校所在省市</label>
+                    <div class="col-sm-6 address-select">
+                        <select name="prov" class="" id="province" onchange="have_city(this)">
+                            <option value="">{{ school.sch_pro|default:"请选择省份" }}</option>
+                            {% for province in provinces %}
+                                <option value="{{ province.provinceid }}">{{ province.province }}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="city" class="" id="city" onchange="have_country(this)">
+                            <option value="">{{ school.sch_city|default:"请选择城市" }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputTypeEdit" class="col-sm-3 control-label">学校类型</label>
+                    <div class="col-sm-6" id="type">
+
+                        {% for sch in sch_type %}
+{#                            {{ school.school_type }}#}
+{#                            {% for type in school.school_type.all %}#}
+{##}
+{#                                {% if sch.type_name == type.type_name %}#}
+{#                                    <div class="checkbox">#}
+{#                                        <label>#}
+{#                                            <input type="checkbox" value="{{ sch.id }}" id="school_type" checked>#}
+{#                                            {{ sch.type_name }}#}
+{#                                        </label>#}
+{#                                    </div>#}
+{#                                {% else %}#}
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="{{ sch.id }}" id="school_type">
+                                        {{ sch.type_name }}
+                                    </label>
+{#                                    {% endif %}#}
+{#                                {% endif %}#}
+                            </div>
+{#                            {% endfor %}#}
+
+
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputFeatureEdit" class="col-sm-3 control-label">学校特征</label>
+                    <div class="col-sm-6" id="feature">
+                        {% for sch_feature in sch_features %}
+                            {% if sch_feature.id in school.scholl_feature %}
+                                <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="{{ sch_feature.id }}"
+                                           id="inputFeatureEdit" checked>
+                                    {{ sch_feature.feature_name }}
+                                </label>
+                            </div>
+                            {% else %}
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="{{ sch_feature.id }}"
+                                           id="inputFeatureEdit">
+                                    {{ sch_feature.feature_name }}
+                                </label>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </form>
+        </div>
+        <input type="hidden" value="{{ school.id }}" id="schoolid">
+        <div class="modal-footer col-sm-9 no-border no-padding no-margin" style="background: white">
+            <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" form="addForm" id="submit">提交</button>
+        </div>
+        <div class="clear"></div>
+        <div id="message" class="message">
+            <span>x</span>
+            <div id="top_text">提示：</div>
+            <h5>信息修改成功,点击确定返回院校列表</h5>
+            <div id="sure" class="back list">确定</div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+    function change_img1(op){
+        console.log("hello");
+        var this_op = op;
+        var choose_file = $(this_op)[0].files[0]; // 获取用户最后一次选择的图片
+        var reader = new FileReader(); // 创建一个新的FileReader对象，用来读取文件信息
+        reader.readAsDataURL(choose_file); // 读取用户上传的图片路径
+        reader.onload = function () {
+            $(this_op).prev().attr("src", reader.result)
+        }
+    }
+
+    $('#submit').click(() => {
+        // 获取用户id
+        let sch_id = $("#schoolid").val();
+        let data = get_str_val(); //文字数据
+        let formdata = get_img_val(); // 图片数据
+
+        let sch_pro = $('#province option:selected').val(); //所在省份
+        console.log(sch_pro);
+        let sch_city = $('#city option:selected').val(); //所在城市
+        console.log(sch_city);
+
+        formdata.append('data',data);
+        formdata.append('sch_pro',sch_pro);
+        formdata.append('sch_city',sch_city);
+        formdata.append('sch_id', sch_id);
+
+        $.ajax({
+            processData: false,
+            contentType: false,
+            url: '/school/edit_school/',
+            type: 'post',
+            async:true,
+            data:formdata,
+            success: (data) => {
+                console.log(data);
+                $('#message').css('display','block');
+                $('.back').click(() => {
+                    $.ajax({
+                        url: '/school/get_school/',
+                        type: 'get',
+                        success: (data) => {
+                            $('.modal-dialog').css('display', 'none');
+                            $('.main-content').html(data)
+                        }
+                    })
+                })
+            }
+        })
+    });
+
+    function get_img_val() {
+        let banner = $("#inputBannerEdit")[0].files[0]; // 院校背景图
+        console.log(banner);
+        let emblem = $("#inputEmblemEdit")[0].files[0]; // 校徽
+        let diploma = $("#inputDiplomaEdit")[0].files[0]; // 毕业证图片
+        let degree = $("#inputDegreeEdit")[0].files[0]; // 学位图片地址
+
+        if (banner === 'undefined')
+            banner = '';
+        if (emblem === 'undefined')
+            emblem = '';
+        if (diploma === 'undefined')
+            diploma = '';
+        if (degree === 'undefined')
+            degree = '';
+
+
+        var formdata = new FormData();
+        formdata.append('banner',banner);
+        formdata.append('emblem',emblem);
+        formdata.append('diploma',diploma);
+        formdata.append('degree',degree);
+        return formdata
+    }
+
+    function get_str_val() {
+        let description = $('#inputDescriptionEdit').val(); //院校描述
+        let motto = $('#inputMottoEdit').val(); // 校训
+        let enrol_notes = $('#inputEnrolEdit').val(); //
+        let is_985 = $('[name="is_985"]:checked').val(); // 是否985
+        let is_211 = $('[name="is_211"]:checked').val();
+        let is_double = $('[name="is_double"]:checked').val();
+        let brief = $('#inputBirefEdit').val();  // 招生简章
+        let exam = $('#inputExamlEdit').val();  // 毕业与考试
+        let count = $('#inputCountEdit').val();  // 累计报读人数
+        let is_status = $('[name="is_status"]:checked').val();  // 是否可用
+
+        // 处理school_type 和 school_feature 等多选框
+        function show(par) {
+            obj = document.getElementById(par).getElementsByTagName('input');
+            console.log(obj);
+            check_val = [];
+            for (k in obj) {
+                if (obj[k].checked)
+                    check_val.push(obj[k].value);
+            }
+            return check_val;
+        }
+
+        school_type = show("type");
+        school_feature = show("feature");
+
+        let data = {
+            'description': description,
+            'motto': motto,
+            'enrol_notes': enrol_notes,
+            'is_985': is_985,
+            'is_211': is_211,
+            'is_double': is_double,
+            'brief': brief,
+            'exam': exam,
+            'count': count,
+            'is_status': is_status,
+            'school_type': school_type,
+            'school_feature': school_feature,
+        };
+        console.log(data);
+        data = JSON.stringify(data);
+        return data;
+    }
+
+
+
+    $('.btn-link,.close,.message span').click(() => {
+        $.ajax({
+            url: '/school/get_school/',
+            type: 'get',
+            success: (data) => {
+                $('.modal-dialog').css('display', 'none');
+                $('.main-content').html(data)
+            }
+        })
+    });
+
+    function have_city(temp) {
+        var op = temp;
+        proid = $(op).val();// 选择省份的id
+        $.ajax({
+            url: '/user/get_city/',
+            type: 'post',
+            data: {
+                'proid': proid
+            },
+            success: (info) => {
+                var city = $('#city');
+                city.empty().append('<option value="">请选择市</option>');
+                $.each(info.data, function (index, item) {
+                    city.append('<option value=' + item[0] + '>' + item[1] + '</option>');
+                })
+            }
+        })
+    }
+
+
+
+</script>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>添加订单</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" href="{% static 'user/css/add_user.css' %}">
+</head>
+<body>
+{#class="modal-dialog"#}
+<div role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">添加新订单</h4>
+        </div>
+        <div class="modal-body col-sm-12">
+            <form class="form-horizontal" id="addForm">
+                <div>
+                    <div style="display: none" id="error_message">错误信息:</div>
+                    <div id="main_data"></div>
+                </div>
+                <div class="form-group">
+                    <label for="inputNickAdd" class="col-sm-3 control-label">用户名</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputNickAdd" placeholder="请输入用户名">
+                        <div class="alt name"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputNameAdd" class="col-sm-3 control-label">真实姓名</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputNameAdd" placeholder="请输入真实姓名">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPhoneAdd" class="col-sm-3 control-label">手机号码</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputPhoneAdd" placeholder="请输入手机号码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputIDAdd" class="col-sm-3 control-label">身份证号码</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputIDAdd" placeholder="请输入身份证号码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputSchoolEdit" class="col-sm-3 control-label">选择院校</label>
+                    <div class="col-sm-6">
+                        <select name="school" id="inputSchoolEdit" class="form-control" onchange="have_major()">
+                        <option value=" ">请选择院校</option>
+                            {% for sch in school %}
+                                <option value="{{ sch.id }}">{{ sch.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCateEdit" class="col-sm-3 control-label">选择专业</label>
+                    <div class="col-sm-6">
+                        <select name="cate" id="inputCateEdit" class="form-control">
+                        <option value=" ">请选择专业</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputStuEdit" class="col-sm-3 control-label">订单状态</label>
+                    <div class="col-sm-6">
+                        <select name="cate" id="inputStuEdit" class="form-control">
+                        <option value="wfk">未付款</option>
+                        <option value="yfk">已付款</option>
+                        <option value="ylq">已录取</option>
+                        <option value="ysx">已失效</option>
+                        </select>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="modal-footer col-sm-9 no-border" style="background: white">
+            <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary"  id="submit">提交</button>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<div id="message" class="message">
+    <span>x</span>
+    <div id="top_text">提示：</div>
+    <h4>添加成功！</h4>
+    <div class="add">继续添加</div>
+    <div class="list">查看报名信息</div>
+</div>
+</body>
+<script>
+    $(document).keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btn").trigger("click");
+        }
+    });
+
+    $('.list').click(() => {
+        $.ajax({
+            url: '/order/get_order/',
+            type: 'get',
+            success: (data) => {
+                $('.main-content').html(data)
+            }
+        })
+    });
+    $('.add').click(() => {
+        $('.message').css('display', 'none');
+        $('[type="text"]').val('');
+        $('.alt').text('');
+    });
+
+    $('.btn-link,.close,.message span').click(() => {
+        $.ajax({
+            url: '/order/get_order/',
+            type: 'get',
+            success: (data) => {
+                $('.modal-dialog').css('display', 'none');
+                $('.main-content').html(data)
+            }
+        })
+    });
+
+
+    $('#submit').click(() => {
+        let nick_name = $("#inputNickAdd").val();  // 用户名
+        let name = $('#inputNameAdd').val();   // 真实姓名
+        let phone = $('#inputPhoneAdd').val();   // 手机号
+        let id_card = $('#inputIDAdd').val();   // 身份证号码
+        let school = $('#inputSchoolEdit option:selected').val(); // 选择院校
+        let major = $('#inputCateEdit option:selected').val();  // 专业
+        let status = $('#inputStuEdit option:selected').val();  // 订单状态
+
+            $.ajax({
+                url: '/order/add_order/',
+                type: 'post',
+                data: {
+                    'nick_name': nick_name,
+                    'name': name,
+                    'phone':phone,
+                    'id_card':id_card,
+                    'school':school,
+                    'major':major,
+                    'status':status,
+                },
+                success: (data) => {
+
+                    if (data['status'] === 'success') {
+                        $('.message').css('display', 'block');
+                    } else if (data['status'] === 'fail') {
+                        var tag = data.tagid;
+                        $('.' + tag).html(data.message).css('color', 'red');
+
+                    }
+                }
+            })
+    });
+
+    function have_major() {
+        let school_id = $('#inputSchoolEdit option:selected').val();
+        $.ajax({
+            url:'/order/have_major/',
+            type:'get',
+            data:{
+                'school_id':school_id
+            },
+            success:(info) =>{
+                var major = $('#inputCateEdit');
+                major.empty().append('<option value=" ">请选择专业</option>');
+                $.each(info.data, function (index, item) {
+                        major.append('<option value=' + item[0] + '>' + item[1] + '</option>')
+                    })
+            }
+        })
+    }
+
+</script>
+</html>
+
+
+

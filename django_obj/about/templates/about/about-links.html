@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/userAgreement-d662fa140a.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="navbar-common">
+        <div class="aside clear">
+            <p class="flt">
+                <a href="{% url 'home' %}">首页</a>
+                <span>
+                    <i>&gt;</i>
+                    <a href="about-links.html">友情链接</a>
+                </span>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="body-box">
+        <div class="user-agreement-box clear">
+            <!--左边菜单-->
+            <div class="user-left-nav">
+                <ul>
+                    <li class="">
+                        <a href="{% url 'about:about_index' %}" class="index">关于我们</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'about:contact' %}" class="lianxiwomen">联系我们</a>
+                    </li>
+                    <li class=" ">
+                        <a href="{% url 'about:about_fv' %}" class="fv ">法律声明</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about:about_agreement' %}" class="xieyi">用户协议</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about:about_links' %}" class="links" style="color: rgb(254, 155, 0);">友情链接</a>
+                    </li>
+                </ul>
+            </div>
+            <!--左边菜单结束-->
+
+            <div class="agreement-container">
+                <div class="common-tap-header">
+                    <p class="tap clear">
+                        <span class="type"> 友情链接 </span>
+                    </p>
+                </div>
+                <div class="links-infor">
+                    <ul>
+                        {% for link in links %}
+                            <li>
+                                <a href="//{{ link.url }}" target="_blank">{{ link.link_title }}</a>
+                            </li>
+                        {% endfor %}
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        var cityId = 110100;
+        var is_first_index = 0;
+        var LogChannelID = "test"; //LogChannelID是频道ID，
+
+    </script>
+    <script type="text/javascript" src="{% static 'home/js/vendor.js' %}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            //$('.user-left-nav li').removeClass('active');
+            var search_url = window.location.href;
+            var url_arr = search_url.split('/');
+            var search_class = url_arr[4].split('.');
+            $('.' + search_class[0]).css('color', '#fe9b00');
+        });
+    </script>
+{% endblock %}

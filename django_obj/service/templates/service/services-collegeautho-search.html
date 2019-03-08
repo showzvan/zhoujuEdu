@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>舟炬教育-国内知名的远程网络教育内容服务运营机构</title>
+    <meta name="keywords" content="网络教育,远程教育,专升本,高起专,高起本">
+    <meta name="description"
+          content="舟炬教育获得了首个国家级现代远程教育公共服务体系建设、运行和管理资质，基于互联网平台，提供远程教育、网络教育专升本、高起专、高起本的学历提升咨询、学历教育教学服务。舟炬官网提供远程教育、网络教育学历在线实时咨询、在线自主报名、在线缴费服务，为用户提供更加便捷、高效的网络教育新体验。">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/collegeAccreditDetail-242b8da799.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/order.css' %}">
+{% endblock %}
+
+{% block nav_active %}
+    <ul class="search-snav-list">
+        <li>
+            <a title="首页" href="{% url 'home' %}">首页</a>
+        </li>
+        <li class="search-main-menu search-menu-item">
+            <a title="选专业" href="{% url 'choose_major:choose_major' %}">选专业</a>
+        </li>
+        <li>
+            <a title="选院校" href="{% url 'choose_school:school' %}"> 选院校 </a>
+        </li>
+        <li>
+            <a title="学员风采" href="{% url 'news:news' %}"> 学员风采 </a>
+        </li>
+        <li>
+            <a title="服务大厅" href="{% url 'service:service' %}" class="a_active"> 服务大厅 </a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+
+
+    <div class="navbar-common">
+        <div class="aside clear">
+            <p class="flt">
+                <a href="{% url 'home' %}">首页</a>
+                <span>
+                    <i>&gt;</i>
+                    <a href="{% url 'service:service' %}">服务大厅</a>
+                    <i>&gt;</i>
+                    <a href="{% url 'service:collegeautho' %}">高校授权查询</a>
+                </span>
+            </p>
+        </div>
+    </div>
+
+
+    <div style="padding-top: 11px;">
+        <div class="college-accredit-box study-center-box clear">
+            <!--左边的菜单-->
+            <div class="service-left-nav">
+                <dl>
+                    <dt>
+                        <span class="icon iconfont icon-catalogue"></span> 学历业务服务流程
+                    </dt>
+                    <dd>
+                        <p>
+                            <a href="{% url 'service:sign' %}" data-type="108" class="108"> 网络报名招生 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:new_exam' %}" data-type="109" class="109"> 新生入学 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:help' %}" data-type="110" class="110"> 学习平台使用帮助 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:exam' %}" data-type="111" class="111"> 专业考试 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:graduation' %}" data-type="104" class="104"> 毕业问答 </a>
+                        </p>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="icon iconfont icon-search"></span> 权威查询
+                    </dt>
+                    <dd>
+                        <p>
+                            <a href="{% url 'service:feecard' %}" data-type="feecard" class="feecard"> 报名凭证查询 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:center' %}"> 学习中心查询 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:collegeautho' %}" class="active"> 高校授权查询 </a>
+                        </p>
+                        <p>
+                            <a href="https://my.chsi.com.cn/archive/index-8a6ada30fc.jsp" target="_blank"> 学信网学籍查询 </a>
+                        </p>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="icon iconfont icon-downLoad"></span> 常见下载
+                    </dt>
+                    <dd>
+                        <p>
+                            <a href="{% url 'service:examdownload' %}" data-type="examdownload" class="examdownload">
+                                模拟题下载 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:courseware' %}" data-type="105" class="105"> 课件播放器下载 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:sch_form' %}" data-type="106" class="106"> 高校常见表格下载 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:application' %}" data-type="4" class="4"> 常见申请表格下载 </a>
+                        </p>
+                    </dd>
+                </dl>
+            </div>
+            <!--左边的菜单结束了-->
+
+            <div class="center-content">
+                <div class="common-tap-header">
+                    <p class="tap clear">
+                        <a class="type" href="{% url 'service:collegeautho' %}"> 高校授权查询 </a>
+                        <em class="reQuery" style="display: @@flage;">
+                            <a href="{% url 'service:collegeautho' %}">重新查询</a>
+                            <span class="icon iconfont icon-arrow-rit"></span>
+                        </em>
+                    </p>
+                </div>
+                <div class="lists-box order">
+                    <div class="header clear">
+                        <p>
+                            <span class="school-name"> {{ school_name }} </span>
+                            <span class="center-num">
+                                <em>共授权</em>
+                                <i>{{ center_num }}</i>
+                                <em>家学习中心</em>
+                            </span>
+                        </p>
+                        <form action="{% url 'service:collegeautho-search' %}" method="get" enctype="multipart/form-data">
+                            <label> 省份： </label>
+                            <select name="province_code" id="">
+                                <option value="">全部</option>
+                                {% for province in provinces %}
+                                    <option value="{{ province.id }}">{{ province.province }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="text" name="school_code" value="{{ school_code }}" hidden="hidden">
+                            <input type="text" name="school_name" value="{{ school_name }}" hidden="hidden">
+                            <input type="text" name="page" value="1" hidden="hidden">
+                            <button type="submit"> 点击查询</button>
+                        </form>
+                    </div>
+                    {% if center_num != 0 %}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>
+                                    <p> 序号 </p>
+                                </th>
+                                <th>
+                                    <p> 省份 </p>
+                                </th>
+                                <th>
+                                    <p> 学习中心名称 </p>
+                                </th>
+                                <th>
+                                    <p> 联系电话 </p>
+                                </th>
+                                <th>
+                                    <p> 学习中心所在地址 </p>
+                                </th>
+                                <th class="bor-rt"> 邮编</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for center in data %}
+                                <tr>
+                                    <td class="sort"> {{ forloop.counter }} </td>
+                                    <td> {{ center.provinces.province }} </td>
+                                    <td class="center-name"> {{ center.name }}</td>
+                                    <td> {{ center.phone }} </td>
+                                    <td class="center-address"> {{ center.address }} </td>
+                                    <td class="bor-rt"> {{ center.postcode }} </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                        <div class="page clear">
+                            <p class="number">
+                                <span> 第<i>{{ currentPage }}</i>页 </span>
+                                <span> /共<i>{{ paginator.num_pages }}</i>页 </span>
+                                <span> 本页 <i> {{ data_num }} </i> 条 </span>
+                                <span> /共 <i> {{ center_num }} </i> 条 </span>
+                            </p>
+                            <form id="forms" action="{% url 'service:collegeautho-search' %}"
+                                  method="get" enctype="multipart/form-data">
+                                <p class="opt">
+                                <span>
+                                    <a href="?school_code={{ school_code }}&school_name={{ school_name }}&province_code={{ province_code }}&page=1"> [首页] </a>
+                                </span>
+                                {% if data.has_previous %}
+                                    <span class="pre">
+                                        <a href="?school_code={{ school_code }}&school_name={{ school_name }}&province_code={{ province_code }}&page={{ data.previous_page_number }}"> [上一页] </a>
+                                    </span>
+                                {% else %}
+                                    <span class="pre">
+                                        <a href=""> [上一页] </a>
+                                    </span>
+                                {% endif %}
+                                {% if data.has_next %}
+                                    <span>
+                                        <a href="?school_code={{ school_code }}&school_name={{ school_name }}&province_code={{ province_code }}&page={{ data.next_page_number }}"> [下一页] </a>
+                                    </span>
+                                {% else %}
+                                    <span>
+                                        <a href=""> [下一页] </a>
+                                    </span>
+                                {% endif %}
+                                <span class="end">
+                                    <a href="?school_code={{ school_code }}&school_name={{ school_name }}&province_code={{ province_code }}&page={{ paginator.num_pages }}"> [末页] </a>
+                                </span>
+                                    <input type="text" name="page" value="" id="input">
+                                    <input type="text" name="school_code" value="{{ school_code }}" hidden="hidden">
+                                    <input type="text" name="school_name" value="{{ school_name }}" hidden="hidden">
+                                    <input type="text" name="province_code" value="{{ province_code }}" hidden="hidden">
+                                    <button id="submit"> Go</button>
+                                </p>
+                            </form>
+                        </div>
+                    {% else %}
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="my_table">
+                            <tr style="margin-left: 200px;">
+                                <td class="none" colspan="6">
+                                    <i class="iconfont none"></i>
+                                    <span class="none">抱歉，未查询到相关信息</span>
+                                </td>
+                            </tr>
+                        </table>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        var cityId = 110100;
+        var is_first_index = 0;
+        var LogChannelID = "test"; //LogChannelID是频道ID，
+
+    </script>
+
+    <script type="text/javascript" src="{% static 'home/js/vendor.js' %}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var service_url = window.location.href;
+            //var type_url = $(this).attr('data-type');
+            $('.service-left-nav a').each(function () {
+                var type_url = $(this).attr('data-type');
+                var service_arr = service_url.split('/');
+                var service_function = service_arr[4].split('.');
+                if (type_url == service_function[0]) {
+                    $('.service-left-nav a').removeClass('active');
+                    $('.' + type_url).addClass('active');
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.service-left-nav a').removeClass('active');
+            $('.collegeauth').addClass('active');
+
+            var form = document.getElementById('forms');
+            var submit = document.getElementById('submit');
+            submit.onclick = function () {
+                var page = form.page.value;
+                //是否位数字
+                if (isNaN(page)) {
+                    alert('页码格式错误');
+                    return false;
+                }
+                //是否位数字
+                if (page > 24 || page <= 0) {
+                    $('#input').css('border', '1px solid red');
+                    return false;
+                }
+                form.submit();
+            }
+        })
+    </script>
+{% endblock %}

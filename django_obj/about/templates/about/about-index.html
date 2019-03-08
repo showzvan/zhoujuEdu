@@ -1,0 +1,420 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/userAgreement-d662fa140a.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="navbar-common">
+        <div class="aside clear">
+            <p class="flt">
+                <a href="{% url 'home' %}">首页</a>
+                <span>
+                    <i>&gt;</i>
+                    <a href="http://www.zhoujuedu.com/About/index.html">关于我们</a>
+                </span>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="body-box">
+        <div class="user-agreement-box clear">
+
+            <!--左边菜单-->
+            <div class="user-left-nav">
+                <ul>
+                    <li class="">
+                        <a href="{% url 'about:about_index' %}" class="index" style="color: rgb(254, 155, 0);">关于我们</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'about:contact' %}" class="lianxiwomen">联系我们</a>
+                    </li>
+                    <li class=" ">
+                        <a href="{% url 'about:about_fv' %}" class="fv ">法律声明</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about:about_agreement' %}" class="xieyi">用户协议</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about:about_links' %}" class="links">友情链接</a>
+                    </li>
+                </ul>
+            </div>
+            <!--左边菜单结束-->
+
+
+            <div class="agreement-container">
+                <div class="common-tap-header">
+                    <p class="tap clear">
+                        <span class="type"> 关于我们 </span>
+                        <em class="reQuery" style="display: none;">
+                            <a href="javascript:;">重新查询</a>
+                            <span class="icon iconfont icon-arrow-rit"></span>
+                        </em>
+                    </p>
+                </div>
+                <div class="article-infor">
+                    <img src="{% static 'home/images/us.png' %}">
+                    <h2><span class="icon iconfont icon-check-list"></span>【公司简介】</h2>
+                    <p>舟炬远程教育中心（简称舟炬教育），是由教育部高等教育司2001年12月批准立项试点，2005年4月正式批准运营的远程教育公共服务体系，也是教育部门批准成立的远程教育内容服务运营机构。 目前，舟炬远程教育中心已接受全国近50所试点网校的委托，通过在全国建立的1800多家舟炬远程教育学习中心为300余万名学员提供高中起点专科、高中起点本科、专科起点本科和本科二学历等9大类400多个专业的学历教育支持服务。</p>
+                    <div class="school-list">
+                        <h3>部分合作院校（排名不分先后）</h3>
+                        <div class="table">
+                            <div class="table-row">
+                                <div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10032-.html" title="北京语言大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10032.png' %}" data-original="assets/images/10032.png" width="120" height="120" alt="北京语言大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 北京语言大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10055-.html" title="南开大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10055.png' %}" data-original="assets/images/10055.png" width="120" height="120" alt="南开大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 南开大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10141-.html" title="大连理工大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10141.png' %}" data-original="assets/images/10141.png" width="120" height="120" alt="大连理工大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 大连理工大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10200-.html" title="东北师范大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10200.png' %}" data-original="assets/images/10200.png" width="120" height="120" alt="东北师范大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 东北师范大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10159-.html" title="中国医科大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10159.png' %}" data-original="assets/images/10159.png" width="120" height="120" alt="中国医科大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 中国医科大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div>                        </div><div class="table-row">
+                                <div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10145-.html" title="东北大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10145.png' %}" data-original="assets/images/10145.png" width="120" height="120" alt="东北大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 东北大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10394-.html" title="福建师范大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10394.png' %}" data-original="assets/images/10394.png" width="120" height="120" alt="福建师范大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 福建师范大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10183-.html" title="吉林大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10183.png' %}" data-original="assets/images/10183.png" width="120" height="120" alt="吉林大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 吉林大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10635-.html" title="西南大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10635.png' %}" data-original="assets/images/10635.png" width="120" height="120" alt="西南大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 西南大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10698-.html" title="西安交通大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10698.png' %}" data-original="assets/images/10698.png" width="120" height="120" alt="西安交通大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 西安交通大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div>                        </div><div class="table-row">
+                                <div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10626-.html" title="四川农业大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10626.png' %}" data-original="assets/images/10626.png" width="120" height="120" alt="四川农业大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 四川农业大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-11901-.html" title="四川大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/11901.png' %}" data-original="assets/images/11901.png" width="120" height="120" alt="四川大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 四川大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10173-.html" title="东北财经大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/15438249915c04e65f179e2.png' %}" data-original="assets/images/15438249915c04e65f179e2.png" width="120" height="120" alt="东北财经大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 东北财经大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10007-.html" title="北京理工大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10007.png' %}" data-original="assets/images/10007.png" width="120" height="120" alt="北京理工大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 北京理工大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10613-.html" title="西南交通大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10613.png' %}" data-original="assets/images/10613.png" width="120" height="120" alt="西南交通大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 西南交通大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div>                        </div><div class="table-row">
+                                <div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10030-.html" title="北京外国语大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10030.png' %}" data-original="assets/images/10030.png" width="120" height="120" alt="北京外国语大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 北京外国语大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10511-.html" title="华中师范大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10511.png' %}" data-original="assets/images/10511.png" width="120" height="120" alt="华中师范大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 华中师范大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10224-.html" title="东北农业大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10224.png' %}" data-original="assets/images/10224.png" width="120" height="120" alt="东北农业大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 东北农业大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10730-.html" title="兰州大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10730.png' %}" data-original="assets/images/10730.png" width="120" height="120" alt="兰州大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 兰州大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10027-.html" title="北京师范大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10027.png' %}" data-original="assets/images/10027.png" width="120" height="120" alt="北京师范大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 北京师范大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div>                        </div><div class="table-row">
+                                <div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10036-.html" title="对外经济贸易大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10036.png' %}" data-original="assets/images/10036.png" width="120" height="120" alt="对外经济贸易大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 对外经济贸易大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10004-.html" title="北京交通大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10004.png' %}" data-original="assets/images/10004.png" width="120" height="120" alt="北京交通大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 北京交通大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10614-.html" title="电子科技大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10614.png' %}" data-original="assets/images/10614.png" width="120" height="120" alt="电子科技大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 电子科技大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10295-.html" title="江南大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10295.png' %}" data-original="assets/images/10295.png" width="120" height="120" alt="江南大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 江南大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10013-.html" title="北京邮电大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10013.png' %}" data-original="assets/images/10013.png" width="120" height="120" alt="北京邮电大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 北京邮电大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div>                        </div><div class="table-row">
+                                <div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10033-.html" title="中国传媒大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10033.png' %}" data-original="assets/images/10033.png" width="120" height="120" alt="中国传媒大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 中国传媒大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10046-.html" title="中央音乐学院">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10046.png' %}" data-original="assets/images/10046.png" width="120" height="120" alt="中央音乐学院" style="display: inline;">
+                                            </dt>
+                                            <dd> 中央音乐学院 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-b0001-.html" title="北京大学（医学）">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/b0001.png' %}" data-original="assets/images/b0001.png" width="120" height="120" alt="北京大学（医学）" style="display: inline;">
+                                            </dt>
+                                            <dd> 北京大学（医学） </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10002-.html" title="中国人民大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10002.png' %}" data-original="assets/images/10002.png" width="120" height="120" alt="中国人民大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 中国人民大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10056-.html" title="天津大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/15444141705c0de3dab3c9b.jpg' %}" data-original="assets/images/15444141705c0de3dab3c9b.jpg" width="120" height="120" alt="天津大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 天津大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div>                        </div><div class="table-row">
+                                <div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-10699-.html" title="西北工业大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/10699.png' %}" data-original="assets/images/10699.png" width="120" height="120" alt="西北工业大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 西北工业大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-11414-.html" title="中国石油大学(华东)">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/11414.png' %}" data-original="assets/images/11414.png" width="120" height="120" alt="中国石油大学(华东)" style="display: inline;">
+                                            </dt>
+                                            <dd> 中国石油大学(华东) </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-11415-.html" title="中国地质大学(北京)">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/11415.png' %}" data-original="assets/images/11415.png" width="120" height="120" alt="中国地质大学(北京)" style="display: inline;">
+                                            </dt>
+                                            <dd> 中国地质大学(北京) </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-21414-.html" title="中国石油大学(北京)">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/21414.png' %}" data-original="assets/images/21414.png" width="120" height="120" alt="中国石油大学(北京)" style="display: inline;">
+                                            </dt>
+                                            <dd> 中国石油大学(北京) </dd>
+                                        </dl>
+                                    </a>
+                                </div><div class="table-cell">
+                                    <a href="http://www.zhoujuedu.com/school/show-51315-.html" title="广东开放大学">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy" src="{% static 'home/images/51315.png' %}" data-original="assets/images/51315.png" width="120" height="120" alt="广东开放大学" style="display: inline;">
+                                            </dt>
+                                            <dd> 广东开放大学 </dd>
+                                        </dl>
+                                    </a>
+                                </div>                        
+                            </div>                
+                        </div>
+                    </div>
+                    <p>舟炬远程教育中心（简称舟炬教育），是由教育部高等教育司2001年12月批准立项试点，2005年4月正式批准运营的远程教育公共服务体系，也是教育部门批准成立的远程教育内容服务运营机构。 目前，舟炬远程教育中心已接受全国近50所试点网校的委托，通过在全国建立的1800多家舟炬远程教育学习中心为300余万名学员提供高中起点专科、高中起点本科、专科起点本科和本科二学历等9大类400多个专业的学历教育支持服务。</p>
+                    <p>舟炬教育在现代远程学历教育业务稳步向前发展的同时积极研究国家教育政策、关注行业发展动态，分析互联网时代继续教育学习者学习需求，通过边研究，边探索，边实践，边总结的方式，形成了“互联网+”时期高校继续教育信息化建设一体化解决方案，截止2016年底，已与全国110多所普通高校开展合作，为合作伙伴提供集平台、资源、网上助学一体化的专业运营支持服务。 舟炬教育广泛与各类远程教育办学机构建立多形式、多层面的合作，为求学者提供更多和更好的选择，为推动我国继续教育行业发展做出实质性贡献。 </p>
+                    <p>舟炬教育18年来累计服务学历学生达300余万人。舟炬教育通过全国的渠道支撑平台、一站式的服务、强大的技术支撑，在远程学习服务过程中始终关注用户的需求变化及体验感受。在互联网飞速发展的今天，以用户为中心，关注用户体验，鼓励用户积极参与学习支持服务手段的创新，是舟炬教育的核心追求。</p>
+                    <p>舟炬教育在全国1800余家学习中心设置了近4000个咨询坐席、300余学业顾问坐席，以千门课程的10大门类学科为单位设置了200余位学术性专家坐席，以及在教材、教学、学籍、学务、考试、技术等方面的100余位二线支持运营部门节点经理，为学生提供实时、非实时师生交互以及学科专业指导。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+    	
+    	var cityId = 110100;
+    	var is_first_index = 0;
+    	var LogChannelID = "test"; //LogChannelID是频道ID，
+    	
+    </script>
+    <script type="text/javascript" src="{% static 'home/js/vendor.js' %}"></script>
+
+    <script type="text/javascript">
+      $(function () {
+        //$('.user-left-nav li').removeClass('active');
+        var search_url = window.location.href;
+        var url_arr = search_url.split('/');
+        var search_class = url_arr[4].split('.');
+        $('.'+search_class[0]).css('color','#fe9b00');
+      });
+    </script>
+
+{% endblock %}

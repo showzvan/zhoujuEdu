@@ -1,0 +1,346 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/school2-5658bd7773.css' %}">
+{% endblock %}
+
+{% block nav_active %}
+    <ul class="search-snav-list">
+        <li>
+            <a title="首页" href="{% url 'home' %}">首页</a>
+        </li>
+        <li class="search-main-menu search-menu-item">
+            <a title="选专业" href="{% url 'choose_major:choose_major' %}">选专业</a>
+        </li>
+        <li>
+            <a title="选院校" href="{% url 'choose_school:school' %}" class="a_active"> 选院校 </a>
+        </li>
+        <li>
+            <a title="学员风采" href="{% url 'news:news' %}"> 学员风采 </a>
+        </li>
+        <li>
+            <a title="服务大厅" href="{% url 'service:service' %}"> 服务大厅 </a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+    <!--面包屑-->
+    <div class="navbar-common">
+        <div class="aside clear">
+            <p class="flt">
+                <a href="http://www.zhoujuedu.com/">首页</a>
+                <span>
+                    <i>&gt;</i>
+                    <a href="http://www.zhoujuedu.com/school/index.html">选院校</a>
+                </span>
+            </p>
+        </div>
+    </div>
+    <!--面包屑导航-->
+
+
+    <!--主体内容-->
+    <div class="school-box">
+        <!--各种筛选-->
+        <div class="schItem">
+            <div class="area">
+                <table>
+                    <tbody>
+                    <tr class="school-area">
+                        <td class="name"> 院校所在地</td>
+                        <td class="arrow"> &gt;</td>
+                        <td class="all aw_province_all">
+                            <a class="{% ifequal pro_id "" %}active{% endifequal %}"
+                               href="?t={{ type_id }}&f={{ feature_id }}"> 全部 </a>
+                        </td>
+                        <td class="area-ele aw_school_dl">
+                            <p>
+                                {% for sch in sch_pro %}
+                                    {% for pr in pros %}
+                                        {% if sch == pr.id %}
+                                            <a class="{% ifequal pro_id pr.id|stringformat:'i' %}active{% endifequal %}"
+                                               href="?p={{ pr.id }}&t={{ type_id }}&f={{ feature_id }}">{{ pr.province }}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                                {#                                    <a class="" href="http://www.zhoujuedu.com/school/?d=110000">北京</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=120000">天津</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=210000">辽宁</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=220000">吉林</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=230000">黑龙江</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=320000">江苏</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=350000">福建</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=370000">山东</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=420000">湖北</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=440000">广东</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=500000">重庆</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=510000">四川</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=610000">陕西</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?d=620000">甘肃</a>                            #}
+                            </p>
+                        </td>
+                        <td>
+                            <span class="load-more icon iconfont icon-triang-down">  </span>
+                            <span class="load-less icon iconfont icon-triang-up">  </span>
+                        </td>
+                    </tr>
+                    <tr class="school-type">
+                        <td class="name">院校类型</td>
+                        <td class="arrow"> &gt;</td>
+                        <td class="all aw_type_all">
+                            <a class="{% ifequal type_id "" %}active{% endifequal %}"
+                               href="?p={{ pro_id }}&f={{ feature_id }}"> 全部 </a>
+                        </td>
+                        <td class="area-ele aw_type">
+                            <p>
+                                {% for school_type in school_types %}
+                                    <a class="{% ifequal type_id school_type.id|stringformat:'i' %}active{% endifequal %}"
+                                       href="?t={{ school_type.id }}&p={{ pro_id }}&f={{ feature_id }}">{{ school_type.type_name }}</a>
+                                {% endfor %}
+
+                                {#                                    <a class="" href="http://www.zhoujuedu.com/school/?t=1">工科</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?t=2">农业</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?t=4">医药</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?t=5">师范</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?t=6">语言</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?t=7">财经</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?t=10">艺术</a>                                        <a class="" href="http://www.zhoujuedu.com/school/?t=12">综合</a>                            #}
+                            </p>
+                        </td>
+                        <td>
+                            <span class="load-more icon iconfont icon-triang-down">  </span>
+                            <span class="load-less icon iconfont icon-triang-up">  </span>
+                        </td>
+                    </tr>
+                    <tr class="school-feature">
+                        <td class="name"> 院校特征</td>
+                        <td class="arrow"> &gt;</td>
+                        <td class="all aw_tag_all">
+                            <a class="{% ifequal feature_id "" %}active{% endifequal %}"
+                               href="?p={{ pro_id }}&t={{ type_id }}"> 全部 </a>
+                        </td>
+                        <td class="area-ele aw_tag">
+                            {% for school_feature in school_features %}
+                                <a class="{% ifequal feature_id school_feature.id|stringformat:'i' %}active{% endifequal %}"
+                                   href="?f={{ school_feature.id }}&p={{ pro_id }}&t={{ type_id }}">{{ school_feature.feature_name }}</a>
+                            {% endfor %}
+
+                            {#                                <a href="http://www.zhoujuedu.com/school/?l=1">双一流</a>                                    <a href="http://www.zhoujuedu.com/school/?l=2">985工程</a>                                    <a href="http://www.zhoujuedu.com/school/?l=3">211工程</a>                                    <a href="http://www.zhoujuedu.com/school/?l=4">教育部直属</a>                                  #}
+                            {#                                <a href="http://www.zhoujuedu.com/school/?l=5">省部委共建</a>                                   #}
+                            {#                                <a href="http://www.zhoujuedu.com/school/?l=6">省属重点</a>                                    <a href="http://www.zhoujuedu.com/school/?l=7">省部共建</a>                                    <a href="http://www.zhoujuedu.com/school/?l=8">省教育厅直属</a>                        #}
+                        </td>
+                        <td>
+                            <span class="load-more icon iconfont icon-triang-down">  </span>
+                            <span class="load-less icon iconfont icon-triang-up">  </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--筛选结束-->
+
+
+        <div class="schItem clear">
+            <div class="schoolCol lf">
+                <!--结果展示 数量-->
+                <div class="reorder">
+                    <div class="page rt"> 共 <span class="major-num col-red">{{ schools.count }}</span> 所院校&nbsp; &nbsp;
+                        <strong class="all">
+                            {% if data.has_previous %}
+                                <a href="?sort={{ sort }}&f={{ feature_id }}&p={{ pro_id }}&t={{ type_id }}&page={{ data.previous_page_number }}">
+                                    <span class="icon iconfont icon-left col-red"></span>
+                                </a>
+                            {% else %}
+                                <a href="?sort={{ sort }}&f={{ feature_id }}&p={{ pro_id }}&t={{ type_id }}&page=1">
+                                    <span class="icon iconfont icon-left col-red"></span>
+                                </a>
+                            {% endif %}
+                            <i class="col-red mlt">{{ currentPage }}</i> / <i class="mrt">{{ paginator.num_pages }}</i>
+                            {% if data.has_next %}
+                                <a href="?sort={{ sort }}&f={{ feature_id }}&p={{ pro_id }}&t={{ type_id }}&page={{ data.next_page_number }}">
+                                    <span class="icon iconfont icon-right"></span>
+                                </a>
+                            {% else %}
+                                <a href="?sort={{ sort }}&f={{ feature_id }}&p={{ pro_id }}&t={{ type_id }}&page={{ paginator.num_pages }}">
+                                    <span class="icon iconfont icon-right"></span>
+                                </a>
+                            {% endif %}
+
+                        </strong>
+                    </div>
+                    <ul class="reoLf">
+                        <li>
+                            <a class="{% if sort != 'count' %}active{% endif %}"
+                               href="?sort=normal&f={{ feature_id }}&p={{ pro_id }}&t={{ type_id }}"> 综合 </a>
+                        </li>
+                        <li class="sel">
+                            <a class="{% ifequal sort 'count' %}active{% endifequal %}"
+                               href="?sort=count&f={{ feature_id }}&p={{ pro_id }}&t={{ type_id }}"> 报名量从高到低 </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--结果数量-->
+
+
+                <!--院校列表开始-->
+                {% if schools.count != 0 %}
+                    {% for school in data %}
+                        <div class="clear list-item">
+                            <dl>
+                                <dt>
+                                    <a style="display: block;" class="detail"
+                                       href="{% url 'choose_school:school_detail' school.pk %}" target="_blank">
+                                        <img class="lazy-one" src="{{ school.emblem }}"
+                                             data-original="//media/{{ school.emblem }}" alt="{{ school.name }}"
+                                             title="{{ school.name }}" style="display: inline;">
+                                    </a>
+                                </dt>
+                                <dd>
+
+                                    <h2>
+                                        <a class="detail" href="{% url 'choose_school:school_detail' school.pk %}"
+                                           onclick="clickBtn(10032,&#39;memu_yxschool&#39;)" target="_blank">
+                                            {{ school.name }}--{{ school.motto }}                                    </a>
+                                    </h2>
+
+                                    <p class="tag" style=" font-size: 0;">
+                                        <span>{{ school.sch_pro.province }}</span>
+                                        {#                                {% for fea in school.scholl_feature %}#}
+                                        {#                                    <span>{{ fea.feature_name }}</span>#}
+                                        {#                                {% endfor %}#}
+
+                                        {% if school.is_status %}
+                                            <span>教育部直属</span>
+                                        {% endif %}
+
+                                    </p>
+
+                                    <p class="levels">层次：高起专、高起本、专升本&nbsp;&nbsp;&nbsp;&nbsp;累计报读：{{ school.count }}</p>
+                                    <p class="sclDetal">
+                                        <a href="{% url 'choose_school:school_intro' school.pk %}"
+                                           target="_blank">招生简章</a>
+                                        <a href="{% url 'choose_school:school_detail' school.pk %}"
+                                           target="_blank">院校详情</a>
+                                    </p>
+
+                                </dd>
+                            </dl>
+                            <!-- </a> -->
+                            <div class="hot-regist">
+                                <h4>- 推荐专业 -</h4>
+                                <ul class="clear tjPro">
+                                    {% for recommend in recommends %}
+                                        {% if recommend.school_id == school.id %}
+                                            <li>
+                                                <a href="{% url 'choose_major:major_detail' recommend.id school.id %}"
+                                                   target="_blank" title="{{ recommend.major_name }}"
+                                                   alt="{{ recommend.major_name }}">{{ recommend.major_name }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td class="none" colspan="6">
+                            <i class="iconfont none"></i>
+                            <span class="none">无相关内容</span>
+                        </td>
+                    </tr>
+                {% endif %}
+
+
+                    <!--院校列表结束-->
+                    <div class="pagination">
+                        <span> 共{{ paginator.num_pages }}页 </span>
+                        {% if data.has_previous %}
+                            <a href="?sort={{ sort }}&f={{ feature_id }}&p={{ pro_id }}&t={{ type_id }}&page={{ data.previous_page_number }}">
+                                上一页 </a>
+                        {% else %}
+                            <span class="disabled"> 上一页 </span>
+                        {% endif %}
+                        {% for num in page_range %}
+                            {% if num == currentPage %}
+                                <a class="active"
+                                   href="?sort={{ sort }}&f={{ feature_id }}&p={{ pro_id }}&t={{ type_id }}&page={{ num }}"> {{ num }} </a>
+                            {% else %}
+                                {% if num == '...' %}
+                                    <a> {{ num }} </a>
+                                {% else %}
+                                    <a href="?sort={{ sort }}&f={{ feature_id }}&p={{ pro_id }}&t={{ type_id }}&page={{ num }}"> {{ num }} </a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if data.has_next %}
+                            <a href="?sort={{ sort }}&f={{ feature_id }}&p={{ pro_id }}&t={{ type_id }}&page={{ data.next_page_number }}">
+                                下一页 </a>
+                        {% else %}
+                            <span class="disabled"> 下一页 </span>
+                        {% endif %}
+
+                        <input type="text" class="aw_page_input" data-max="{{ paginator.num_pages }}" pattern="[0-9]*"
+                               title="必须是纯数字">
+                        <span class="goPage"
+                              data-url="?sort={{ sort }}&f={{ feature_id }}&p={{ pro_id }}&t={{ type_id }}"> Go </span>
+                    </div>
+                    </div>
+
+
+            <!--侧边栏的故事-->
+            <div class="hot-article">
+                <div class="hotBox ">
+                    <h3>热门院校</h3>
+                    <div id="timeLine">
+                        <div id="cList">
+                            <div style="width: 250px;margin: 0 auto; overflow: hidden; text-align: center; ">
+                                <ul id="cUl" class="hot_school slides">
+                                    {% for hot in hot_school %}
+                                        <li>
+                                            <div class="container-li">
+                                                <a href="{% url 'choose_school:school_detail' hot.pk %}"
+                                                   target="_blank">
+                                                    <img class="lazy-two" src="{{ hot.emblem }}" style="height: 111px;"
+                                                         alt="{{ hot.name }}">
+                                                </a>
+                                                <p>
+                                                    <strong>{{ hot.name }}</strong>
+                                                    {% if hot.is_double %}
+                                                        <span>双一流</span>
+                                                    {% endif %}
+                                                    {% if hot.is_211 %}
+                                                        <span>211</span>
+                                                    {% endif %}
+                                                </p>
+                                                <a class="btn" href="/school/10200.html" target="_blank">立即报名</a>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hotBox mar20">
+                    <h3>报考指南
+                        <a href="{% url 'service:sign' %}" target="_blank">
+                            <span class="tmores">更多</span>
+                        </a>
+                    </h3>
+                    <ul class="article-list">
+                        {% for hot_post in hot_posts %}
+                            <li>
+                                <a href="{% url 'service:post_detail' hot_post.id %}" target="_blank"
+                                   title="{{ hot_post.post_title }}">{{ hot_post.post_title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--主体内容结束-->
+
+
+    <script type="text/javascript">
+
+        var cityId = 110100;
+        var is_first_index = 0;
+        var LogChannelID = "test"; //LogChannelID是频道ID，
+
+    </script>
+    <script type="text/javascript" src="{% static 'home/js/vendor.js' %}"></script>
+    <script type="text/javascript" src="{% static 'home/js/school-0652a73415.js' %}"></script>
+
+
+{% endblock %}

@@ -1,0 +1,75 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" id="close1"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">院校详情</h4>
+      </div>
+      <div class="modal-body">
+    		<table class="table table-bordered table-hover table-striped table-responsive">
+    			<tbody>
+    				<tr>
+    					<td width="25%">院校名称</td>
+    					<td width="75%">{{ school.name|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>院校描述</td>
+    					<td>{{ school.description|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>校训</td>
+    					<td>{{ school.motto|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>是否985</td>
+    					<td>
+    						{% if school.is_985 %}是{% else %}否{% endif %}
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>是否211</td>
+    					<td>
+    						{% if school.is_211 %}是{% else %}否{% endif %}
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>是否双一流</td>
+    					<td>{% if school.is_double %}是{% else %}否{% endif %}</td>
+    				</tr>
+    				<tr>
+    					<td>累计报读人数</td>
+    					<td>{{ school.count|default:"0" }}</td>
+    				</tr>
+    				<tr>
+    					<td>所在省份</td>
+    					<td>{{ school.sch_pro|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>所在城市</td>
+    					<td>{{ school.sch_city|default:"暂无" }}</td>
+    				</tr>
+    				<tr>
+    					<td>学校类型</td>
+    					<td>
+                            {% for type in school.school_type.all %}
+                                {{ type.type_name|default:"暂无" }}
+                            {% endfor %}
+                        </td>
+    				</tr>
+    				<tr>
+    					<td>学校特性</td>
+    					<td>{% for feature in school.scholl_feature.all %}
+    					        {{ feature.feature_name|default:"暂无" }}
+    					    {% endfor %}
+                        </td>
+    				</tr>
+    
+    			</tbody>
+    		</table>
+      </div>
+</div>
+</div>
+<script>
+    $('#close1').click(function () {
+        $('.detail').css("display", "none")
+    });
+</script>

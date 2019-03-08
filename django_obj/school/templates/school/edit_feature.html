@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>编辑院校特性</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" href="{% static 'user/css/add_user.css' %}">
+</head>
+<body>
+{#class="modal-dialog"#}
+<div role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">编辑特性</h4>
+        </div>
+        <div class="modal-body col-sm-12">
+            <form class="form-horizontal" id="addForm">
+                <div>
+                    <div style="display: none" id="error_message">错误信息:</div>
+                    <div id="main_data"></div>
+                </div>
+                <div class="form-group">
+                    <label for="inputNameAdd" class="col-sm-3 control-label">院校特性</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputNameAdd" value="{{ feature.feature_name }}" disabled>
+                        <div class="alt name"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputNotesAdd" class="col-sm-3 control-label">特性说明</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="inputNotesAdd" name="notes" cols="30"
+                                  rows="10">{{ feature.notes|default:'' }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputIsStatusEdit" class="col-sm-3 control-label">状态</label>
+                    <div class="col-sm-6">
+                        <input type="radio" name="is_status" id="inputIsStatusEdit" value="True" checked> 可用
+                        <input type="radio" name="is_status" id="inputIsStatusEdit" value="False"> 不可用
+                    </div>
+                </div>
+
+            </form>
+            <input type="hidden" value="{{ feature.id }}" id="featureid">
+        </div>
+        <div class="modal-footer col-sm-9 no-border" style="background: white">
+            <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" form="addForm" id="submit">提交</button>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<div id="message" class="message">
+    <span>x</span>
+    <div id="top_text">提示：</div>
+    <h5>信息修改成功,点击确定返回特性列表</h5>
+    <div id="sure" class="back list">确定</div>
+</div>
+</body>
+<script>
+    $(document).keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btn").trigger("click");
+        }
+    });
+
+    $('.list').click(() => {
+        $.ajax({
+            url: '/school/get_feature/',
+            type: 'get',
+            success: (data) => {
+                $('.main-content').html(data)
+            }
+        })
+    });
+
+    $('.btn-link,.close,.message span').click(() => {
+        $.ajax({
+            url: '/school/get_feature/',
+            type: 'get',
+            success: (data) => {
+                $('.modal-dialog').css('display', 'none');
+                $('.main-content').html(data)
+            }
+        })
+    });
+
+
+    $('#submit').click(() => {
+        let feature_id = $('#featureid').val();
+        let feature_name = $("#inputNameAdd").val();
+        let notes = $('#inputNotesAdd').val();
+        let is_status = $('[name="is_status"]:checked').val();
+        console.log(notes);
+
+            $.ajax({
+                url: '/school/edit_feature/',
+                type: 'post',
+                data: {
+                    'feature_id':feature_id,
+                    'feature_name': feature_name,
+                    'notes':notes,
+                    'is_status':is_status
+                },
+                success: (data) => {
+
+                    if (data['status'] === 'success') {
+                        $('.message').css('display', 'block');
+                    } else if (data['status'] === 'fail') {
+                        var tag = data.tagid;
+                        $('.' + tag).html(data.message).css('color', 'red');
+
+                    }
+                }
+            })
+    });
+
+
+</script>
+</html>
+
+
+

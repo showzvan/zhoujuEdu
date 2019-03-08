@@ -1,0 +1,342 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>{{ major.school.name }}网络教育{{ major.major_name }}{{ major.get_level_display }}_{{ major.get_level_display }}专业介绍_舟炬教育 </title>
+    <meta name="keywords" content="{{ major.school.name }},网络教育,{{ major.major_image }},{{ major.get_level_display }}">
+    <meta name="description" content="">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/majorDetail-ec0ed4fdbc.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!--面包屑 导航-->
+    <div class="navbar-common">
+        <div class="aside clear">
+            <p class="flt">
+                <a href="http://www.open.com.cn/">首页</a>
+                <span>
+                    <i>&gt;</i>
+                    <a href="http://www.open.com.cn/major/index.html">选专业</a>
+                </span>
+                <span>
+                    <i>&gt;</i>
+                    <em>{{ major.major_name }}</em>
+                </span>            
+            </p>
+        </div>
+    </div>
+    <!--面包屑导航 结束-->
+
+
+    <!--主体内容-->
+    <div class="major-box">
+        <div class="content">
+            <div class="property clear">
+                <div class="logo">
+                    <div class="icon" title="{{ major.major_name }}">
+                        <img class="lazy-one" src="{{ major.major_image }}" data-original="{{ major.major_image }}" alt="{{ major.major_name }}" style="display: inline;">
+                    </div>
+                    <div class="label">
+                        <p class="label-name"> 专业标签： </p>
+                        <p class="label-con">
+                            {% if major.is_special %}
+                                <span class="bg-major"> 特色专业 </span>
+                            {% endif %}
+                            {% if major.is_fast %}
+                                <span class="bg-major"> 录取快 </span>
+                            {% endif %}
+                        </p>                   
+                    </div>
+                </div>
+                <div class="detail" data-product-id="33845" data-school-code="10200">
+                    <div class="title">
+                        <h1 class="name"> {{ major.major_desciption }} </h1>
+                        <p class="infor"> 
+                            学制： <span> {{ major.times }} </span>
+                            <i class="distance">年</i> 
+                            累计报读： <span> {{ major.count }} </span>
+                        </p>
+                    </div>
+                    <div class="select-box clear" style="min-height: 210px;">
+                        <div class="tap-box">
+                            <div class="tap-school clear tap-common">
+                                <div class="tap-name"> 选择院校： </div>
+                                <div id="major-name" data-id="{{ major.id }}" style="display: none">{{ major.major_name }}</div>
+                                <div class="select-list">
+                                    {% for school in schools %}
+                                        {% if school.id == major.school.id %}
+                                            <span class="active" data-type="school"> {{ school.name }} </span>
+                                        {% else %}
+                                            <span data-id="{{ school.id }}" onclick="get_major(this)" data-type="school"> {{ school.name }} </span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="tap-level tap-common">
+                                <p class="tap-name"> 选择层次： </p>
+                                <p class="select-list">
+
+                                    {% for level in major_level %}
+                                            {% if level.id == major.id %}
+                                                <span class="active" data-id='{{ level.level }}' onclick="get_school(this)"> {{ level.get_level_display }} </span>
+                                            {% else %}
+                                                <span data-id='{{ level.level }}' onclick="get_school(this)">{{ level.get_level_display }}</span>
+                                            {% endif %}
+                                    {% endfor %}
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="consult regist" style="height: 45px;">
+                            <p class="regist register" onmouseenter="_hmt.push([&#39;_trackEvent&#39;, &#39;立即报名&#39;, &#39;浮动按钮&#39;])">
+                                <button class="immediate aw_apply_apply"> 立即报名 </button>
+                            </p>
+                            <button class="baoming signWechatBtn signWechatBtn1"> 报名咨询 </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="major-detail clear">
+                    <!--介绍 tab 选项卡-->
+                    <div class="major-list">
+                        <p class="nav-tap">
+                            <span class="aw_product_content active">专业介绍</span>
+                            <span class="aw_sign_notice">报名须知</span>
+                            <span class="aw_exam_graduation">考试与毕业</span>
+                        </p>
+                        <div class="major-detail-content">
+                            <!--专业介绍-->
+                            <div class="aw_product_content_div aw_content_div">
+                                <div id="radar" style="height: 350px;width: 350px;">
+                                </div>
+                                <div class="details">
+                                    {{ major.detail|safe }}
+{#                                    培养具有良好科学素养，系统地掌握计算机科学与技术的基础理论、基本技能与方法，具备现代计算机专业知识，有较强的获取新知识的能力、创新能力和实践能力，能从事计算机系统设计与开发、计算机应用和技术经济管理等方面工作的技术人才。软件开发工程师：在软件公司设计开发各种软件产品和信息系统；信息管理人员：在各类企事业单位从事管理和维护单位的各种信息系统；硬件开发设计人员：在电脑公司设计开发各种信息硬件产品。创业：计算机人才创业相对于其他专业，起步要容易，取得的成功概率也要大很多。离散数学、操作系统、微型机原理与应用、数据库系统、编译原理、计算机系统结构、计算机网络、Java程序设计、软件工程等。#}
+                                    <img src="{% static 'home/images/69.png' %}" alt=""><img src="{% static 'home/images/01.jpg' %}" alt="">
+                                    <img src="{% static 'home/images/02.jpg' %}" alt=""><img src="{% static 'home/images/03.jpg' %}" alt="">
+                                    <img src="{% static 'home/images/04.jpg' %}" alt=""><img src="{% static 'home/images/05.jpg' %}" alt="">
+                                    <img src="{% static 'home/images/06.jpg' %}" alt="">
+                                    <img src="{% static 'home/images/07.jpg' %}" alt="">
+                                </div>
+                            </div>
+                            <!--专业介绍结束-->
+
+                            <!--报名须知-->
+                            <div class="aw_sign_notice_div aw_hide aw_content_div">
+                                {{ school.enrol_notes|safe }}
+                            </div>
+                            <!--报名须知 结束-->
+                            
+                            <!--考试与毕业-->
+                            <div class="aw_exam_graduation_div aw_hide aw_content_div">
+                                {{ school.exam|safe }}
+{#                                <p>#}
+{#                                    <strong>#}
+{#                                        <span style="font-size:19px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">考试#}
+{#                                        </span>#}
+{#                                    </strong>#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    <strong>#}
+{#                                        <span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">1#}
+{#                                        </span>#}
+{#                                    </strong>#}
+{#                                    <strong>#}
+{#                                        <span style="font-size:16px;font-family: &#39;微软雅黑&#39;,&#39;sans-serif&#39;">，教学与学习</span>#}
+{#                                    </strong>#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    <span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">教学模式：课件学习+网上导学+网上答疑讨论+课程作业+学习中心导学辅导+集中考试+毕业论文#}
+{#                                    </span>#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    <span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">平时成绩占总评成绩比重：约占40%（特殊课程除外）,#}
+{#                                    </span>#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    <span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">2</span>#}
+{#                                    <span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">，#}
+{#                                        <strong>统考</strong>#}
+{#                                    </span>#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    <span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">统考是指教育部对现代远程教育试点高校网络教育部分公共基础课实施的全国统一考试。</span>#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    <span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">考试对象为现代远程教育试点普通高校的本科层次网络学历教育的学生。#}
+{#                                    </span>#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    <span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">统考科目按不同学历起点和不同专业类别确定：</span>#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    <span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（1）高中起点本科学生的统考科目如下：#}
+{#                                    </span>#}
+{#                                </p>#}
+{##}
+{#                                <table width="98%" align="center" border="1">#}
+{#                                    <tbody>#}
+{#                                        <tr class="firstRow">#}
+{#                                            <td style="padding:0 0 0 0">#}
+{#                                                <p>#}
+{#                                                    <span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">专业类别&nbsp;</span>#}
+{#                                                </p>#}
+{#                                            </td>#}
+{#                                            <td style="padding:0 0 0 0"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">统 &nbsp; 考 &nbsp; &nbsp;科 目&nbsp;</span></p>#}
+{#                                            </td>#}
+{#                                        </tr>#}
+{##}
+{#                                        <tr>#}
+{#                                            <td style="padding:0 0 0 0"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">理工类 &nbsp; </span></p></td><td style="padding:0 0 0 0"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">大学英语(B)、计算机应用基础、高等数学(B)(数学专业考“高等数学(A)”)</span></p></td>#}
+{#                                        </tr>#}
+{#                                        <tr>#}
+{#                                            <td style="padding:0 0 0 0"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">文史法医 &nbsp; &nbsp;教育类 </span></p></td><td style="padding:0 0 0 0"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">大学英语(B)、计算机应用基础、大学语文(B)(文史类专业考“大学语文(A)”)</span></p></td>#}
+{#                                        </tr>#}
+{##}
+{#                                        <tr>#}
+{#                                            <td style="padding:0 0 0 0"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">英语类 &nbsp; </span></p></td><td style="padding:0 0 0 0"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">大学英语(A)、计算机应用基础、大学语文(B)</span></p></td></tr><tr><td style="padding:0 0 0 0"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">艺术类 &nbsp; </span></p></td><td style="padding:0 0 0 0"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">大学英语(C)、计算机应用基础、大学语文(B)</span></p></td></tr><tr><td style="padding:0 0 0 0"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">其它专业 &nbsp; </span></p></td><td style="padding:0 0 0 0"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">大学英语(B)、计算机应用基础，“高等数学(B)”和“大学语文(B)”由试点学校任选一门</span></p></td>#}
+{#                                        </tr>#}
+{#                                    </tbody>#}
+{#                                </table>#}
+{##}
+{##}
+{#                                <p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（2）专科起点本科学生的统考科目如下：</span></p><table width="98%" align="center" border="1"><tbody><tr class="firstRow"><td width="100" style="padding: 0px;"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">专业类别&nbsp;</span></p></td><td width="211" style="padding: 0px;"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">统考科目&nbsp;</span></p></td><td width="259" style="padding: 0px;"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">备 &nbsp; 注&nbsp;</span></p></td></tr><tr><td width="100" style="padding: 0px;"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">英语类 &nbsp; </span></p></td><td width="211" style="padding: 0px;"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">大学英语(A)、计算机应用基础</span></p></td><td width="259" rowspan="3" style="padding: 0px;"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">专科起点本科教育入学考试(自主考试或成人高考)科目中没有“大学语文”或“高等数学”成绩的，按不同专业须加试统考科目“大学语文(B)”或“高等数学(B)”, 加试科目的选择同高中起点本科学生的专业分类。</span></p></td></tr><tr><td width="100" style="padding: 0px;"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">艺术类 &nbsp; </span></p></td><td width="211" style="padding: 0px;"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">大学英语(C)、计算机应用基础</span></p></td></tr><tr><td width="100" style="padding: 0px;"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">其它专业 &nbsp; </span></p></td><td width="211" style="padding: 0px;"><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">大学英语(B)、计算机应用基础</span></p></td></tr></tbody></table><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">&nbsp;</span><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">相关政策详见中国现代远程与继续教育网：<a href="http://www.cdce.cn/" target="_blank">http://www.cdce.cn</a></span></p><p><strong><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">3</span></strong><strong><span style="font-size:16px;font-family: &#39;微软雅黑&#39;,&#39;sans-serif&#39;">，课程考试</span></strong></p><p><strong><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">考试方式与成绩</span></strong></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（1）课程考核主要包括平时考核与期末考核两部分。平时考核主要通过在线作业的形式来实现；期末考核须根据课程的内容与特点，分别采取开卷、闭卷、</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">网上作业考核等形式。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（2）开卷、闭卷考核课程实行“2+1”的考核形式。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">“2+1”中的“2”是指：学生须在规定的时间内完成两套在线作业，每套在</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">线作业的成绩占总成绩的20%，共占总成绩的40%。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">“2+1”中的“1”是指: 学生须在规定的时间内参加期末考试（开卷或闭卷），该考试成绩占总成绩的60%。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（3）网上作业考核课程实行“3+1”的考核形式。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">“3+1”中的“3”是指：学生须在规定的时间内完成三套在线作业，每套在线</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">作业成绩占总成绩的20%，共占总成绩的60%。“3+1”中的“1”是指：学生在规定的时间内完成一套离线作业并通过网络平台提交，由我院统一组织批阅并记录成绩，该成绩占总成绩的40%。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（4）实践类课程采取形成性考核的方式。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">物理、化学等专业的实验类课程，实行学生在网上提交实验报告的考核形式。学生完成实验后须在规定的时间内，按课程要求提交相应的实验报告，任课教师根据提交实验报告的数量和质量情况给出该课程的最终成绩。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">美术专业的实践类课程，实行学生在网上分阶段提交相关作品的考核形式，任课教师根据提交的作品给出该课程的最终成绩。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（5）学生须参加国家统考的课程（专升本层次的“大学英语”、“计算机应用基础”，高起本层次的“大学英语”、“计算机应用基础”、“大学语文”或“高等数学”）不再安排期末考试，统考成绩合格者，该门课程按免考处理，不合格者无成绩。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（6）专题讲座类课程的考核以提交学习报告形式完成，学生通过网上提交，成绩合格者获得该门课程的学分。</span></p><p><strong><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">最新月度考试时间</span></strong></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">http://www.open.com.cn/news/show-5264.html</span></p><p><strong><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">课程免考条件</span></strong></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">课程免考是指学生按照我院教学计划的规定，在已经缴纳该课程的学分费用，并且已经选修了该门课程的前提下，符合我院的相关的免考条件，可以申请免去课程考试环节而取得学分的管理方式。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（1）学生需参加统考的课程（包括专升本科的大学英语、计算机应用基础以及高起本科的大学英语、计算机应用基础、高等数学或大学语文），以统考成绩作为我院教学计划中该课程的成绩，教学计划中的这几门课程一律不再设其他考试。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（2）学生在国家公开出版的刊物上发表与课程内容相关的文章（第一作者或通讯作者），经由该课程的开课机构教学委员会认定，可以免考该课程。</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（3）学生获得各县级以上专业领域颁发的相关荣誉证书，经由课程开课机构教学委员会认定，也可以免考相应的课程。</span></p><p><strong><span style="font-size:19px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">毕业</span></strong></p><p><strong><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">1</span></strong><strong><span style="font-size:16px;font-family: &#39;微软雅黑&#39;,&#39;sans-serif&#39;">，论文答辩</span></strong></p><p><strong><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">学位论文成绩评定与答辩</span></strong></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">1</span><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">）学位论文成绩以学生论文的质量和答辩情况为依据进行评定；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">2</span><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">）学位论文字数要求在5000 字以上；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">3</span><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">）学位论文成绩划分为五个等级：优秀、良好、中等、及格、不及格，及格</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">以上（含及格）可获得学分。不及格学生重新参加下一批次论文写作；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">4</span><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">）学位论文需要参加论文答辩。</span></p><p><strong><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">毕业论文成绩评定</span></strong></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">1</span><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">）毕业论文字数要求在3000 字以上；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">2</span><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">）毕业论文成绩划分为两个等级，即合格与不合格。成绩为合格的学生可取</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">得相应学分，成绩为不合格的学生重新参加下一批次论文写作；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">3</span><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">）毕业论文不需要参加论文答辩。</span></p><p><strong><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">2</span></strong><strong><span style="font-size:16px;font-family: &#39;微软雅黑&#39;,&#39;sans-serif&#39;">，毕业证书</span></strong></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">学生在规定学习期限内修完本专业教学计划规定的全部课程，完成实践教学等环节和通过毕业论文（设计），成绩合格，达到规定的最低毕业学分，通过教育部统一组织的公共课程考试，准予毕业（专科毕业不作毕业论文、不参加教育部公共课程统考）。由东北师范大学颁发国民教育系列本科或专科（网络教育）毕业证书，并报教育部电子注册，国家承认学历。</span></p><p style="text-align: center;"><img src="assets/images/1542015787260591.jpg" title="1542015787260591.jpg" alt="1.jpg"></p><p><strong><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">获取毕业证书的条件</span></strong></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（1）在教育部学信网上已注册学籍并达到最低修业年限；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（2）修完本专业教学计划规定的全部课程和实践教学等环节，成绩合格，达</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">到规定的最低毕业学分；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（3）本科层次须通过教育部组织的公共课程统一考试；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（4）进行毕业信息采集并已提交毕业信息采集照片；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（5）网上提交毕业生登记表相关内容</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（6）交齐所有费用；</span></p><p><strong><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">3</span></strong><strong><span style="font-size:16px;font-family: &#39;微软雅黑&#39;,&#39;sans-serif&#39;">，学位证书</span></strong></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">符合学士学位条件的本科毕业生，按照《中华人民共和国学位条例规定》及《东北师范大学授予成人高等教育本科毕业生学士学位实施细则》的规定，由东北师范大学授予相应学科门类的学士学位。</span></p><p style="text-align: center;"><img src="assets/images/1542015799244153.jpg" title="1542015799244153.jpg" alt="2.jpg"></p><p><strong><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">获得学位证书的条件</span></strong></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（1）取得成人高等教育（网络教育）本科毕业证书；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（2）平均学分绩点在2.0（含2.0）以上；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（3）选作学位论文成绩为及格以上；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（4）参加吉林省成人高等教育本科毕业生申请学士学位外语水平统一考试或</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">经吉林省学位办同意参加其它的学位外语考试，吉林省学位办认定成绩合格且在</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">有效期内；</span></p><p><span style="font-size:16px;font-family:&#39;微软雅黑&#39;,&#39;sans-serif&#39;">（5）无考试违纪记录。</span></p>#}
+
+                            </div>
+                            <!--考试与毕业-->
+                        </div>
+                    </div>
+                    <!--介绍结束-->
+
+
+                    
+                    <!--侧边-->
+                    <div class="guide">
+                        <div class="rec">
+                            <p class="title"> -&nbsp;招生简章&nbsp;- </p>
+                            <p class="img aw_enroll_regulations">
+                                <a href="{% url 'choose_school:school_intro' school.pk %}" title="{{ school.name }}">
+                                    <img class="lazy-one" src="{% static 'home/images/10200.png' %}" data-original="{% static 'home/images/10200.png' %}" alt="{{ school.name }}" style="display: inline;">
+                                </a>
+                            </p>
+                        </div>
+                        <div class="hot">
+                            <p class="clear hot-major">
+                                <span>院校推荐专业</span>
+                                <a href="{% url 'choose_major:choose_major' %}">更多</a>
+                            </p>
+
+
+                            <div class="aw_hot_product school-recom">
+                                {% for hot in hot_major %}
+                                    <a class="hot-list" href="{% url 'choose_major:major_detail' hot.id hot.school_id %}" target="_blank" title="{{ hot.major_name }}">
+                                        <dl>
+                                            <dt>
+                                                <img class="lazy-two" src="{{ hot.major_image }}" data-original="{{ hot.major_image }}" alt="{{ hot.major_name }}" style="display: inline;">
+                                            </dt>
+                                            <dd>
+                                                <p class="hot-name"> {{ hot.major_name }} </p>
+                                                <p class="clear school-name">
+                                                    <strong>
+                                                        <span class="icon iconfont icon-house"></span>
+                                                        <i>{{ hot.major_name }}</i>
+                                                    </strong>
+                                                    <em>
+                                                        <span class="icon iconfont icon-people"></span>
+                                                        <i>{{ hot.count }}</i>
+                                                    </em>
+                                                </p>
+                                            </dd>
+                                        </dl>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <!--侧边结束-->
+
+
+                </div>
+            </div>
+
+            
+            <!--滚动条一滑 ，固定显示-->
+            <div class="master aw_hide">
+                <div class="clear box">
+                    <div class="opt">
+                        <span class="aw_product_content active">专业介绍</span>
+                        <span class="aw_sign_notice">报名须知</span>
+                        <span class="aw_exam_graduation">考试与毕业</span>
+                    </div>
+                    <div class="free">
+                        <p class="regist register1" onmouseenter="_hmt.push([&#39;_trackEvent&#39;, &#39;立即报名&#39;, &#39;浮动按钮&#39;])">
+                            <span class="immediate aw_apply_apply"> 立即报名 </span>
+                        </p>
+                        <button class="baoming signWechatBtn signWechatBtn2">报名咨询</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--滚动条一滑 ，固定显示 结束-->
+        </div>
+    </div>
+    <!--主体内容结束-->
+
+    <script type="text/javascript">
+	
+	   var cityId = 110100;
+	   var is_first_index = 0;
+	   var LogChannelID = "test"; //LogChannelID是频道ID，
+	
+    </script>
+
+
+    <script type="text/javascript" src="{% static 'home/js/vendor.js' %}"></script>
+    <script type="text/javascript" src="{% static 'home/js/echarts.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'home/js/majorDetail-7db76603dd.js' %}"></script>
+
+{% endblock %}
+{% block javascript %}
+    <script>
+        function get_major(temp) {
+            var this_op = temp;
+            var school_id = $(this_op).data('id');
+            var major_name = $('#major-name').text();
+            console.log(school_id);
+            console.log(major_name);
+            $.ajax({
+                url:'/choose_major/get_major/',
+                type:'get',
+                data:{
+                    'school_id':school_id,
+                    'major_name':major_name,
+                },
+                success:(data) => {
+                    $('body').html(data);
+                }
+            })
+        }
+
+        function get_school(temp) {
+            var this_op = temp;
+            var level = $(this_op).data('id');
+            var major_name = $('#major-name').text();
+            var major_id = $('#major-name').data('id');
+            $.ajax({
+                url: '/choose_major/get_school/',
+                type: 'get',
+                data: {
+                    'level':level,
+                    'major_name':major_name,
+                    'major_id':major_id,
+                },
+                success:(data) => {
+                    $('body').html(data);
+                }
+            })
+        }
+    </script>
+{% endblock %}

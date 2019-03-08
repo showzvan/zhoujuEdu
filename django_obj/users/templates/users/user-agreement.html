@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode2.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/myRegistration-cbdc6b26c7.css' %}">
+{% endblock %}
+
+{#{% block nav_active %}#}
+{#    <ul class="search-snav-list">#}
+{#        <li>#}
+{#            <a title="首页" href="{% url 'home' %}">首页</a>#}
+{#        </li>#}
+{#        <li class="search-main-menu search-menu-item">#}
+{#            <a title="选专业" href="{% url 'choose_major:choose_major' %}">选专业</a>#}
+{#        </li>#}
+{#        <li>#}
+{#            <a title="选院校" href="{% url 'choose_school:school' %}"> 选院校 </a>#}
+{#        </li>#}
+{#        <li>#}
+{#            <a title="学员风采" href="{% url 'news:news' %}"> 学员风采 </a>#}
+{#        </li>#}
+{#        <li>#}
+{#            <a title="服务大厅" href="{% url 'service:service' %}"> 服务大厅 </a>#}
+{#        </li>#}
+{#    </ul>#}
+{#{% endblock %}#}
+{#{% block login %}#}
+{#    <div class="status-login">#}
+{#        <div class="login-status" style="display: block;">#}
+{#            <i>186****6338</i>#}
+{#            <em>，您好!</em>#}
+{#            <p>#}
+{#                <span class="tra-out"></span>#}
+{#                <span class="tra-inner"></span>#}
+{#                <span class="fill-cir"></span>#}
+{#                <a class="active" href="#">我的报名</a>#}
+{#                <a class="quit-login">退出登录</a>#}
+{#            </p>#}
+{#        </div>#}
+{#        <div id="loginOpt" class="login-opt" style="display: none;"> 注册/登录</div>#}
+{#    </div>#}
+{#    <div id="login" class="login-container">#}
+{#        <div class="com-masker"></div>#}
+{#        <div class="box">#}
+{#            <dl>#}
+{#                <dt>#}
+{#                    <i id="closeLogin" class="iconfont close"></i>#}
+{#                </dt>#}
+{#                <dd class="title"> 学员注册/登录</dd>#}
+{#            </dl>#}
+{#            <form class="com-form">#}
+{#                <div>#}
+{#                    <i class="iconfont con"></i>#}
+{#                    <input data-num="0" data-type="phoneNum" class="phone enter" placeholder="请输入手机号" type="text"#}
+{#                           maxlength="11">#}
+{#                </div>#}
+{#                <p class="error"></p>#}
+{#                <div>#}
+{#                    <i class="iconfont con"></i>#}
+{#                    <input data-num="1" data-type="imgCode" class="img-code enter" placeholder="请输入图形验证码"#}
+{#                           type="text"#}
+{#                           maxlength="4">#}
+{#                    <img data-type="getImgCode" src="{% static 'home/images/code.png' %}" class="valid">#}
+{#                </div>#}
+{#                <p class="error"></p>#}
+{#                <div>#}
+{#                    <i class="iconfont con"></i>#}
+{#                    <input data-num="2" data-type="phoneCode" class="code enter" placeholder="请输入手机验证码" type="text"#}
+{#                           maxlength="4">#}
+{#                    <button data-type="getCode" class="getcode" type="button">获取验证码</button>#}
+{#                </div>#}
+{#                <p class="error"></p>#}
+{#            </form>#}
+{#            <p class="login-error"></p>#}
+{#            <button data-type="submit" class="regist" type="button">注册/登录</button>#}
+{#            <p class="warm"> 注册/登录代表您已经阅读并同意 <a href="http://www.zhoujuedu.com/About/xieyi.html" target="_blank">《舟炬教育服务协议》</a>#}
+{#            </p>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+
+
+{% block content %}
+
+    <div class="body-box">
+        <div class="user-agreement-box clearfix">
+            <!--左边菜单-->
+            <div class="myenlist-left-nav">
+                <div class="tou">
+                    <img src="{% static 'home/images/header.png' %}" alt="">
+                    欢迎您,<br>
+                    <span class="pho">{{ request.session.user_phone|slice:'0:3' }}****{{ request.session.user_phone|slice:'7:12' }}</span>
+                    <br>
+                    <button id="goPage"> 跟踪报名流程 <span class="number">1</span></button>
+                </div>
+
+                <ul>
+                    <li><a href="{% url 'users:userEnter' %}">我的报名</a></li>
+                    <li><a href="http://learn.zhoujuedu.com">OES学习平台</a></li>
+                    <li class="active"><a id="protocol" href="{% url 'users:agreement' %}">用户协议</a></li>
+                    <li class="quite"><a class="quit-login" href="javascript:;">退出登录</a></li>
+                </ul>
+            </div>
+            <!--左边菜单结束-->
+
+            <div class="agreement-container">
+                <div class="protocol">
+                    <h2>舟炬教育学历教育用户协议</h2>
+                    <p>欢迎使用舟炬学历教育服务，为了保障您的权益，请在使用舟炬学历教育服务之前，详细阅读此服务协议（以下简称“本协议”）所有内容，特别是加粗部分。</p>
+                    <p>本协议由您与北京舟炬远程教育有限公司共同缔结，本协议具有合同效力。本协议中协议双方合称协议方，
+                        北京舟炬远程教育中心有限公司简称为“舟炬教育”。北京舟炬远程教育中心有限公司运营的网络平台称为“舟炬学历教育”，域名为
+                        open.com.cn。北京舟炬远程教育中心有限公司及其关联公司提供的服务简称为“舟炬教育服务”。</p>
+                    <p>第一条 服务定义</p>
+                    <p>舟炬学历教育指舟炬教育所有和经营的有关学历教育、学习等数字内容聚合、管理和分发的平台产品，旨在为用户提供学历教育的解释、传播和部分消费服务。</p>
+                    <p>第二条 舟炬学历教育服务协议的修订</p>
+                    <p>
+                        本协议及相关服务条款如由于业务发展需要进行修订的，舟炬教育将在舟炬学历教育公布。您可前往查阅最新版协议条款。在舟炬教育修改上述条款后，如果您不接受修改后的条款，您可以选择终止使用舟炬学历教育服务。您继续使用舟炬学历教育的行为将被视为已接受了修改后的协议。</p>
+                    <p>第三条 帐号使用规则</p>
+                    <p>1、您可浏览舟炬学历教育上的学历教育(专业)信息，如您希望报名该专业，您需先登录您的帐号，或在报名时系统默认登录。您在报名专业时登录的帐号是舟炬学历教育确认您身份的唯一依据。</p>
+                    <p>
+                        2、您确认：您是具备完全民事权利能力和完全民事行为能力的自然人、法人或其他组织，有能力对您使用舟炬学历教育服务的一切行为独立承担责任。若您不具备前述主体资格，舟炬教育在依据法律规定或本协议约定要求您承担责任时，有权向您的监护人追偿。</p>
+                    <p>
+                        3、您在使用舟炬学历教育服务时填写信息、登录、报名、使用的帐号名称、联系方式、身份证号等帐号信息资料应遵守法律法规、社会主义制度、国家利益、公民合法权益、公共秩序、社会道德风尚和信息真实性等七条底线，不得在帐号信息资料中出现违法和不良信息，且您保证在填写、登录、使用帐号信息资料时，不得有以下情形:</p>
+                    <p>违反宪法或法律法规规定的；</p>
+                    <p>危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；</p>
+                    <p>损害国家荣誉和利益的，损害公共利益的；</p>
+                    <p>煽动民族仇恨、民族歧视，破坏民族团结的；</p>
+                    <p>破坏国家宗教政策，宣扬邪教和封建迷信的；</p>
+                    <p>散布谣言，扰乱社会秩序，破坏社会稳定的；</p>
+                    <p>散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；</p>
+                    <p>侮辱或者诽谤他人，侵害他人合法权益的；</p>
+                    <p>含有法律、行政法规禁止的其他内容的。</p>
+                    <p>
+                        若填写信息、登录、报名、缴费等帐号信息资料存在违法和不良信息的，舟炬教育有权采取通知限期改正、暂停使用等措施。对于冒用关联机构或社会名人登录、使用、填写帐号名称的，舟炬教育有权取消该帐号在舟炬学历教育上使用，并向政府主管部门进行报告。</p>
+                    <p>
+                        4、您应保管好自己的帐号，如因您未保管好自己的帐号而对自己、舟炬教育或第三方造成损害的，您将自负全部责任。另外，您应对您帐号中的所有活动和事件负全责。您同意若发现有非法使用您的帐号或出现安全漏洞的情况，立即通告舟炬教育，舟炬教育将会尽力予以妥善解决。</p>
+                    <p>第四条 数据</p>
+                    <p>除非另有证明，舟炬教育储存在其服务器上的数据是您使用舟炬学历教育服务的唯一有效证据。</p>
+                    <p>第五条 舟炬学历教育使用规则</p>
+                    <p>
+                        1、您须对自己在使用舟炬学历教育服务过程中的行为承担法律责任。您承担法律责任的形式包括但不限于：对受到侵害者进行赔偿；以及在舟炬教育首先承担了因您的行为导致的行政处罚或侵权损害赔偿责任后，您应给予舟炬教育等额的赔偿。</p>
+                    <p>
+                        2、您了解并同意，舟炬教育有权应有权部门的要求，向其提供您提交给舟炬教育或在使用舟炬学历教育服务中存储于舟炬教育服务器的必要信息。如您涉嫌侵犯他人合法权益，则舟炬教育有权在初步判断涉嫌侵权行为存在的情况下，向权利人提供关于您的前述必要信息。</p>
+                    <p>第六条 保密</p>
+                    <p>1、本网站不含有任何旨在破坏用户数据和获取用户隐私信息的恶意代码，不含有任何监控、监视用户计算机的功能代码，不会未经用户同意收集用户个人文件、文档等信息，不会泄漏用户隐私。</p>
+                    <p>2、舟炬教育对用户提供的个人信息负有保密义务，除以下情况外，未经用户事先许可，舟炬教育不会向第三方提供用户个人信息：</p>
+                    <p>为提供本协议项下的服务所必须；</p>
+                    <p>适用法律、法规、司法机关命令、法律程序或政府机关要求；</p>
+                </div>
+                <div class="page-opt clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--页脚结束-->
+{% endblock %}
+{% block foot %}
+
+{% endblock %}

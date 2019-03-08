@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{#    {% load static %}#}
+    <meta charset="UTF-8">
+    <title>修改用户头像</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+{#    <link rel="stylesheet" href="{% static 'user/css/add_user.css' %}">#}
+</head>
+<body>
+{#class="modal-dialog modal-lg"#}
+<div  role="document">
+    <div class="modal-content no-border">
+        <div class="modal-header ">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">修改用户头像</h4>
+        </div>
+        <div class="com-sm-12" style="margin-top: 50px">
+                <label class="row col-sm-12">
+{#                    <label class="col-sm-12">#}
+                    <div class="col-sm-1 col-sm-offset-4 control-label right">当前头像:</div>
+                    <div class="col-sm-6">
+{#                        http://www.zhoujuedu.com/assets/img/default/avatar.png#}
+                        <img src="/media/{{ user.user_img|default:'media/avatar.png' }}" alt="" class="avatar-image"
+                             id="avatar-thumbnail" style="width: 240px;height: 240px;border: 1px solid black">
+                        <input type="file" id="avatar-input" style="display: none;">
+                    </div>
+{#                    </label>#}
+                </label>
+
+{#            <div class="row col-sm-12">#}
+{#                <div class="col-sm-1 col-sm-offset-4 control-label"></div>#}
+{#                <div class="col-sm-6">#}
+{#                    <p class="help-block">请上传jpg, gif, png格式的图片，建议图片尺寸为 270×270px，建议图片大小不超过<strong>2MB</strong></p>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row col-sm-12">#}
+{#                <div class="col-sm-1 col-sm-offset-4 control-label"></div>#}
+{#                <div class="col-sm-6">#}
+{#                    <div class="webuploader-demo">#}
+{#                        <div id="filePicker">请选择图片</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+        <span id="user-id" data-id="{{ user.id }}"></span>
+        <div class="modal-footer col-sm-7 no-border" style="background: white;margin-left: 25px">
+            <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" form="addForm" id="submit">提交</button>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+{#<link rel="stylesheet" href="{% static 'user/webuploader/webuploader.css' %}">#}
+{#<link rel="stylesheet" href="{% static 'user/css/cropper.min.css' %}">#}
+{#<script src="{% static 'user/webuploader/webuploader.min.js' %}"></script>#}
+{#<script src="{% static 'user/js/cropper.js' %}"></script>#}
+{#<script src="{% static 'user/js/jquery-cropper.js' %}"></script>#}
+{#<script>#}
+{##}
+{#    $('#chavModal').on('shown.bs.modal', function () {#}
+{##}
+{#        if ($('.webuploader-element-invisible').length == 0) {#}
+{##}
+{#            // 初始化Web Uploader#}
+{#            var uploader = WebUploader.create({#}
+{##}
+{#                // 选完文件后，是否自动上传。#}
+{#                auto: false,#}
+{##}
+{#                // swf文件路径#}
+{#                swf: 'assets/webuploader/Uploader.swf',#}
+{##}
+{#                // 文件接收服务端。#}
+{#                //server: 'http://webuploader.duapp.com/server/fileupload.php',#}
+{##}
+{#                // 选择文件的按钮。可选。#}
+{#                // 内部根据当前运行是创建，可能是input元素，也可能是flash.#}
+{#                pick: {#}
+{#                    id: "#filePicker",#}
+{#                    multiple: false#}
+{#                },#}
+{##}
+{#                // 只允许选择图片文件。#}
+{#                accept: {#}
+{#                    title: 'Images',#}
+{#                    extensions: 'gif,jpg,jpeg,bmp,png',#}
+{#                    mimeTypes: 'image/*',#}
+{#                },#}
+{##}
+{#                //缩略图#}
+{#                thumb: {#}
+{#                    height: 270,#}
+{#                    allowMagnify: true,#}
+{#                    crop: false#}
+{#                },#}
+{#                compress: {#}
+{#                    width: 270,#}
+{#                    height: 270,#}
+{#                    allowMagnify: false,#}
+{#                    crop: false,#}
+{#                    preserveHeaders: true#}
+{#                }#}
+{#            });#}
+
+{##}
+{#            uploader.on('fileQueued', function (file) {#}
+{#                uploader.makeThumb(file, function (error, src) {#}
+{#                    $('#avatar-thumbnail').attr('src', src)#}
+{##}
+{#                    $('#avatar-thumbnail').cropper({#}
+{#                        aspectRatio: 1 / 1,#}
+{#                        crop: function (event) {#}
+{#                            console.log(event.detail.x);#}
+{#                            console.log(event.detail.y);#}
+{#                            console.log(event.detail.width);#}
+{#                            console.log(event.detail.height);#}
+{#                            console.log(event.detail.rotate);#}
+{#                            console.log(event.detail.scaleX);#}
+{#                            console.log(event.detail.scaleY);#}
+{#                        },#}
+{#                        viewMode: 3#}
+{#                    });#}
+{##}
+{#                });#}
+{##}
+{#            });#}
+{##}
+{##}
+{#        }#}
+{#    });#}
+
+    $("#avatar-input").on('change',()=>{
+        var choose_file = $("#avatar-input")[0].files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(choose_file); //读取用户上传的图片路径
+        reader.onload = function () {
+            $('#avatar-thumbnail').attr('src',reader.result)
+        }
+    });
+
+    $("#submit").click(()=>{
+        console.log($("#user-id").data('id'));
+        formdata = new FormData();
+        formdata.append('user_id', $("#user-id").data('id'));
+        formdata.append('avatar', $('#avatar-input')[0].files[0]);
+        formdata.append("csrfmiddlewaretoken", $("[name='csrfmiddlewaretoken']").val());
+
+        $.ajax({
+            processData: false,
+            contentType: false,
+            url:'/user/upload/',
+            type:'post',
+            data:formdata,
+            success:(data)=>{
+                if (data.state === 1) {
+                    alert('修改成功');
+                } else {
+                    alert('修改失败');
+                }
+            }
+        })
+    });
+
+    $('.btn-link,.close').click(() => {
+        $.ajax({
+            url: '/user/',
+            type: 'get',
+            success: (data) => {
+                $('.main-content').html(data)
+            }
+        })
+    });
+</script>
+</html>

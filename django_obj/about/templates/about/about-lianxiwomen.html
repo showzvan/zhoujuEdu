@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/contact-3bbc18d273.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="navbar-common">
+        <div class="aside clear">
+            <p class="flt">
+                <a href="{% url 'home' %}">首页</a>
+                <span>
+                    <i>&gt;</i>
+                    <a href="about-lianxiwomen.html">联系我们</a>
+                </span>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="body-box">
+        <div class="user-agreement-box clear">
+            <!--左边菜单-->
+            <div class="user-left-nav">
+                <ul>
+                    <li class="">
+                        <a href="{% url 'about:about_index' %}" class="index">关于我们</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'about:contact' %}" class="lianxiwomen" style="color: rgb(254, 155, 0);">联系我们</a>
+                    </li>
+                    <li class=" ">
+                        <a href="{% url 'about:about_fv' %}" class="fv ">法律声明</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about:about_agreement' %}" class="xieyi">用户协议</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'about:about_links' %}" class="links">友情链接</a>
+                    </li>
+                </ul>
+            </div>
+            <!--左边菜单结束-->
+
+
+            <div class="agreement-container">
+                <div class="common-tap-header">
+                    <p class="tap clear">
+                        <span class="type"> 联系我们 </span>
+                    </p>
+                </div>
+                <div class="contact-infor">
+                    <div class="contact-intro">
+                        <h3><span class="icon iconfont icon-placeholder"></span>公司地址</h3>
+                        <p>上海舟炬教育咨询有限公司<br> 地址：上海市青浦区高泾路588号北楼 <br> 编码：200081 </p>
+                        <h3><span class="icon iconfont icon-phone-call"></span>联系方式</h3>
+                        <p>学历报名热线：4009 231 121<br> 学习服务热线：400 811 6236</p>
+                    </div>
+                    <div class="map">
+                        <img src="{% static 'home/images/map.png' %}"></div>
+                    <div class="line"></div>
+                    <dl class="cant">
+                        <dt><i class="icon iconfont"></i>
+                            <h3 class="title">网站合作&amp;商务对接</h3>
+                        </dt>
+                        <dd>
+                            <strong>
+                                <span class="name">郭老师</span>
+                                <i class="phone">联系电话：021-59889074</i>
+                            </strong>
+                            <strong class="mail">
+                                <i class="phone">邮箱：guomr@zhoujuedu.com</i>
+                            </strong>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

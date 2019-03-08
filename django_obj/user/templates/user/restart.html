@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>发送重置邮件</title>
+</head>
+<body>
+<div  role="document">
+    <div class="modal-content edit" data-id="{{ users.id }}">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">发送重置邮件</h4>
+        </div>
+        <div class="modal-body col-sm-12">
+            <form class="form-horizontal" id="chpwdForm">
+                <div class="form-group">
+                    <input type="hidden" value="{{ user.id }}" id="info">
+                    <label for="inputNameChpw" class="col-sm-3 control-label">当前用户名:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputNameChpw" value="{{ user.nickname }}"
+                               readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmailChpw" class="col-sm-3 control-label">当前邮箱地址:</label>
+                    <div class="col-sm-6">
+                        <input type="email" class="form-control" id="inputEmailChpw" value="{{ user.email }}" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmailChpw" class="col-sm-3 control-label">点击重置密码:</label>
+                    <div class="col-sm-6">
+                        <input type="button" id="restart" value="发送重置邮件">
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+{#<div>#}
+{#    <p>#}
+{#        <input type="hidden" value="{{ user.id }}" id="info">#}
+{#        当前用户名:#}
+{#        <input type="text" value="{{ user.nickname }}" disabled>#}
+{#    </p>#}
+{#    <p>#}
+{#        当前邮箱地址:#}
+{#        <input type="email" value="{{ user.email }}" disabled>#}
+{#    </p>#}
+{#    <p>#}
+{#        点击重置密码:#}
+{#        <input type="button" id="restart" value="发送重置邮件">#}
+{#    </p>#}
+{#</div>#}
+</body>
+<script>
+    $('#restart').click(()=>{
+        let user_id = $('#info').val();
+        $.ajax({
+            url:'/user/restart_pwd/',
+            type:'post',
+            data:{
+                'user_id':user_id
+            },
+            success:(data)=>{
+              console.log(data);
+              alert('发送成功')
+            }
+        })
+    });
+        $('.btn-link,.close').click(() => {
+        $.ajax({
+            url: '/user/',
+            type: 'get',
+            success: (data) => {
+                $('.main-content').html(data)
+            }
+        })
+    });
+</script>
+</html>

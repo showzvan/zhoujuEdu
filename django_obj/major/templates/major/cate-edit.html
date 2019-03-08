@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>编辑分类</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" href="{% static 'user/css/add_user.css' %}">
+</head>
+<body>
+{#class="modal-dialog"#}
+<div role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">编辑分类</h4>
+        </div>
+        <div class="modal-body col-sm-12">
+            <form class="form-horizontal" id="addForm">
+                <div>
+                    <div style="display: none" id="error_message">错误信息:</div>
+                    <div id="main_data"></div>
+                </div>
+                <div class="form-group">
+                    <label for="inputNameAdd" class="col-sm-3 control-label">分类名称</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputNameAdd" value="{{ cate.catename }}" placeholder="请输入分类名称" disabled>
+                        <div class="alt name"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputCateEdit" class="col-sm-3 control-label">选择类别</label>
+                    <div class="col-sm-6">
+                        <select name="cate" id="inputCateEdit" class="form-control" onchange="have_cate(this)">
+{#                            {% if cate.pid == 0 %}#}
+{#                                <option value=" ">请选择类别</option>#}
+{#                                <option value="1" selected>大分类</option>#}
+{#                                <option value="0">小分类</option>#}
+{#                            {% else %}#}
+{#                                <option value=" ">请选择类别</option>#}
+{#                                <option value="1">大分类</option>#}
+{#                                <option value="0" selected>小分类</option>#}
+{#                            {% endif %}#}
+                                <option value=" ">请选择类别</option>
+                                <option value="1">大分类</option>
+                                <option value="0">小分类</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label for="inputBigCateEdit" class="col-sm-3 control-label">选择大分类</label>
+                    <div class="col-sm-6">
+                        <select name="cate" id="inputBigCateEdit" class="form-control">
+{#                            {% for c in cates %}#}
+{#                                {% if c.id == cate.pid %}#}
+{#                                    <option value="{{ cate.pid }}" selected>{{ c.catename }}</option>#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+{#                            {% if cate.pid == 0 %}#}
+{#                                <option value="{{ cate.pid }}">请选择大分类</option>#}
+{#                            {% endif %}#}
+                        <option value="{{ cate.pid }}">请选择大分类</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputIsStatusEdit" class="col-sm-3 control-label">状态</label>
+                    <div class="col-sm-6">
+                        <input type="radio" name="is_status" id="inputIsStatusEdit" value="True" checked> 可用
+                        <input type="radio" name="is_status" id="inputIsStatusEdit" value="False"> 不可用
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-footer col-sm-9 no-border" style="background: white">
+            <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" form="addForm" id="submit">提交</button>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="{{ cate.id }}" id="cateid">
+<div class="clear"></div>
+<div id="message" class="message">
+    <span>x</span>
+    <div id="top_text">提示：</div>
+    <h5>信息修改成功,点击确定返回专业列表</h5>
+    <div id="sure" class="back list">确定</div>
+</div>
+</body>
+<script>
+    $(document).keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#btn").trigger("click");
+
+        }
+    });
+
+    $('.btn-link,.close,.message span').click(() => {
+        $.ajax({
+            url: '/major/get_cate/',
+            type: 'get',
+            success: (data) => {
+                $('.modal-dialog').css('display', 'none');
+                $('.main-content').html(data)
+            }
+        })
+    });
+
+
+    $('#submit').click(() => {
+        let cate_id = $('#cateid').val();
+        let cate_name = $("#inputNameAdd").val();
+        let pid = $('#inputBigCateEdit option:selected').val();  // 专业父分类
+        console.log(pid);
+        let is_status = $('[name="is_status"]:checked').val();  // 是否可用
+
+            $.ajax({
+                url: '/major/edit_cate/',
+                type: 'post',
+                data: {
+                    'cate_id':cate_id,
+                    'cate_name': cate_name,
+                    'pid':pid,
+                    'is_status':is_status
+                },
+                success: (data) => {
+                    $('.message').css('display', 'block');
+                    $('.back').click(() => {
+                    $.ajax({
+                        url: '/major/get_cate/',
+                        type: 'get',
+                        success: (data) => {
+                            $('.modal-dialog').css('display', 'none');
+                            $('.main-content').html(data)
+                        }
+                    })
+                })
+                }
+            })
+    });
+
+    function have_cate(temp) {
+        var this_op = temp;
+        cate_id = $(this_op).val();
+        $.ajax({
+            url:'/major/have_cate/',
+            type:'get',
+            data:{
+                'cate_id':cate_id
+            },
+            success:(info) => {
+                var big_cate = $('#inputBigCateEdit');
+                if (info.status === 'fail'){
+                    big_cate.empty().append('<option value="0">暂无上级分类</option>')
+                }else {
+                    big_cate.empty().append('<option value="0">请选择上级分类</option>');
+                    $.each(info.data, function (index, item) {
+                        big_cate.append('<option value=' + item[0] + '>' + item[1] + '</option>')
+                    })
+                }
+        }
+        })
+    }
+
+
+</script>
+</html>
+
+
+

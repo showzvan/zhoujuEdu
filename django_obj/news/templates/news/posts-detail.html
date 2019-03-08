@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+    <title>{{ post.post_title }}</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="{{ post.post_content|truncatechars:25 }}">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/newsMore-dfb672aac2.css' %}">
+{% endblock %}
+
+{% block nav_active %}
+    <ul class="search-snav-list">
+            <li>
+                <a title="首页" href="{% url 'home' %}">首页</a>
+            </li>
+            <li class="search-main-menu search-menu-item">
+                <a title="选专业" href="{% url 'choose_major:choose_major' %}">选专业</a>
+            </li>
+            <li>
+                <a title="选院校" href="{% url 'choose_school:school' %}"> 选院校 </a>
+            </li>
+            <li>
+                <a title="学员风采" href="{% url 'news:news' %}" class="a_active"> 学员风采 </a>
+            </li>
+            <li>
+                <a title="服务大厅" href="{% url 'service:service' %}"> 服务大厅 </a>
+            </li>
+        </ul>
+{% endblock %}
+
+
+{% block content %}
+    <!--面包屑导航-->
+    <div class="navbar-common">
+        <div class="aside clear">
+            <p class="flt"> 
+                <a href="http://www.zhoujuedu.com/index/index.html">首页</a> 
+                <span>
+                    <i>&gt;</i> 
+                    <a href="http://www.zhoujuedu.com/news/index.html">学员风采</a>
+                </span> 
+                <span>
+                    <i>&gt;</i> 
+                    <span>正文</span>
+                </span>
+            </p>
+        </div>
+    </div>
+    <!--面包屑导航结束-->
+
+
+    <div class="college-accredit-box clear">
+        <div class="center-content">
+            <div class="new-more">
+                <div class="new-title">
+                    <h2 style="font-size: 25px;line-height: 40px;">{{ post.post_title }}</h2> <span><i class="icon iconfont icon-eye"></i> <span>{{ post.views }}</span></span> &nbsp;&nbsp;&nbsp;&nbsp; <span>&nbsp;&nbsp;&nbsp;&nbsp; <i class="icon iconfont icon-time-wise"></i> {{ post.edit_time|date:"Y-m-d" }}</span> &nbsp;&nbsp;&nbsp;&nbsp; <span>{{ post.source }}</span>
+                </div>
+                <div style="padding-top:20px;font-size: 16px;line-height: 35px;"> {{ post.post_content|safe }} </div>
+                <div class="tag">
+                    <samp class="fl">标签：<span>{{ post.tags }}</span></samp> <samp class="fr">来源：{{ post.source_link }}</samp>
+                </div>
+                <div class="link-more">
+                    <p>
+                        {% if pre_post != None %}
+                            <span>上一篇：</span>
+                            <a href="{% url 'news:news_detail' pre_post.pk %}" title="{{ pre_post.post_title }}">{{ pre_post.post_title }}</a>
+                        {% else %}
+                            <span>上一篇：</span>
+                            暂无文章
+                        {% endif %}
+
+                    </p>
+                    <p>
+                        {% if next_post != None %}
+                            <span>下一篇：</span>
+                            <a href="{% url 'news:news_detail' next_post.pk %}" title="{{ next_post.post_title }}">{{ next_post.post_title }}</a>
+                        {% else %}
+                            <span>下一篇：</span>
+                            暂无文章
+                        {% endif %}
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="hot-article">
+            <div class="hotBox">
+                <h3>热门文章</h3>
+                <ul class="article-list">
+                    {% for hot_post in hot_posts %}
+                        <li>
+                            <a href="{% url 'news:news_detail' hot_post.pk %}" target="_blank" title="{{ hot_post.post_title|truncatechars:25 }}">{{ hot_post.post_title|truncatechars:25 }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="hotBox mar20">
+                <h3>热门院校</h3>
+                <div id="timeLine">
+                    <div id="cList">
+                        <div style="width: 250px;margin: 0 auto; overflow: hidden; text-align: center; ">
+                            <ul id="cUl" class="hot_school slides">
+                                {% for school in hot_school %}
+                                <li>
+                                    <div class="container-li"> 
+                                        <a href="{% url 'choose_school:school_detail' school.id %}" target="_blank">
+                                            <img class="lazy-two" src="{{ school.emblem }}" style="height: 111px;" alt="{{ school.name }}">
+                                        </a>            
+                                        <p> 
+                                            <strong>{{ school.name }}</strong>
+                                            {% if school.is_double %}
+                                                <span>双一流</span>
+                                            {% endif %}
+                                            {% if school.is_211 %}
+                                                <span>211</span>
+                                            {% endif %}
+                                        </p> 
+                                        <a class="btn" href="/school/10200.html" target="_blank">立即报名</a>        
+                                    </div>    
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>     
+                    </div>      
+                
+                </div>
+            </div>
+
+            <div class="hotBox mar20 hotSubject">
+                <h3>热招专业</h3>
+                <div class="aw_hot_product">
+                    {% for hot_major in hot_majors %}
+                        <dl>
+                            <a href="{% url 'choose_major:major_detail' hot_major.pk hot_major.school_id %}" target="_blank" title="{{ hot_major.major_name }}">
+                                <dt>
+                                    <img class="lazy-one" data-original="{{ hot_major.major_image }}" src="{{ hot_major.major_image }}" alt="{{ hot_major.major_name }}" width="102" height="76" style="display: inline;">
+                                </dt>
+                                <dd><strong>{{ hot_major.major_name }}</strong>
+                                    <i class="iconfont"></i>{{ hot_major.school.name }}<br>
+                                    <i class="iconfont"></i>{{ hot_major.get_level_display }} </dd>
+                            </a>
+                        </dl>
+                    {% endfor %}
+
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/major/18140.html" target="_blank" title="护理学">#}
+{#                            <dt>#}
+{#                                <img class="lazy-one" data-original="assets/images/16721.jpg" src="assets/images/logoBd2.svg" alt="护理学" width="102" height="76" style="display: inline;">#}
+{#                            </dt>#}
+{#                            <dd><strong>护理学</strong>#}
+{#                                <i class="iconfont"></i>中国医科大学<br>#}
+{#                                <i class="iconfont"></i>专升本 </dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/major/33946.html" target="_blank" title="汉语言文学">#}
+{#                            <dt>#}
+{#                                <img class="lazy-one" data-original="assets/images/17081.jpg" src="assets/images/logoBd2.svg" alt="汉语言文学" width="102" height="76" style="display: inline;">#}
+{#                            </dt>#}
+{#                            <dd><strong>汉语言文学</strong>#}
+{#                            <i class="iconfont"></i>东北师范大学<br>#}
+{#                            <i class="iconfont"></i>专升本 </dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/major/19414.html" target="_blank" title="土木工程">#}
+{#                            <dt>#}
+{#                                <img class="lazy-one" data-original="assets/images/16555.jpg" src="assets/images/logoBd2.svg" alt="土木工程" width="102" height="76" style="display: inline;">#}
+{#                            </dt>#}
+{#                            <dd><strong>土木工程</strong>#}
+{#                            <i class="iconfont"></i>大连理工大学<br>#}
+{#                            <i class="iconfont"></i>专升本 </dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/major/33947.html" target="_blank" title="学前教育">#}
+{#                            <dt>#}
+{#                                <img class="lazy-one" data-original="assets/images/16465.jpg" src="assets/images/logoBd2.svg" alt="学前教育" width="102" height="76" style="display: inline;">#}
+{#                            </dt>#}
+{#                            <dd><strong>学前教育</strong>#}
+{#                            <i class="iconfont"></i>东北师范大学<br>#}
+{#                            <i class="iconfont"></i>高起专 </dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/major/30344.html" target="_blank" title="会计学">#}
+{#                            <dt>#}
+{#                                <img class="lazy-one" data-original="assets/images/17054.jpg" src="assets/images/logoBd2.svg" alt="会计学" width="102" height="76" style="display: inline;">#}
+{#                            </dt>#}
+{#                            <dd><strong>会计学</strong>#}
+{#                            <i class="iconfont"></i>东北财经大学<br>#}
+{#                            <i class="iconfont"></i>专升本 </dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+	
+    	var cityId = 110100;
+    	var is_first_index = 0;
+    	var LogChannelID = "test"; //LogChannelID是频道ID，
+	
+    </script>
+    <script type="text/javascript" src="{% static 'home/js/vendor.js' %}"></script>
+    <script type="text/javascript" src="{% static 'home/js/newsDetail-85f7c0a8f0.js' %}"></script>
+
+
+{% endblock %}

@@ -1,0 +1,443 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>服务大厅_舟炬教育</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/serviceHome-d6c40582d0.css' %}">
+{% endblock %}
+
+{% block nav_active %}
+        <ul class="search-snav-list">
+            <li>
+                <a title="首页" href="{% url 'home' %}">首页</a>
+            </li>
+            <li class="search-main-menu search-menu-item">
+                <a title="选专业" href="{% url 'choose_major:choose_major' %}">选专业</a>
+            </li>
+            <li>
+                <a title="选院校" href="{% url 'choose_school:school' %}"> 选院校 </a>
+            </li>
+            <li>
+                <a title="学员风采" href="{% url 'news:news' %}"> 学员风采 </a>
+            </li>
+            <li>
+                <a title="服务大厅" href="{% url 'service:service' %}" class="a_active"> 服务大厅 </a>
+            </li>
+        </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="navbar-common">
+        <div class="aside clear">
+            <p class="flt">
+                <a href="http://www.zhoujuedu.com/">首页</a>
+                <span>
+                    <i>&gt;</i>
+                    <em>服务大厅</em>
+                </span>
+            </p>
+        </div>
+    </div>
+
+
+
+    <div class="service-home-box">
+        <div class="progress">
+            <p class="title"> 学历业务服务流程 </p>
+            <div class="service-common">
+                <div class="line clear">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p style="border: none;"></p>
+                </div>
+                <div class="link clear">
+                    <div>
+                        <a href="{% url 'service:sign' %}" title="网络招生报名">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/test.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 网络招生报名 </span>
+                                                <span> 报名/录取/学习流程 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% url 'service:new_exam' %}" title="新生入学">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/student.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 新生入学 </span>
+                                                <span> 入学说明/入学测试 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% url 'service:help' %}" title="学生平台使用帮助">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/intro.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 学生平台使用帮助 </span>
+                                                <span> 登录/学习/作业 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% url 'service:exam' %}" title="专业考试">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/major.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 专业考试 </span>
+                                                <span> 课程考试/统一考试 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% url 'service:graduation' %}" title="毕业问答">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/ask.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 毕业问答 </span>
+                                                <span> 毕业流程/学位申请 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="find">
+            <p class="title">权威查询</p>
+            <div class="service-common">
+                <div class="line clear">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p style="border: none;"></p>
+                </div>
+                <div class="link clear">
+                    <div>
+                        <a href="{% url 'service:feecard' %}" title="报名凭证查询">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/apply.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 报名凭证查询 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% url 'service:center' %}" title="学习中心查询">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/findCenter.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 学习中心查询 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% url 'service:collegeautho' %}" title="高校授权查询">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/accredit.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 高校授权查询 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://my.chsi.com.cn/archive/index-8a6ada30fc.jsp" target="_blank" title="学信网学籍查询">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/regulation.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 学信网学籍查询 </span>
+                                                <span>
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="download">
+            <p class="title">常用下载</p>
+            <div class="service-common">
+                <div class="line clear">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p style="border: none;"></p>
+                </div>
+                <div class="link clear">
+                    <div>
+                        <a href="{% url 'service:examdownload' %}" title="入学测试模拟题下载">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/mock.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 入学测试模拟题下载 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% url 'service:courseware' %}" title="课件播放器下载">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/flash.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 课件播放器下载 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% url 'service:sch_form' %}" title="高校常见表格下载">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/excel.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 高校常见表格下载 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% url 'service:application' %}" title="常见表格下载">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="logo">
+                                                <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/normal.png' %}" style="display: inline;">
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="detail">
+                                                <span class="main-name"> 常见表格下载 </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cantact">
+            <p class="head">
+                <i></i>
+                <em></em>
+                <span class="icon iconfont icon-wechat"></span> 联系我们 
+            </p>
+            <p></p>
+            <dl class="online signWechatBtn">
+                <dt>
+                    <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/service1.png' %}" style="display: inline;">
+                </dt>
+                <dd>
+                    <span> 在线客服 </span>
+                    <br>
+                    <i> 任何问题，贴心回答 </i>
+                </dd>
+            </dl>
+            <dl class="studyServeBtn">
+                <dt>
+                    <img class="lazy" src="{% static 'home/images/logoBd2.svg' %}" data-original="{% static 'home/images/service3.png' %}" style="display: inline;">
+                </dt>
+                <dd>
+                    <strong class="chat-server">
+                        <span> 报名咨询 </span>
+                        <br>
+                        <i> 400-811-1121 </i>
+                    </strong>
+                    <br>
+                    <strong>
+                        <span> 再读服务 </span>
+                        <br>
+                        <i> 400-812-6736 </i>
+                    </strong>
+                </dd>
+            </dl>
+            <p></p>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+	
+    	var cityId = 110100;
+    	var is_first_index = 0;
+    	var LogChannelID = "test"; //LogChannelID是频道ID，
+    	
+    </script>
+
+
+    <script type="text/javascript" src="{% static 'home/js/vendor.js' %}"></script>
+
+    <script type="text/javascript">
+		$(function(){
+			lazyImg('lazy');
+		})
+	</script>
+{% endblock %}

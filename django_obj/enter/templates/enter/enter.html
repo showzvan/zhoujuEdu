@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'home/css/regist-c80bb3e6b3.css' %}"/>
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block nav_active %}
+
+{% endblock %}
+
+{% block content %}
+
+    <body>
+    <div class="com-header">
+        <dl>
+            <dt>
+                <a href="http://www.zhoujuedu.com/">
+                    <img src="{% static 'home/images/logo.png' %}" alt="舟炬教育"/>
+                </a>
+            </dt>
+            <dd class="step-fir clearfix">
+                <p class="thd">
+                    <em></em>
+                    <i class="iconfont"></i><em></em><br/>
+                    <strong>支付成功</strong>
+                </p>
+                <p class="sed"><em></em> <i class="iconfont"></i><em></em><br/> <strong>确认报名信息</strong></p>
+                <p class="fir"><em></em> <i class="iconfont">&#xe628;</i><em></em><br/> <strong>填写报名信息</strong></p>
+            </dd>
+        </dl>
+    </div>
+
+
+    <!--
+          <div class="revise-phone">
+               <div class="com-masker"></div>
+               <div class="container">
+                <dl>
+                    <dt>
+                          <i id="closePhone" class="iconfont close"></i>
+                    </dt>
+                    <dd>
+                          <p class="title">修改手机号</p>
+                          <p class="attent">注意：手机号修改后需要用新手机号登录</p>
+                    </dd>
+                </dl>
+                <form class="com-form">
+                     <div>
+                          <i class="iconfont con"></i>
+                          <input data-num="0" data-type="phoneNum" class="phone enter" placeholder="请输入手机号" type="text" maxlength="11" />
+                    </div>
+                    <p class="error"></p>
+                    <div>
+                          <i class="iconfont con"></i>
+                          <input data-num="1" data-type="imgCode" class="img-code enter" placeholder="请输入图形验证码" type="text" maxlength="4" />
+                          <img data-type="getImgCode" src="assets/images/code.png" class="valid" />
+                     </div>
+                     <p class="error"></p>
+                     <div>
+                          <i class="iconfont con"></i>
+                          <input data-num="2" data-type="phoneCode" class="code enter" placeholder="请输入手机验证码" type="text" maxlength="4" />
+                          <button data-type="getCode" class="getcode" type="button">获取验证码</button>
+                     </div>
+                     <p class="error"></p>
+                </form>
+                <button data-type="submit" class="revise"> 修改手机号</button>
+               </div>
+          </div>
+
+
+
+        <div class="revise-result">
+           <div class="com-masker"></div>
+           <div class="container">
+                <p class="prot"> 修改成功</p>
+                <p class="infor"></p>
+                <p class="opt"></p>
+           </div>
+        </div>
+     -->
+
+    <div class="body-box">
+        <div class="my-inform">
+            <div class="notes">
+                <i class="iconfont"></i>
+                <p><strong>报名信息将作为学校建档使用，请务必准确、真实填写，以免给自己造成不必要的损失</strong><br/> 舟炬教育郑重承诺：您的个人信息会被严格保密，不会向任何第三方泄露</p>
+            </div>
+
+            <div class="component-content major-box">
+                <h3>专业信息</h3>
+                <div class="myitem" id="person-message">
+                    <ul>
+                        <li class="major" data-id = {{ major.id }}>专业：{{ major.major_name }}</li>
+                        <li>院校：{{ major.school.name }}</li>
+                        <li>层次：{{ major.get_level_display }}</li>
+                        <li>学制：{{ major.times }}年</li>
+                    </ul>
+                    <div class="logo">
+                        <img src="{{ major.school.emblem }}" width="90" height="90"/>
+                    </div>
+                </div>
+                <p class="prompt"></p>
+            </div>
+
+
+            <div class="component-content">
+                <h3>填写报名信息</h3>
+                <div class="fiilUp">
+                    <div class="lose-box">
+                        <div class="fill_item">
+                            <label>真实姓名：</label>
+                            <input id="realName" data-num="0" data-type="userName" placeholder="填写本人真实姓名" value=""/>
+                            <span class="error"></span>
+                        </div>
+                        <div class="fill_item">
+                            <label>身份证号：</label>
+                            <input id="idCard" data-num="1" data-type="idCard" placeholder="请填写本人身份证号" maxlength="20"
+                                   value=""/>
+                            <span class="error id_card"></span>
+                        </div>
+                        <div id="hidePhone" class="fill_item">
+                            <label>手机号码：</label>
+                            <input id="phone" data-num="2" data-type="phoneNum" placeholder="填写本人手机号码" maxlength="11"
+                                   value=""/>
+                            <span class="error phone"></span>
+                        </div>
+                        <div class="fill_item img-code">
+                            <label>图形验证码：</label>
+
+                            <input data-num="3" data-type="imgCode" maxlength="4" placeholder="请填写图形验证码" class="small"/>
+                            <strong>
+                                {#                                    {{ register_form.captcha }}#}
+                                <img src="{% static 'home/images/code.png' %}"/>
+                            </strong>
+                            <span class="error"></span>
+                        </div>
+                        <div class="fill_item">
+                            <label>手机验证码：</label>
+                            <input data-num="4" data-type="phoneCode" maxlength="4" placeholder="请输入手机验证码"
+                                   class="small"/>
+                            <button data-type="getCode" class="cord">获取验证码</button>
+                            <span class="error"></span>
+                        </div>
+                        <div class="option">
+                            <button class="com-btn-hover" onclick="doFormRequest()" data-type="submit">
+                                提交报名
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--页脚-->
+    {% block foot %}
+
+    {% endblock %}
+
+    <script type="text/javascript">
+        var cityId = 420100;
+        var is_first_index = 0;
+        var LogChannelID = "test"; //LogChannelID是频道ID，
+
+    </script>
+
+    <script type="text/javascript" src="{% static 'home/js/vendor2.js' %}"></script>
+    </body>
+{% endblock %}
+{% block javascript %}
+    <script>
+        $('#idCard').keyup(() => {
+            check_ID();
+        });
+        $('#phone').keyup(() => {
+            check_phone();
+        });
+
+        // 检查身份证号
+        function check_ID() {
+            let id_card = $('#idCard').val();
+            var re = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+            if (!re.test(id_card)) {
+                $('.id_card').html('请输入正确的身份证号')
+            } else {
+                $('.id_card').html('');
+            }
+        }
+
+        // 检查手机号
+        function check_phone() {
+            let phone = $('#phone').val();
+            var re = /^[1][3,4,5,7,8][0-9]{9}$/;
+            if (!re.test(phone)) {
+                $('.phone').html('请输入正确的手机号')
+            } else {
+                $('.phone').html('');
+            }
+        }
+
+        // 发送post请求
+        function doFormRequest() {
+            let url = '/enter/pay/';
+            let action = "post";
+            let real_name = $('#realName').val();
+            let idCard = $('#idCard').val();
+            let phone = $('#phone').val();
+            let major_code = $('.major').data('id');
+            let json = {
+                'real_name': real_name,
+                'idCard': idCard,
+                'phone': phone,
+                'major_code':major_code
+            };
+            var form = document.createElement("form");
+            form.action = url;
+            form.method = action;
+
+            // append input attribute and valus
+            for (var key in json) {
+                if (json.hasOwnProperty(key)) {
+                    var val = json[key];
+                    input = document.createElement("input");
+                    input.type = "hidden";
+                    input.name = key;
+                    input.value = val;
+
+                    // append key-value to form
+                    form.appendChild(input)
+                }
+            }
+
+            // send post request
+            document.body.appendChild(form);
+            form.submit();
+
+            // remove form from document
+            document.body.removeChild(form);
+        }
+
+
+    </script>
+{% endblock %}

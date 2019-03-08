@@ -1,0 +1,173 @@
+div.info {
+    font-size: 14px;
+}
+
+input {
+    outline: none;
+}
+.clear {
+    clear: both;
+}
+div.message {
+    width: 400px;
+    height: 150px;
+    background-color: #F5F5F5;
+    /*background: #F5F5F5;*/
+    border: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    border-radius: 6px;
+    text-align: center;
+    vertical-align: middle;
+    position: fixed;
+    top: 240px;
+    left: 600px;
+    z-index: 5;
+    display: none;
+}
+
+div.message span {
+    position: absolute;
+    color: #DEDEDE;
+    /*top: -3px;*/
+    left: 370px;
+    cursor: pointer;
+    font-size: 21px;
+
+}
+div.message #top_text{
+    border-bottom: 1px solid #e5e5e5;
+
+    /*border-bottom: 1px solid #1a1a1a;*/
+    background: #fff;
+    padding-left: 15px;
+    height: 35px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 40px;
+    color: #333;
+    /*color: #fff;*/
+    text-align: left;
+    vertical-align: middle;
+}
+
+div.message h4 {
+    /*font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;*/
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    position: relative;
+    top: 21px;
+    font-size: 16px;
+    /*font-weight: bold;*/
+}
+
+div.message h5 {
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+    position: relative;
+    top: 20px;
+    font-size: 14px;
+    /*font-weight: bold;*/
+}
+
+/*div.message .add {*/
+    /*width: 104px;*/
+    /*height: 38px;*/
+    /*border: 1px solid #ccc;*/
+    /*background-color: #fff;*/
+    /*cursor: pointer;*/
+    /*position: absolute;*/
+    /*top: 140px;*/
+    /*!*left: 60px;*!*/
+    /*left: 160px;*/
+    /*border-radius: 4px;*/
+    /*text-align: center;*/
+    /*line-height: 38px;*/
+/*}*/
+
+div.message .add{
+        /*width: 104px;*/
+    /*height: 38px;*/
+    width: 90px;
+    height: 23px;
+    /*border: 1px solid #337ab7;*/
+    border: 1px solid #D0D0D0;
+    /*background-color: #337ab7;*/
+    background-color: #DEDEDE;
+    /*color: #fff;*/
+    color:#1a1a1a;
+    cursor: pointer;
+    position: absolute;
+    top: 112px;
+    left: 200px;
+    /*border-radius: 4px;*/
+    font-weight: bold;
+    text-align: center;
+    vertical-align: center;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+/*div.message .list {*/
+    /*!*width: 104px;*!*/
+    /*!*height: 38px;*!*/
+    /*width: 40px;*/
+    /*height: 10px;*/
+    /*!*border: 1px solid #337ab7;*!*/
+    /*border: 1px solid #5c5c5c;*/
+    /*!*background-color: #337ab7;*!*/
+    /*background-color: #fff;*/
+    /*color: #1a1a1a;*/
+    /*cursor: pointer;*/
+    /*position: absolute;*/
+    /*top: 140px;*/
+    /*left: 252px;*/
+    /*!*border-radius: 4px;*!*/
+    /*text-align: center;*/
+    /*line-height: 38px;*/
+
+/*}*/
+
+div.message .list{
+        /*width: 104px;*/
+    /*height: 38px;*/
+    width: 90px;
+    height: 23px;
+    /*border: 1px solid #337ab7;*/
+    border: 1px solid #D0D0D0;
+    /*background-color: #337ab7;*/
+    background-color: #DEDEDE;
+    /*color: #fff;*/
+    color:#1a1a1a;
+    cursor: pointer;
+    position: absolute;
+    top: 112px;
+    left: 297px;
+    /*border-radius: 4px;*/
+    font-weight: bold;
+    text-align: center;
+    vertical-align: center;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+div.message #sure{
+    /*width: 104px;*/
+    /*height: 38px;*/
+    width: 90px;
+    height: 23px;
+    /*border: 1px solid #337ab7;*/
+    border: 1px solid #D0D0D0;
+    /*background-color: #337ab7;*/
+    background-color: #DEDEDE;
+    /*color: #fff;*/
+    color:#1a1a1a;
+    cursor: pointer;
+    position: absolute;
+    top: 112px;
+    left: 160px;
+    /*border-radius: 4px;*/
+    font-weight: bold;
+    text-align: center;
+    vertical-align: center;
+    line-height: 20px;
+    font-size: 12px;
+}

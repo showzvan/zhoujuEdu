@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>编辑学习中心</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" href="{% static 'user/css/add_user.css' %}">
+</head>
+<body>
+{#class="modal-dialog"#}
+<div role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">编辑学习中心</h4>
+        </div>
+        <div class="modal-body col-sm-12">
+            <form class="form-horizontal" id="addForm">
+                <div>
+                    <div style="display: none" id="error_message">错误信息:</div>
+                    <div id="main_data"></div>
+                </div>
+                <div class="form-group">
+                    <label for="inputNameAdd" class="col-sm-3 control-label">名称</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputNameAdd" value="{{ center.name }}">
+                        <div class="alt name"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPhoneAdd" class="col-sm-3 control-label">电话</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputPhoneAdd" value="{{ center.phone|default:'---' }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputNumAdd" class="col-sm-3 control-label">编号</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputNumAdd" value="{{ center.num }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddressAdd" class="col-sm-3 control-label">地址</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputAddressAdd" value="{{ center.address }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPostCodeAdd" class="col-sm-3 control-label">邮编</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputPostCodeAdd" value="{{ center.postcode }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">选择省份</label>
+                    <div class="col-sm-6 address-select">
+                        <select name="prov" class="" id="province">
+                            <option value="">请选择省份</option>
+                            {% for province in provinces %}
+                                {% if center.provinces_id == province.id %}
+                                    <option value="{{ province.id }}" selected>{{ province.province }}</option>
+                                {% else %}
+                                    <option value="{{ province.id }}">{{ province.province }}</option>
+                                {% endif %}
+
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">选择学校</label>
+                    <div class="col-sm-6 school-select">
+                        <select name="school" class="" id="school">
+                            <option value="">请选择学校</option>
+                            {% for school in schools %}
+                                {% if center.school_id == school.id %}
+                                    <option value="{{ school.id }}" selected>{{ school.name }}</option>
+                                {% else %}
+                                    <option value="{{ school.id }}">{{ school.name }}</option>
+                                {% endif %}
+
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputIsDirectEdit" class="col-sm-3 control-label">是否直属</label>
+                    <div class="col-sm-6">
+                        {% if center.is_direct == 1 %}
+                            <input type="radio" name="is_direct" id="inputIsDirectEdit" value="True" checked> 是
+                            <input type="radio" name="is_direct" id="inputIsDirectEdit" value="False"> 否
+                        {% else %}
+                            <input type="radio" name="is_direct" id="inputIsDirectEdit" value="True"> 是
+                            <input type="radio" name="is_direct" id="inputIsDirectEdit" value="False" checked> 否
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputIsStatusEdit" class="col-sm-3 control-label">状态</label>
+                    <div class="col-sm-6">
+                        <input type="radio" name="is_status" id="inputIsStatusEdit" value="True" checked> 可用
+                        <input type="radio" name="is_status" id="inputIsStatusEdit" value="False"> 不可用
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer col-sm-9 no-border" style="background: white">
+            <button type="button" class="btn btn-link" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" form="addForm" id="submit">提交</button>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="centerId" value="{{ center.id }}">
+<div class="clear"></div>
+<div id="message" class="message">
+    <span>x</span>
+    <div id="top_text">提示：</div>
+    <h5>信息修改成功,点击确定返回学习中心</h5>
+    <div id="sure" class="back list">确定</div>
+</div>
+</body>
+<script>
+    $(document).keyup(function (event) {
+        if (event.keyCode == 13) {
+            $("#submit").trigger("click");
+        }
+    });
+
+    $('.list').click(() => {
+        $.ajax({
+            url: '/server/center/',
+            type: 'get',
+            success: (data) => {
+                $('.main-content').html(data)
+            }
+        })
+    });
+    $('.btn-link,.close,.message span').click(() => {
+        $.ajax({
+            url: '/server/center/',
+            type: 'get',
+            success: (data) => {
+                $('.modal-dialog').css('display', 'none');
+                $('.main-content').html(data)
+            }
+        })
+    });
+
+
+    $('#submit').click(() => {
+        let center_id = $('#centerId').val();
+        let center_name = $("#inputNameAdd").val();
+        let phone = $('#inputPhoneAdd').val();
+        let num = $('#inputNumAdd').val();
+        let address = $('#inputAddressAdd').val();
+        let is_status = $('[name="is_status"]:checked').val();  // 是否可用
+        let is_direct = $('[name="is_direct"]:checked').val();  //
+        let prov = $('#province option:selected').val();
+        let school = $('#school option:selected').val();
+        let inputPostCodeAdd = $('#inputPostCodeAdd').val();
+            $.ajax({
+                url: '/server/edit_center/',
+                type: 'post',
+                data: {
+                    'center_id':center_id,
+                    'center_name': center_name,
+                    'phone':phone,
+                    'num':num,
+                    'address':address,
+                    'is_status':is_status,
+                    'is_direct':is_direct,
+                    'prov':prov,
+                    'school':school,
+                    'post_code':inputPostCodeAdd
+                },
+                success: (data) => {
+
+                    if (data['status'] === 'success') {
+                        $('.message').css('display', 'block');
+                    } else if (data['status'] === 'fail') {
+                        var tag = data.tagid;
+                        $('.' + tag).html(data.message).css('color', 'red');
+
+                    }
+                }
+            })
+    });
+
+
+</script>
+</html>
+
+
+

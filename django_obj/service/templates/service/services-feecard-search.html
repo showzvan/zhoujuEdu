@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>舟炬教育-国内知名的远程网络教育内容服务运营机构</title>
+    <meta name="keywords" content="网络教育,远程教育,专升本,高起专,高起本">
+    <meta name="description"
+          content="舟炬教育获得了首个国家级现代远程教育公共服务体系建设、运行和管理资质，基于互联网平台，提供远程教育、网络教育专升本、高起专、高起本的学历提升咨询、学历教育教学服务。舟炬官网提供远程教育、网络教育学历在线实时咨询、在线自主报名、在线缴费服务，为用户提供更加便捷、高效的网络教育新体验。">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/studyCenterDetail-a9250a2730.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/order.css' %}">
+
+{% endblock %}
+
+{% block nav_active %}
+    <ul class="search-snav-list">
+        <li>
+            <a title="首页" href="{% url 'home' %}">首页</a>
+        </li>
+        <li class="search-main-menu search-menu-item">
+            <a title="选专业" href="{% url 'choose_major:choose_major' %}">选专业</a>
+        </li>
+        <li>
+            <a title="选院校" href="{% url 'choose_school:school' %}"> 选院校 </a>
+        </li>
+        <li>
+            <a title="学员风采" href="{% url 'news:news' %}"> 学员风采 </a>
+        </li>
+        <li>
+            <a title="服务大厅" href="{% url 'service:service' %}" class="a_active"> 服务大厅 </a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+    <div class="navbar-common">
+        <div class="aside clear">
+            <p class="flt">
+                <a href="{% url 'home' %}">首页</a>
+                <span>
+                    <i>&gt;</i>
+                    <a href="{% url 'service:service' %}">服务大厅</a>
+                    <i>&gt;</i>
+                    <a href="{% url 'service:feecard' %}">报名凭证查询</a>
+                </span>
+            </p>
+        </div>
+    </div>
+
+
+
+    <div style="padding-top: 11px;">
+        <div class="college-accredit-box study-center-box clear">
+            <!--左边的菜单-->
+            <div class="service-left-nav">
+                <dl>
+                    <dt>
+                        <span class="icon iconfont icon-catalogue"></span> 学历业务服务流程
+                    </dt>
+                    <dd>
+                        <p>
+                            <a href="{% url 'service:sign' %}" data-type="108" class="108"> 网络报名招生 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:new_exam' %}" data-type="109" class="109"> 新生入学 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:help' %}" data-type="110" class="110"> 学习平台使用帮助 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:exam' %}" data-type="111" class="111"> 专业考试 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:graduation' %}" data-type="104" class="104"> 毕业问答 </a>
+                        </p>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="icon iconfont icon-search"></span> 权威查询
+                    </dt>
+                    <dd>
+                        <p>
+                            <a href="{% url 'service:feecard' %}" data-type="feecard" class="feecard active">
+                                报名凭证查询 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:center' %}"> 学习中心查询 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:collegeautho' %}"> 高校授权查询 </a>
+                        </p>
+                        <p>
+                            <a href="https://my.chsi.com.cn/archive/index-8a6ada30fc.jsp" target="_blank"> 学信网学籍查询 </a>
+                        </p>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <span class="icon iconfont icon-downLoad"></span> 常见下载
+                    </dt>
+                    <dd>
+                        <p>
+                            <a href="{% url 'service:examdownload' %}" data-type="examdownload" class="examdownload">
+                                模拟题下载 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:courseware' %}" data-type="105" class="105"> 课件播放器下载 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:sch_form' %}" data-type="106" class="106"> 高校常见表格下载 </a>
+                        </p>
+                        <p>
+                            <a href="{% url 'service:application' %}" data-type="4" class="4"> 常见申请表格下载 </a>
+                        </p>
+                    </dd>
+                </dl>
+            </div>
+            <!--左边的菜单结束了-->
+
+            <div class="clear">
+                <div class="center-content">
+                    <div class="common-tap-header">
+                        <p class="tap clear">
+                            <a class="type" href="{% url 'service:feecard' %}"> 报名凭证查询 </a>
+                        </p>
+                    </div>
+                    <div class="center-list">
+                        <div class="key">
+                            <span> 学员姓名：{{ name }} </span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span> 手机号码：{{ phone }} </span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span> 身份证号：{{ id_card }} </span>
+
+                        </div>
+                        <div class="lists order">
+                            <div style="color: #c3c3c3;margin-top: 20px">共有 {{ order.count }} 个网络报名凭证</div>
+                            {% if order.count == 0 %}
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="my_table">
+                                    <tr style="margin-left: 200px;">
+                                        <td class="none" colspan="6">
+                                            <i class="iconfont none"></i>
+                                            <span class="none">抱歉，无相关报名凭证</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            {% else %}
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="my_table">
+                                    <thead>
+                                    <tr>
+                                        <th style=" background: #f8f8f6;width: 257px;"><span>专业</span></th>
+                                        <th style="width: 203px;">院校</th>
+                                        <th style="width: 80px;">层次</th>
+                                        <th style="width: 87px;">金额</th>
+                                        <th style="width: 102px;">状态</th>
+                                        <th style="width: 110px;">报名时间</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="table-box">
+                                    {% for info in data %}
+                                        <tr>
+                                            <td>{{ info.majar_id.major_name }}</td>
+                                            <td>{{ info.school_id.name }}</td>
+                                            <td>{{ info.majar_id.get_level_display }}</td>
+                                            <td>&yen;200</td>
+                                            <td>{{ info.get_status_display }}</td>
+                                            <td>2018-12-12 10:23:23</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <form id="forms" action="#" method="get" enctype="multipart/form-data">
+                                    <div class="pagination">
+                                        <span> 共{{ paginator.num_pages }}页 </span>
+                                        {% if data.has_previous %}
+                                            <a href="?page={{ data.previous_page_number }}"> 上一页 </a>
+                                        {% else %}
+                                            <span class="disabled"> 上一页 </span>
+                                        {% endif %}
+                                        {% for num in page_range %}
+                                            {% if num == currentPage %}
+                                                <a class="active" href="?page={{ num }}"> {{ num }} </a>
+                                            {% else %}
+                                                {% if num == '...' %}
+                                                    <a> {{ num }} </a>
+                                                {% else %}
+                                                    <a href="?page={{ num }}"> {{ num }} </a>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if data.has_next %}
+                                            <a href="?page={{ data.next_page_number }}"> 下一页 </a>
+                                        {% else %}
+                                            <span class="disabled"> 下一页 </span>
+                                        {% endif %}
+
+                                        <input type="text" class="aw_page_input" data-max="{{ paginator.num_pages }}"
+                                               pattern="[0-9]*" title="必须是纯数字">
+                                        <span class="goPage" data-url="?"> Go </span>
+                                    </div>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        var cityId = 110100;
+        var is_first_index = 0;
+        var LogChannelID = "test"; //LogChannelID是频道ID，
+    </script>
+
+
+
+    <script type="text/javascript" src="{% static 'home/js/vendor.js' %}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var service_url = window.location.href;
+            //var type_url = $(this).attr('data-type');
+            $('.service-left-nav a').each(function () {
+                var type_url = $(this).attr('data-type');
+                var service_arr = service_url.split('/');
+                var service_function = service_arr[4].split('.');
+                if (type_url == service_function[0]) {
+                    $('.service-left-nav a').removeClass('active');
+                    $('.' + type_url).addClass('active');
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.service-left-nav a').removeClass('active');
+            $('.authcenter').addClass('active');
+
+            var form = document.getElementById('forms');
+            var submit = document.getElementById('submit');
+            submit.onclick = function () {
+                var page = form.page.value;
+                //是否位数字
+                if (isNaN(page)) {
+                    alert('页码格式错误');
+                    return false;
+                }
+
+                if (form.page.value > "2") {
+                    form.page.value = "2";
+                }
+                form.submit();
+            }
+
+            $('.goPage').on('click', function () {
+                var url_page = check_page_input();
+                if (url_page) {
+                    window.location.href = url_page;
+                }
+            });
+
+            function check_page_input() {
+                var page_input_obj = $('.aw_page_input');
+                var val = page_input_obj.val();
+                if (!val || val <= 0) {
+                    page_input_obj.css('border', '#f00 solid 1px');
+                    return false;
+                }
+                if (!(/^[0-9]{0,}$/.test(val))) {
+                    page_input_obj.css('border', '#f00 solid 1px');
+                    return false;
+                } else {
+                    var max = page_input_obj.attr('data-max');
+                    if ((val - 0) > (max - 0)) {
+                        page_input_obj.css('border', '#f00 solid 1px');
+                        return false;
+                    } else {
+                        page_input_obj.css('border', '1px solid #e5e5e5');
+                        var url = $('.goPage').attr('data-url');
+                        return url + '&page=' + val;
+                    }
+                }
+
+            }
+        })
+    </script>
+
+{% endblock %}

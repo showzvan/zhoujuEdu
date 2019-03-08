@@ -1,0 +1,925 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c8e485e4-c61d-4712-beef-b427ecd349e9" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/django_obj$_major_spider.coverage" NAME="专业信息-major_spider Coverage Results" MODIFIED="1551698644781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育" />
+    <SUITE FILE_PATH="coverage/django_obj$.coverage" NAME="搜索页面 Coverage Results" MODIFIED="1551766476379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育" />
+    <SUITE FILE_PATH="coverage/django_obj$yunpian.coverage" NAME="yunpian Coverage Results" MODIFIED="1551497051864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/users" />
+    <SUITE FILE_PATH="coverage/django_obj$_posts_spider.coverage" NAME="学院风采文章-posts_spider Coverage Results" MODIFIED="1551747455704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/choose_major/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2610">
+              <caret line="91" column="44" selection-start-line="91" selection-start-column="44" selection-end-line="91" selection-end-column="44" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/search_info/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3960">
+              <caret line="137" column="21" selection-start-line="137" selection-start-column="21" selection-end-line="137" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/search_info/templates/search_info/search.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-90">
+              <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/choose_major/templates/choose_major/major.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="10650">
+              <caret line="355" column="27" selection-start-line="355" selection-start-column="27" selection-end-line="355" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/search_info/templates/search_info/school_info.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5370">
+              <caret line="179" column="23" selection-start-line="179" selection-start-column="23" selection-end-line="179" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/search_info/templates/search_info/news_info.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4440">
+              <caret line="148" column="31" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/search_info/templates/search_info/major_info.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5520">
+              <caret line="184" column="27" selection-start-line="184" selection-start-column="27" selection-end-line="184" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/search_info/templates/search_info/center_info.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3990">
+              <caret line="133" column="27" selection-start-line="133" selection-start-column="27" selection-end-line="133" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>btn btn-app btn-xs btn-warning ace-settings-btn</find>
+      <find>user</find>
+      <find>onchange</find>
+      <find>change_img</find>
+      <find>active</find>
+      <find>my_table</find>
+      <find>major</find>
+      <find>select-box</find>
+      <find>data</find>
+      <find>fill</find>
+      <find>header</find>
+      <find>assets</find>
+      <find>cate1</find>
+      <find>cates</find>
+      <find>.header-common .login-status</find>
+      <find>login-status</find>
+      <find>logout</find>
+      <find>quit-login</find>
+      <find>display</find>
+      <find>loginOpt</find>
+      <find>current</find>
+      <find>奥鹏</find>
+      <find>login</find>
+      <find>aw_button_search</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>舟炬</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/server/templates/server/del_enclosure.html" />
+        <option value="$PROJECT_DIR$/server/views.py" />
+        <option value="$PROJECT_DIR$/server/templates/server/file-list.html" />
+        <option value="$PROJECT_DIR$/server/templates/server/del_file-list.html" />
+        <option value="$PROJECT_DIR$/order/views.py" />
+        <option value="$PROJECT_DIR$/order/templates/order/order-list.html" />
+        <option value="$PROJECT_DIR$/order/templates/order/order-del.html" />
+        <option value="$PROJECT_DIR$/user/models.py" />
+        <option value="$PROJECT_DIR$/enter/views.py" />
+        <option value="$PROJECT_DIR$/choose_major/templates/choose_major/major.html" />
+        <option value="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育/专业信息-major_spider.py" />
+        <option value="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育/学院风采文章-posts_spider.py" />
+        <option value="$PROJECT_DIR$/news/views.py" />
+        <option value="$PROJECT_DIR$/news/templates/news/posts-detail.html" />
+        <option value="$PROJECT_DIR$/news/templates/news/posts.html" />
+        <option value="$PROJECT_DIR$/service/templates/service/services-sign-posts.html" />
+        <option value="$PROJECT_DIR$/service/templates/service/services-sch_form-posts.html" />
+        <option value="$PROJECT_DIR$/service/templates/service/services-posts.html" />
+        <option value="$PROJECT_DIR$/service/templates/service/services-new_exam-posts.html" />
+        <option value="$PROJECT_DIR$/service/templates/service/services-graduation-posts.html" />
+        <option value="$PROJECT_DIR$/service/templates/service/services-exam-posts.html" />
+        <option value="$PROJECT_DIR$/service/templates/service/services-courseware-posts.html" />
+        <option value="$PROJECT_DIR$/service/templates/service/services-application-posts.html" />
+        <option value="$PROJECT_DIR$/choose_school/templates/choose_school/school-detail.html" />
+        <option value="$PROJECT_DIR$/major/models.py" />
+        <option value="$PROJECT_DIR$/service/templates/service/services-collegeautho-search.html" />
+        <option value="$PROJECT_DIR$/service/templates/service/services-collegeautho.html" />
+        <option value="$PROJECT_DIR$/home/context_processors.py" />
+        <option value="$PROJECT_DIR$/users/urls.py" />
+        <option value="$PROJECT_DIR$/home/static/home/css/index-c290d50fab.css" />
+        <option value="$PROJECT_DIR$/order/models.py" />
+        <option value="$PROJECT_DIR$/home/static/home/js/vendor.js" />
+        <option value="$PROJECT_DIR$/users/templates/users/user-agreement.html" />
+        <option value="$PROJECT_DIR$/users/templates/users/user-myenter.html" />
+        <option value="$PROJECT_DIR$/home/templates/home/index_1.html" />
+        <option value="$PROJECT_DIR$/users/views.py" />
+        <option value="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育/搜索页面.py" />
+        <option value="$PROJECT_DIR$/django_obj/settings.py" />
+        <option value="$PROJECT_DIR$/django_obj/urls.py" />
+        <option value="$PROJECT_DIR$/search_info/templates/search.html" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/search_info/urls.py" />
+        <option value="$PROJECT_DIR$/choose_major/templates/choose_major/major-detail.html" />
+        <option value="$PROJECT_DIR$/home/static/home/js/search-662f138cfe.js" />
+        <option value="$PROJECT_DIR$/choose_major/views.py" />
+        <option value="$PROJECT_DIR$/search_info/templates/search_info/school_info.html" />
+        <option value="$PROJECT_DIR$/search_info/templates/search_info/news_info.html" />
+        <option value="$PROJECT_DIR$/search_info/templates/search_info/major_info.html" />
+        <option value="$PROJECT_DIR$/search_info/templates/search_info/center_info.html" />
+        <option value="$PROJECT_DIR$/search_info/views.py" />
+        <option value="$PROJECT_DIR$/search_info/templates/search_info/search.html" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="width" value="1266" />
+    <option name="height" value="1038" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="django_obj" type="b2602c69:ProjectViewProjectNode" />
+              <item name="django_obj" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="django_obj" type="b2602c69:ProjectViewProjectNode" />
+              <item name="django_obj" type="462c0819:PsiDirectoryNode" />
+              <item name="choose_major" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="django_obj" type="b2602c69:ProjectViewProjectNode" />
+              <item name="django_obj" type="462c0819:PsiDirectoryNode" />
+              <item name="choose_major" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="django_obj" type="b2602c69:ProjectViewProjectNode" />
+              <item name="django_obj" type="462c0819:PsiDirectoryNode" />
+              <item name="choose_major" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="choose_major" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="django_obj" type="b2602c69:ProjectViewProjectNode" />
+              <item name="django_obj" type="462c0819:PsiDirectoryNode" />
+              <item name="search_info" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="django_obj" type="b2602c69:ProjectViewProjectNode" />
+              <item name="django_obj" type="462c0819:PsiDirectoryNode" />
+              <item name="search_info" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="django_obj" type="b2602c69:ProjectViewProjectNode" />
+              <item name="django_obj" type="462c0819:PsiDirectoryNode" />
+              <item name="search_info" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="search_info" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="django_obj" type="b2602c69:ProjectViewProjectNode" />
+              <item name="django_obj" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/django-blog-tutorial-master/django-blog-tutorial-master" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Education\django_obj\search_info\templates\search_info" />
+      <recent name="D:\Education\django_obj\users" />
+      <recent name="D:\Education\django_obj\enter" />
+      <recent name="D:\Education\django_obj\about\templates\about" />
+      <recent name="D:\Education\django_obj\home\templates\home" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Education\django_obj\search_info\templates\search_info" />
+      <recent name="D:\Education\django_obj\search_info\templates" />
+      <recent name="D:\Education\django_obj\enter\templates" />
+      <recent name="D:\Education\django_obj\users\templates\users" />
+      <recent name="D:\Education\django_obj\users\templates" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.搜索页面">
+    <configuration name="专业信息-major_spider" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="django_obj" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育/专业信息-major_spider.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="学院风采文章-posts_spider" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="django_obj" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育/学院风采文章-posts_spider.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="搜索页面" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="django_obj" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育/搜索页面.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="yunpian" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="django_obj" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/users" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/users/yunpian.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="django_obj" type="Python.DjangoServer" factoryName="Django server">
+      <module name="django_obj" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="django_obj.settings" />
+      </envs>
+      <option name="SDK_HOME" value="D:\Education\django_obj\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.搜索页面" />
+        <item itemvalue="Python.学院风采文章-posts_spider" />
+        <item itemvalue="Python.专业信息-major_spider" />
+        <item itemvalue="Python.yunpian" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c8e485e4-c61d-4712-beef-b427ecd349e9" name="Default Changelist" comment="" />
+      <created>1547433618821</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1547433618821</updated>
+      <workItem from="1547433621790" duration="27272000" />
+      <workItem from="1547514334826" duration="21876000" />
+      <workItem from="1547552764868" duration="520000" />
+      <workItem from="1547553320394" duration="5926000" />
+      <workItem from="1547560549862" duration="9364000" />
+      <workItem from="1547593325678" duration="42663000" />
+      <workItem from="1547647251779" duration="4991000" />
+      <workItem from="1547686578614" duration="33805000" />
+      <workItem from="1547773829604" duration="37070000" />
+      <workItem from="1547860970788" duration="11722000" />
+      <workItem from="1548034289555" duration="4020000" />
+      <workItem from="1548053311547" duration="22517000" />
+      <workItem from="1548117890168" duration="40725000" />
+      <workItem from="1548206832607" duration="1801000" />
+      <workItem from="1548208651322" duration="31279000" />
+      <workItem from="1548289921116" duration="30648000" />
+      <workItem from="1548377680766" duration="21272000" />
+      <workItem from="1548467109958" duration="32800000" />
+      <workItem from="1548568004101" duration="23584000" />
+      <workItem from="1548662279952" duration="18726000" />
+      <workItem from="1548686372503" duration="977000" />
+      <workItem from="1548725619935" duration="32434000" />
+      <workItem from="1548810275782" duration="8617000" />
+      <workItem from="1548914020002" duration="7295000" />
+      <workItem from="1549105396883" duration="1019000" />
+      <workItem from="1549115779186" duration="4224000" />
+      <workItem from="1549208376558" duration="2404000" />
+      <workItem from="1549375396906" duration="1219000" />
+      <workItem from="1549814389773" duration="9045000" />
+      <workItem from="1549932763770" duration="29699000" />
+      <workItem from="1550021368918" duration="30733000" />
+      <workItem from="1550107180023" duration="27391000" />
+      <workItem from="1550198014994" duration="11753000" />
+      <workItem from="1550453640125" duration="30025000" />
+      <workItem from="1550538356021" duration="23136000" />
+      <workItem from="1550624715121" duration="18504000" />
+      <workItem from="1550653401498" duration="12713000" />
+      <workItem from="1550712898509" duration="24936000" />
+      <workItem from="1550795707593" duration="20572000" />
+      <workItem from="1550898858185" duration="6656000" />
+      <workItem from="1550975741898" duration="7560000" />
+      <workItem from="1551051645322" duration="36231000" />
+      <workItem from="1551142629358" duration="33002000" />
+      <workItem from="1551228566952" duration="26019000" />
+      <workItem from="1551317195891" duration="12846000" />
+      <workItem from="1551413166865" duration="26520000" />
+      <workItem from="1551497032705" duration="24728000" />
+      <workItem from="1551593811385" duration="9913000" />
+      <workItem from="1551661513138" duration="37978000" />
+      <workItem from="1551747252935" duration="5150000" />
+      <workItem from="1551753092973" duration="28313000" />
+      <workItem from="1551851411198" duration="1233000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="975426000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1563" height="845" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18870431" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="2" weight="0.29131654" />
+      <window_info anchor="bottom" id="Version Control" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5023256" side_tool="true" weight="0.32913166" />
+      <window_info anchor="bottom" id="Python Console" order="5" weight="0.32913166" />
+      <window_info anchor="bottom" id="manage.py@django_obj" order="6" sideWeight="0.49966776" weight="0.39915967" />
+      <window_info anchor="bottom" id="Message" order="7" />
+      <window_info anchor="bottom" id="Find" order="8" weight="0.32913166" />
+      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.4976744" weight="0.32913166" />
+      <window_info anchor="bottom" id="Debug" order="10" weight="0.39915967" />
+      <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="13" />
+      <window_info anchor="bottom" id="Thumbnails" order="14" weight="0.32913166" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.32956812" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32956812" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/service/templates/service/services-new_exam-posts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-30">
+          <caret line="245" column="74" selection-start-line="245" selection-start-column="74" selection-end-line="245" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/templates/service/services-graduation-posts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-90">
+          <caret line="246" column="70" lean-forward="true" selection-start-line="246" selection-start-column="70" selection-end-line="246" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/templates/service/services-examdownload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4950" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/templates/service/services-exam-posts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120">
+          <caret line="245" column="107" selection-start-line="245" selection-start-column="107" selection-end-line="245" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/templates/service/services-courseware-posts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="245" column="107" selection-start-line="245" selection-start-column="107" selection-end-line="245" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/templates/service/services-centerauth.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5220" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/templates/service/services-application-posts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180">
+          <caret line="210" column="76" lean-forward="true" selection-start-line="210" selection-start-column="76" selection-end-line="210" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/major/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="19" column="70" lean-forward="true" selection-start-line="19" selection-start-column="70" selection-end-line="19" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/choose_major/models.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育/学习中心.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-418">
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/templates/service/services-collegeautho.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="126" column="29" lean-forward="true" selection-start-line="126" selection-start-column="29" selection-end-line="126" selection-end-column="29" />
+          <folding>
+            <element signature="e#4890#4912#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/templates/service/services-collegeautho-search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="184" column="78" selection-start-line="184" selection-start-column="78" selection-end-line="184" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/templates/service/services-centerauth-search.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/context_processors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="26" column="39" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="39" />
+          <folding>
+            <element signature="e#20#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="28" column="60" lean-forward="true" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1189">
+          <caret line="98" column="43" lean-forward="true" selection-start-line="98" selection-start-column="43" selection-end-line="98" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/templates/users/user-agreement.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="93" column="131" selection-start-line="93" selection-start-column="131" selection-end-line="93" selection-end-column="131" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/static/home/js/datacollect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-571" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/static/home/css/index-c290d50fab.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="2984" column="28" selection-start-line="2984" selection-start-column="28" selection-end-line="2984" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/static/home/css/myRegistration-cbdc6b26c7.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="1272" column="33" selection-start-line="1272" selection-start-column="26" selection-end-line="1272" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/static/home/fonts/unicode.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-31" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/templates/users/user-myenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/order/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="17" column="56" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育/专业信息-major_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="e#31#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/templates/cms/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-31195" />
+      </provider>
+    </entry>
+    <entry file="file://D:/python爬虫课程/爬虫实例/周帆-1/7.舟炬教育/搜索页面.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/django_obj/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="55" column="12" lean-forward="true" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/static/home/js/vendor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="3310" column="6" lean-forward="true" selection-start-line="3310" selection-start-column="6" selection-end-line="3310" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/static/home/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#style#0;n#video#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/django_obj/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/check.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="30" column="12" lean-forward="true" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1046">
+          <caret line="133" lean-forward="true" selection-start-line="133" selection-end-line="133" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/choose_school/templates/choose_school/school-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="47" column="28" lean-forward="true" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/choose_school/templates/choose_school/school.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="226" column="37" lean-forward="true" selection-start-line="226" selection-start-column="37" selection-end-line="226" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search_info/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding>
+            <element signature="e#20#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/templates/home/index_1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="525" column="36" selection-start-line="525" selection-start-column="36" selection-end-line="525" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1830">
+          <caret line="38" column="48" lean-forward="true" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/static/home/js/search-662f138cfe.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1632" selection-start-column="1632" selection-end-column="1632" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/choose_major/templates/choose_major/major-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="57" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/choose_school/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1620">
+          <caret line="21" column="54" lean-forward="true" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home/static/home/css/search-64deaecd42.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8280" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/choose_major/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2610">
+          <caret line="91" column="44" selection-start-line="91" selection-start-column="44" selection-end-line="91" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search_info/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3960">
+          <caret line="137" column="21" selection-start-line="137" selection-start-column="21" selection-end-line="137" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/choose_major/templates/choose_major/major.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10650">
+          <caret line="355" column="27" selection-start-line="355" selection-start-column="27" selection-end-line="355" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search_info/templates/search_info/school_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5370">
+          <caret line="179" column="23" selection-start-line="179" selection-start-column="23" selection-end-line="179" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search_info/templates/search_info/news_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4440">
+          <caret line="148" column="31" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search_info/templates/search_info/major_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5520">
+          <caret line="184" column="27" selection-start-line="184" selection-start-column="27" selection-end-line="184" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search_info/templates/search_info/center_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3990">
+          <caret line="133" column="27" selection-start-line="133" selection-start-column="27" selection-end-line="133" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search_info/templates/search_info/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-90">
+          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>学员风采_学习中心风采_舟炬教育</title>
+    <meta name="keywords" content="学员风采,学习中心风采">
+    <meta name="description" content="舟炬教育已和40余所全国远程教育试点高校合作,共设有400多个网络学历教育专业,所有专业都是院校的重点学科、王牌专业。">
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/fonts/unicode.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/new_studentStyle-8bb8a0ee55.css' %}">
+{% endblock %}
+
+{% block nav_active %}
+<ul class="search-snav-list">
+            <li>
+                <a title="首页" href="{% url 'home' %}">首页</a>
+            </li>
+            <li class="search-main-menu search-menu-item">
+                <a title="选专业" href="{% url 'choose_major:choose_major' %}">选专业</a>
+            </li>
+            <li>
+                <a title="选院校" href="{% url 'choose_school:school' %}"> 选院校 </a>
+            </li>
+            <li>
+                <a title="学员风采" href="{% url 'news:news' %}" class="a_active"> 学员风采 </a>
+            </li>
+            <li>
+                <a title="服务大厅" href="{% url 'service:service' %}"> 服务大厅 </a>
+            </li>
+        </ul>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="navbar-common">
+        <div class="aside clear">
+            <p class="flt">
+                <a href="http://www.zhoujuedu.com/">首页</a>
+                <span>
+                    <i>&gt;</i>
+                    <a href="http://www.zhoujuedu.com/news/index.html">学员风采</a>
+                </span>
+            </p>
+        </div>
+    </div>
+
+
+
+    <div style="background-color:#f8f8f8;padding-top: 11px;">
+        <div class="college-accredit-box clear">
+            <div class="center-content">
+                <div class="news-box">
+                    {% for news in data %}
+                        <a href="{% url 'news:news_detail' news.id %}" target="_blank" title="{{ news.post_title }}">
+                            <dl class="mar20">
+                                <dt>
+                                    <span>
+                                        <img class="lazy-one" src="{{ news.post_image }}" data-original="{{ news.post_image }}" width="280" height="186" style="display: inline;">
+                                    </span>
+                                </dt>
+                                <dd>
+                                    <h4>
+                                        <span class="aw_title_span">{{ news.post_title }}</span>
+                                    </h4>
+                                    <p>{{ news.post_content|striptags|truncatechars:120|safe }}</p>
+                                    <div class="mores">
+                                        <span>来源：{{ news.source }}</span>
+                                        <span>
+                                            <i class="icon iconfont icon-eye"></i> {{ news.views }} </span>
+                                        <span>
+                                            <i class="icon iconfont icon-time-wise"></i> {{ news.edit_time|date:"Y-m-d" }} </span>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </a>
+                    {% endfor %}
+                </div>
+                
+                <div class="pagination">
+                    <span> 共{{ paginator.num_pages }}页 </span>
+                    {% if data.has_previous %}
+                        <a href="?page={{ data.previous_page_number }}"> 上一页 </a>
+                    {% else %}
+                        <span class="disabled"> 上一页 </span>
+                    {% endif %}
+                    {% for num in page_range %}
+                        {% if num == currentPage %}
+                            <a class="active" href="?page={{ num }}"> {{ num }} </a>
+                        {% else %}
+                            {% if num == '...' %}
+                                <a> {{ num }} </a>
+                            {% else %}
+                                <a href="?page={{ num }}"> {{ num }} </a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if data.has_next %}
+                        <a href="?page={{ data.next_page_number }}"> 下一页 </a>
+                    {% else %}
+                        <span class="disabled"> 下一页 </span>
+                    {% endif %}
+
+                    <input type="text" class="aw_page_input" data-max="{{ paginator.num_pages }}" pattern="[0-9]*" title="必须是纯数字">
+                    <span class="goPage" data-url="?"> Go </span>
+                </div>            
+            </div>
+            
+            <div class="hot-article">
+                <h3>- 热门文章-</h3>
+                
+                <div class="aw_hot_student_mien">
+                    {% for hot_post in hot_posts %}
+                        <dl>
+                            <a href="{% url 'news:news_detail' hot_post.pk %}" target="_blank" title="{{ hot_post.post_title }}">
+                                <dt>
+                                    <img class="lazy-two" src="{{ hot_post.post_image }}" data-original="{{ hot_post.post_image }}" alt="{{ hot_post.post_title }}" style="display: inline;">
+                                </dt>
+                                <dd>{{ hot_post.post_title|truncatechars:30 }}</dd>
+                            </a>
+                        </dl>
+                    {% endfor %}
+
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/news/6322.html" target="_blank" title="用先进理念唱响“教育” ——记广东省成人教育先进工作者陈汉楚">#}
+{#                            <dt>#}
+{#                                <img class="lazy-two" src="assets/images/15379335775bab0109c26b2.png" data-original="assets/images/15379335775bab0109c26b2.png" alt="用先进理念唱响“教育” ——记广东省成人教育先进工作者陈汉楚" style="display: inline;">#}
+{#                            </dt>#}
+{#                            <dd>用先进理念唱响“教育” ——记广东省成人教育先进工作者陈汉楚</dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{##}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/news/6320.html" target="_blank" title="不负韶华，书写最美的篇章">#}
+{#                            <dt>#}
+{#                                <img class="lazy-two" src="assets/images/15379330535baafefd475d3.png" data-original="assets/images/15379330535baafefd475d3.png" alt="不负韶华，书写最美的篇章" style="display: inline;"></dt>#}
+{#                            <dd>不负韶华，书写最美的篇章</dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{##}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/news/6324.html" target="_blank" title="青春不散场 梦想不分离">#}
+{#                            <dt>#}
+{#                                <img class="lazy-two" src="assets/images/15379340135bab02bd32ff9.png" data-original="assets/images/15379340135bab02bd32ff9.png" alt="青春不散场 梦想不分离" style="display: inline;"></dt>#}
+{#                            <dd>青春不散场 梦想不分离</dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{##}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/news/6398.html" target="_blank" title="舟炬教育：成就学员的梦想是企业最大的荣耀!">#}
+{#                            <dt>#}
+{#                                <img class="lazy-two" src="assets/images/15381171355badce0fa89cc.png" data-original="assets/images/15381171355badce0fa89cc.png" alt="舟炬教育：成就学员的梦想是企业最大的荣耀!" style="display: inline;"></dt>#}
+{#                            <dd>舟炬教育：成就学员的梦想是企业最大的荣耀!</dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{##}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/news/6314.html" target="_blank" title="明月迎中秋，舟炬寄思念">#}
+{#                            <dt><img class="lazy-two" src="assets/images/15379297615baaf221a15d3.png" data-original="assets/images/15379297615baaf221a15d3.png" alt="明月迎中秋，舟炬寄思念" style="display: inline;"></dt>#}
+{#                            <dd>明月迎中秋，舟炬寄思念</dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{##}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/news/6290.html" target="_blank" title="中秋节到底带谁见家长？"><dt><img class="lazy-two" src="assets/images/15375147115ba49cd732014.png" data-original="assets/images/15375147115ba49cd732014.png" alt="中秋节到底带谁见家长？" style="display: inline;"></dt>#}
+{#                            <dd>中秋节到底带谁见家长？</dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{##}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/news/6318.html" target="_blank" title="舟炬教育包头学习中心 | 开学礼&amp;毕业季"><dt><img class="lazy-two" src="assets/images/15379324385baafc96b6873.png" data-original="assets/images/15379324385baafc96b6873.png" alt="舟炬教育包头学习中心 | 开学礼&amp;毕业季" style="display: inline;"></dt>#}
+{#                            <dd>舟炬教育包头学习中心 | 开学礼&amp;毕业季</dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{##}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/news/6316.html" target="_blank" title="活学乐也——记中国人民大学优秀毕业生陈群"><dt><img class="lazy-two" src="assets/images/15379318925baafa74cca42.png" data-original="assets/images/15379318925baafa74cca42.png" alt="活学乐也——记中国人民大学优秀毕业生陈群" style="display: inline;"></dt>#}
+{#                            <dd>活学乐也——记中国人民大学优秀毕业生陈群</dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{##}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/news/7826.html" target="_blank" title="漯河水利技校舟炬学习中心新生开学典礼圆满结束"><dt><img class="lazy-two" src="assets/images/15429568775bf7a74dcd442.jpg" data-original="assets/images/15429568775bf7a74dcd442.jpg" alt="漯河水利技校舟炬学习中心新生开学典礼圆满结束" style="display: inline;"></dt>#}
+{#                            <dd>漯河水利技校舟炬学习中心新生开学典礼圆满结束</dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+{##}
+{#                    <dl>#}
+{#                        <a href="http://www.zhoujuedu.com/news/7824.html" target="_blank" title="山东运营中心陪同山东电大副校长一行到河南电大考察调研">#}
+{#                            <dt>#}
+{#                                <img class="lazy-two" src="assets/images/15429560305bf7a3fe94605.jpg" data-original="assets/images/15429560305bf7a3fe94605.jpg" alt="山东运营中心陪同山东电大副校长一行到河南电大考察调研" style="display: inline;"></dt>#}
+{#                            <dd>山东运营中心陪同山东电大副校长一行到河南电大考察调研</dd>#}
+{#                        </a>#}
+{#                    </dl>#}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+	
+    	var cityId = 110100;
+    	var is_first_index = 0;
+    	var LogChannelID = "test"; //LogChannelID是频道ID，
+	
+    </script>
+
+    <script type="text/javascript" src="{% static 'home/js/vendor.js' %}"></script>
+    <script type="text/javascript" src="{% static 'home/js/news-ba5aaaf97a.js' %}"></script>
+
+
+{% endblock %}
